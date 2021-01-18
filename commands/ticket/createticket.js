@@ -30,7 +30,7 @@ module.exports = {
         		id: message.guild.roles.everyone.id,
         		deny: ['VIEW_CHANNEL']
         	},
-        	/*{
+        	{
         		id: "763149761225687060",
         		deny: ['VIEW_CHANNEL']
         	},
@@ -41,7 +41,7 @@ module.exports = {
         	{
         		id: "783368099487154176",
         		deny: ['VIEW_CHANNEL']
-        	}*/
+        	}
         ]);
         user._id = channel.id;
         console.log(user);
