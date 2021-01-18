@@ -20,7 +20,7 @@ module.exports = async(client, message) => {
 	                    return;
 	                }
 	                if (message.channel.permissionsFor(message.guild.me).has(commandfile.config.bot) == false) {
-	                    return;
+	                    return message.channel.send("Missing permissions.");
 	                }
 	            }
 	            client.total += 1;
