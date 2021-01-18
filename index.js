@@ -7,6 +7,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.timeouts = new Map();
 client.ticket = new Map();
+client.afk = new Map();
 
 //All variable that we need to store in Client
 client.startup = new Date().getTime();

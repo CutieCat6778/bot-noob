@@ -8,6 +8,41 @@ module.exports = async(client, message) => {
 			if(!guildCache || guildCache.length == 0){
 				guildCache = await require('../../tools/database/getGuild.js')()
 			}
+			if (message.mentions.members) {
+                if (!message.content.includes("@everyone")) {
+                    const users = message.mentions.members.map(m => m.id);
+                    if (users.length == 1) {
+                        let userCache = client.afk.get(users[0]);
+                        if (userCache && userCache.enable == true) {
+                            let embed = new MessageEmbed()
+                                .setDescription(`<@!${users}> AFK - **${userCache.status}**`)
+                                .setFooter(`${require("ms")((client.uptime - userCache.time), { long: true })} trước`)
+                            message.channel.send(embed);
+                        }
+                    } else if (users.length > 1) {
+                        users.forEach(user => {
+                            let userCache = client.afk.get(user);
+                            if (userCache && userCache.enable == true) {
+                                let embed = new MessageEmbed()
+                                    .setDescription(`<@!${user}> AFK - **${userCache.status}**`)
+                                    .setFooter(`${require("ms")((client.uptime - userCache.time), { long: true })} trước`)
+                                message.channel.send(embed);
+                            }
+                        })
+                    }
+                }
+            }
+            //afk delete
+            if (client.afk.get(message.author.id)) {
+                let userCache = client.afk.get(message.author.id);
+                if (userCache.enable == true) {
+                    message.reply("chào mừng bạn quay trở lại!");
+                    client.afk.delete(message.author.id);
+                    if(userCache.name == true && message.member.displayName.startsWith('[AFK]')){
+                        message.member.setNickname(message.member.displayName.replace('[AFK]', ''))
+                    }
+                }
+            }
 			if (message.content.toLowerCase().startsWith(guildCache.prefix) || message.content.toLowerCase().startsWith(`<@!${client.user.id}>`) || message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {
                 const args = message.content.slice(guildCache.prefix.length).trim().split(/ +/g);
                 const cmd = args.shift().toLowerCase();
