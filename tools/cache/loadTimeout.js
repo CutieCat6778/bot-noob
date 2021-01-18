@@ -8,6 +8,7 @@ module.exports = async(client) => {
 			client.timeouts.set(timeouts.indexOf(timeout) ? timeouts.indexOf(timeout) : client.timeouts.size, timeout);
 			client.setTimeout(() => {
 				eval(timeout.function);
+				return require('../database/removeTimeout.js')(timeout.from);
 			}, timeout.to - date.getTime())
 		}
 	}

@@ -16,7 +16,7 @@ module.exports = async(client, message) => {
                         if (userCache && userCache.enable == true) {
                             let embed = new MessageEmbed()
                                 .setDescription(`<@!${users}> AFK - **${userCache.status}**`)
-                                .setFooter(`${require("ms")((client.uptime - userCache.time), { long: true })} trước`)
+                                .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
                             message.channel.send(embed);
                         }
                     } else if (users.length > 1) {
@@ -25,7 +25,7 @@ module.exports = async(client, message) => {
                             if (userCache && userCache.enable == true) {
                                 let embed = new MessageEmbed()
                                     .setDescription(`<@!${user}> AFK - **${userCache.status}**`)
-                                    .setFooter(`${require("ms")((client.uptime - userCache.time), { long: true })} trước`)
+                                    .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
                                 message.channel.send(embed);
                             }
                         })
@@ -41,6 +41,7 @@ module.exports = async(client, message) => {
                     if(userCache.name == true && message.member.displayName.startsWith('[AFK]')){
                         message.member.setNickname(message.member.displayName.replace('[AFK]', ''))
                     }
+                    require('../../tools/database/removeAfk')(message.author.id);
                 }
             }
 			if (message.content.toLowerCase().startsWith(guildCache.prefix) || message.content.toLowerCase().startsWith(`<@!${client.user.id}>`) || message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {

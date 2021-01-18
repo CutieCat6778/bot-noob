@@ -13,24 +13,33 @@ module.exports = {
                 return message.channel.send('Hãy đễ lại một lời nhắn.')
             }else if(args[0]){
                 let status = args.slice(0).join(" ");
-                const obj = {
+                let obj = {
+                    _id: message.author.id,
                     status: status,
                     enable: false,
-                    time: client.uptime,
-                    name: false,
+                    from: (new Date()).getTime(),
+                    name: false
+                }
+                let obj1 = {
+                    _id: message.author.id,
+                    status: status,
+                    enable: true,
+                    from: (new Date()).getTime(),
+                    name: false
                 }
                 if(message.member.manageable){
                     await message.member.setNickname(`[AFK] ${message.member.displayName}`);
                     obj.name = true;
                 }
-                client.afk.set(message.author.id, obj)
+                client.afk.set(message.author.id, obj);
+                await require('../../tools/database/newAfk.js')(obj1);
                 message.reply("đã chuyển bạn vào trạng thái AFK");
-                client.setTimeout(() => {
+                client.setTimeout(async() => {
                     return client.afk.get(message.author.id).enable = true;
                 }, 15000);
             }else return;
         }catch (e) {
-            return require("../../tools/error")(e, message)
+            return require("../../tools/functions/error")(e, message)
         }
         
     }

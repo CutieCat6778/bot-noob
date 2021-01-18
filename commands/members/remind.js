@@ -23,12 +23,9 @@ module.exports = {
 				require('../../tools/database/newTimeout')({
 					from: (new Date()).getTime(),
 					to: (new Date()).getTime() + time,
-					functions: f.toString()
+					function: f.toString()
 				});
 				client.setTimeout(f, time);
-				client.setTimeout(() => {
-
-				})
 				return message.channel.send('Okê bạn êy.')
 			}
 		}catch (e) {
