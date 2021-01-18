@@ -16,7 +16,7 @@ module.exports = {
 			})
 			user = client.ticket.get(message.author.id);
 		}
-		const channel = await message.guild.channels.create(`${message.member.displayName} support`, {type: "text", parent: "800677615333146664"});
+		const channel = await message.guild.channels.create(`${message.member.displayName} support`, {type: "text"});
         await channel.overwritePermissions([
         	{
         		id: message.author.id,
