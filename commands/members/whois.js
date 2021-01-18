@@ -12,6 +12,7 @@ module.exports = {
 	async execute(client, message, args, guild) {
 		let target;
 		args[0] ? target = message.guild.members.cache.get(require('../../tools/string/mention.js')(args[0])) : target = message.member;
+		if(!target) return message.channel.send('Không tìm thấy người dùng!');
 		const user = await require('../../tools/database/getUser.js')(target.id);
 		const year = require('../../tools/string/yearConverter.js')(user.birthday.year);
 		const embed = new MessageEmbed()
