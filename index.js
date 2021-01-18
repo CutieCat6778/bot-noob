@@ -6,6 +6,7 @@ require('dotenv').config();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.timeouts = new Map();
+client.ticket = new Map();
 
 //All variable that we need to store in Client
 client.startup = new Date().getTime();
