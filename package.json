@@ -4,7 +4,7 @@
   "description": "a bot that help Noobs server members",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "mongoose": "^5.11.12",
+    "ms": "^2.1.2",
     "string-toolkit": "^1.3.1"
   }
 }

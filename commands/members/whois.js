@@ -13,14 +13,15 @@ module.exports = {
 		let target;
 		args[0] ? target = message.guild.members.cache.get(require('../../tools/string/mention.js')(args[0])) : target = message.member;
 		const user = await require('../../tools/database/getUser.js')(target.id);
+		const year = require('../../tools/string/yearConverter.js')(user.birthday.year);
 		const embed = new MessageEmbed()
 			.setTitle(`${target.user.tag}`)
 			.setThumbnail(target.user.displayAvatarURL())
 			.addField("Tên thật", user.realName ? user.realName : "Không biết", true)
 			.addField("ID", target.id, true)
 			.addField("Tag", target.user.discriminator, true)
-			.addField('Sinh nhật', user.birthday.day != 0 ? `${user.birthday.day}/${user.brithday.month}` : "Không biết", true)
-			.addField('Tuổi', user.birthday.year != 0 ? `${(new Date()).getFullYear() - user.birthday.year}` : "Không biết", true)
+			.addField('Sinh nhật', user.birthday.day != 0 ? `${user.birthday.day < 10 ? `0${user.birthday.day}` : user.birthday.day}/${user.birthday.month < 10 ? `0${user.birthday.month}` : user.birthday.month}` : "Không biết", true)
+			.addField('Năm sinh', year != 0 ? year : "Không biết", true)
 			.addField("Đang ở", user.location ? user.location : "Không biết", true)
 			.setFooter(`Được yêu cầu bởi ${message.author.username}`, message.author.displayAvatarURL())
 		return message.channel.send(embed);

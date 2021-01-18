@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 
 const guildSchema = mongoose.Schema({
-	guild: String,
-	author: String,
-	target: String,
-    from: Number,
-    to: Number,
+    from: String,
+    to: String,
     function: String
 })
 

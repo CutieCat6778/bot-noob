@@ -7,7 +7,6 @@ module.exports = async(client) => {
 			const date = new Date();
 			client.timeouts.set(timeouts.indexOf(timeout) ? timeouts.indexOf(timeout) : client.timeouts.size, timeout);
 			client.setTimeout(() => {
-				const guild = client.guilds.cache.get(timeout.guild);
 				eval(timeout.function);
 			}, timeout.to - date.getTime())
 		}
