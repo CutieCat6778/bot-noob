@@ -30,7 +30,7 @@ module.exports = {
 	            if (i == 3	) {
 	                const embed = new MessageEmbed()
 	                    .setTitle(`Tổng kết`)
-	                    .setDescription(`${answers.map(a => `**[${a.num}]** - ${a.content.toString()}`).join('\n')}`)
+	                    .setDescription(`${answers.map(a => `**[${a.num + 1}]** - ${a.content.toString()}`).join('\n')}`)
 	                    .setFooter(message.member.displayName, message.author.displayAvatarURL())
 	                    .setTimestamp()
 	                    .setThumbnail(message.author.displayAvatarURL())
