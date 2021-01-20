@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+const MessageEmbed = require('../../classes/newEmbed');
 
 module.exports = async(client, message) => {
 	try{
