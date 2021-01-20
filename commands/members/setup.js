@@ -16,15 +16,24 @@ module.exports = {
 		try {
 			const channel = await message.member.createDM();
 			message.channel.send("Đã gửi vào trong tin nhắn trực tiếp(DM)")
-			const questions = ['Tên thật của bạn là gì?(What is your real name?)', 'Ngày tháng năm sinh?(Your birthday?) [DD/MM/YY]', 'Bạn hiện đang ở đâu?(Where is your current location?)']            
+			const questions = ['Tên thật của bạn là gì?(What is your real name?)', 'Sinh nhật của bạn là lúc nào?(Your birthday?) [DD/MM/YY]', 'Bạn hiện đang ở đâu?(Where is your current location?)']            
 			const filter = m => m.author.id == message.author.id;
 			let i = 0;
 			const answers = [];
 			async function loop(q) {
 	            channel.send({embed: {
-	            	description: q[i]
+	            	description: q[i] + `\n\n *ấn \`cancel\` vào những phần mà bạn muốn bỏ qua*`
 	            }});
-	            let collected = await require('../../tools/functions/collectMessage')(message, filter, null, channel);
+				let collected = await require('../../tools/functions/collectMessage')(message, filter, null, channel);
+				if(!collected){
+					if(i == 0 || i == 1){
+						channel.send('Cái mục đó là bắt buộc, xin bạn hãy điền vào.');
+						channel.send({embed: {
+							description: q[i]
+						}});
+						collected = await require('../../tools/functions/collectMessage')(message, filter, null, channel);
+					}
+				}
 	            answers.push({ "num": i, "content": collected.content.toString() });
 	            i++;
 	            if (i == 3	) {
@@ -50,7 +59,8 @@ module.exports = {
 							.setThumbnail(message.author.displayAvatarURL())
 		                    .setDescription(`${answers.map(a => `**${questions[a.num]}**\n\t\t\t-\t${a.content.toString()}`).join('\n\n')}`)
 						let user = await require('../../tools/database/getUser')(message.member.id);
-						const bd = answers[1].content.split('/');
+						let bd = '';
+						answers.includes('/') ? bd = answers[1].content.split('/') : bd = answers[1].content.split('-')
 						user._id = message.member.id;
 						user.birthday = {
 							day: bd[0],
