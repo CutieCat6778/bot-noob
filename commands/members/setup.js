@@ -60,7 +60,7 @@ module.exports = {
 						user.realName = answers[0].content;
 						user.location = answers[2].content;
 						await user.save();
-						channel.send('Đã gửi đi thành công!');
+						channel.send('Đã gửi đi thành công! 👌');
 						return hook.send(embed);
 	                } else {
 	                    return message.channel.send("Đã hủy.");

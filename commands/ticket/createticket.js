@@ -20,7 +20,7 @@ module.exports = {
 			const channel = await message.guild.channels.create(`${message.member.displayName} support`, {
 				type: "text"
 			});
-			await channel.overwritePermissions([{
+			const obj = [{
 				id: message.author.id,
 				allow: ['VIEW_CHANNEL']
 			}, {
@@ -29,16 +29,22 @@ module.exports = {
 			}, {
 				id: message.guild.roles.everyone.id,
 				deny: ['VIEW_CHANNEL']
-			}, {
-				id: "763149761225687060",
-				deny: ['VIEW_CHANNEL']
-			}, {
-				id: "766059605519892491",
-				deny: ['VIEW_CHANNEL']
-			}, {
-				id: "783368099487154176",
-				deny: ['VIEW_CHANNEL']
-			}]);
+			}]
+			if(message.guild.id == "721203266452586507"){
+				obj.push({
+					id: "763149761225687060",
+					deny: ['VIEW_CHANNEL']
+				});
+				obj.push({
+					id: "766059605519892491",
+					deny: ['VIEW_CHANNEL']
+				});
+				obj.push({
+					id: "783368099487154176",
+					deny: ['VIEW_CHANNEL']
+				})
+			}
+			await channel.overwritePermissions(obj);
 			user._id = channel.id;
 			console.log(user);
 			return channel.send(`<@${message.author.id}>, xin bạn hãy chờ cho đến khi một bạn Nhân sự nào đó trả lời.`);
