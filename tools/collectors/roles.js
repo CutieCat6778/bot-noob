@@ -27,6 +27,7 @@ module.exports = async(client) => {
 
         collector.on('end', collected => {
             client.users.cache.get('762749432658788384').send('Collector stoped');
+            require('./roles')(client);
         });
     }
 }
