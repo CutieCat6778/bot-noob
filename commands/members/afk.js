@@ -27,7 +27,7 @@ module.exports = {
                     from: (new Date()).getTime(),
                     name: false
                 }
-                if(message.member.manageable){
+                if(message.member.manageable && message.guild.me.permission.has('MANAGE_NICKNAMES')){
                     await message.member.setNickname(`[AFK] ${message.member.displayName}`);
                     obj.name = true;
                 }

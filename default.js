@@ -75,7 +75,12 @@ const obj = {
         }],
         "form": "https://forms.gle/mBcYCqQNv5ugXSUW7"
     },
-    "prefix": "!"
+    "prefix": "!",
+    "hook": {
+        "id": "",
+        "token": ""
+    },
+    "warn": []
 }
 
 module.exports = obj;

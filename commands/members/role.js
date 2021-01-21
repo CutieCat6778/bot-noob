@@ -1,3 +1,5 @@
+const MessageEmbed = require('../../classes/newEmbed');
+
 module.exports = {
 	config: {
 		name: "role",

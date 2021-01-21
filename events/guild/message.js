@@ -7,7 +7,8 @@ module.exports = async(client, message) => {
 			let guildCache = client.guild;
 			if(!guildCache || guildCache.length == 0){
 				guildCache = await require('../../tools/database/getGuild.js')()
-			}
+            }
+            //bot mention
 			if (message.mentions.members) {
                 if (!message.content.includes("@everyone")) {
                     const users = message.mentions.members.map(m => m.id);
