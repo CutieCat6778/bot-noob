@@ -14,25 +14,25 @@ module.exports = async (client) => {
                 if (reaction.emoji.name == "🔞") {
                     const guild = client.guilds.cache.get('721203266452586507')
                     const role = guild.roles.cache.get('766059605519892491');
-                    const user = guild.members.cache.get(userData.id)
+                    const user = guild.members.cache.get(userData.id);
+                    if(user.roles.cache.has('763149761225687060')) return user.send('Bạn đã có role **Đàn em** !!!')
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
                         user.send('Bạn đã được thêm role **Đầu đàn**')
                     } else if (user.roles.cache.has(role.id)) {
-                        user.roles.remove(role);
-                        user.send('Bạn đã được xóa role **Đầu đàn**')
+                        user.send('Bạn đã có role **Đầu đàn** !!!')
                     }
                 }
                 if (reaction.emoji.name == "☺️") {
                     const guild = client.guilds.cache.get('721203266452586507')
                     const role = guild.roles.cache.get('763149761225687060');
-                    const user = guild.members.cache.get(userData.id)
+                    const user = guild.members.cache.get(userData.id);
+                    if(user.roles.cache.has('766059605519892491')) return user.send('Bạn đã có role **Đầu đàn** !!!')
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
                         user.send('Bạn đã được thêm role **Đàn em**')
                     } else if (user.roles.cache.has(role.id)) {
-                        user.roles.remove(role);
-                        user.send('Bạn đã được xóa role **Đàn em**')
+                        user.send('Bạn đã có role **Đàn em** !!!')
                     }
                 }
             });
