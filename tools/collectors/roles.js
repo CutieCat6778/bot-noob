@@ -15,7 +15,7 @@ module.exports = async (client) => {
                     const guild = client.guilds.cache.get('721203266452586507')
                     const role = guild.roles.cache.get('763149761225687060');
                     const user = guild.members.cache.get(userData.id);
-                    if(user.roles.cache.has('763149761225687060')) return user.send('Bạn đã có role **Đầu đàn** !!!')
+                    if(user.roles.cache.has('766059605519892491')) return user.send('Bạn đã có role **Đầu đàn** !!!')
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
                         user.send('Bạn đã được thêm role **Đầu đàn**')
@@ -27,7 +27,7 @@ module.exports = async (client) => {
                     const guild = client.guilds.cache.get('721203266452586507')
                     const role = guild.roles.cache.get('766059605519892491');
                     const user = guild.members.cache.get(userData.id);
-                    if(user.roles.cache.has('766059605519892491')) return user.send('Bạn đã có role **Đầu đàn** !!!')
+                    if(user.roles.cache.has('763149761225687060')) return user.send('Bạn đã có role **Đầu đàn** !!!')
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
                         user.send('Bạn đã được thêm role **Đàn em**')
