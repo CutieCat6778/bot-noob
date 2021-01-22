@@ -41,6 +41,7 @@ module.exports = {
                 };
                 const collector = m.createReactionCollector(filter, { time: 900000 });
                 collector.on('collect', (reaction, user) => {
+                    if(user.id == "699483674202079254" || user.id == "763952135095582757") return;
                     if (reaction.emoji.name == "✅") posiv++;
                     if (reaction.emoji.name == "❌") nega++;
                     if (reaction.emoji.name == "🗑️") {
