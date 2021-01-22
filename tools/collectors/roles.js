@@ -17,8 +17,10 @@ module.exports = async (client) => {
                     const user = guild.members.cache.get(userData.id)
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
+                        user.send('Bạn đã được thêm role **Đầu đàn**')
                     } else if (user.roles.cache.has(role.id)) {
                         user.roles.remove(role);
+                        user.send('Bạn đã được xóa role **Đầu đàn**')
                     }
                 }
                 if (reaction.emoji.name == "☺️") {
@@ -27,8 +29,10 @@ module.exports = async (client) => {
                     const user = guild.members.cache.get(userData.id)
                     if (!user.roles.cache.has(role.id)) {
                         user.roles.add(role);
+                        user.send('Bạn đã được thêm role **Đàn em**')
                     } else if (user.roles.cache.has(role.id)) {
                         user.roles.remove(role);
+                        user.send('Bạn đã được xóa role **Đàn em**')
                     }
                 }
             });
