@@ -37,11 +37,11 @@ module.exports = async (client, reaction, user) => {
             "timestamp": data.timeStamp
         }
         data.url ? embed.image = {url: data.url} : null;
-        if (data.upvotes == 1) {
+        if (data.upvotes == 2) {
             const msg = await channel.send({ embed: embed })
             data.msgId = msg.id;
             msg.react('⭐')
-        } else if (data.upvotes >= 1) {
+        } else if (data.upvotes >= 2) {
             const msg = await channel.messages.fetch(data.msgId);
             await msg.edit({ embed: embed });
             await msg.reactions.removeAll();
