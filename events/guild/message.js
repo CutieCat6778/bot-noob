@@ -64,6 +64,7 @@ module.exports = async(client, message) => {
                 const cmd = args.shift().toLowerCase();
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if(!commandfile) return;
+                if(commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return;
 				if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
 	                return;
 	            } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
