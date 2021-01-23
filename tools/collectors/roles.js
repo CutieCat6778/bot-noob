@@ -7,7 +7,7 @@ module.exports = async (client) => {
             await message.react("🔞");
             await message.react("☺️")
             const filter = (reaction, user) => {
-                return reaction != undefined;
+                return reaction.emoji.name == "☺️" || reaction.emoji.name == "🔞";
             };
             const collector = await message.createReactionCollector(filter);
             collector.on('collect', (reaction, userData) => {

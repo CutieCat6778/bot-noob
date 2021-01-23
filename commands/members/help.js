@@ -4,10 +4,10 @@ module.exports = {
         aliases: ['h', "guide"],
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        usage: ['command_name'],
+        usage: [],
         category: "members"
     },
     async execute(client, message, args, guild){
-        
+        message.channel.send({embed: {}})
     }
 }

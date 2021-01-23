@@ -9,6 +9,8 @@ module.exports = {
 	},
 	async execute(client, message, args, guild) {
 		try{
+			if(!args[0]) return message.channel.send('Bạn hãy cho một thời gian (10s, 10min, 10d, 10week)');
+			if(!args[1]) return message.channel.send('Bạn hãy cho một cái text!');
 			const time = require('../../tools/functions/timeFormatter')(args[0]);
 			if(!time) return message.channel.send("Thời gian không hợp lệ!");
 			else if(time){
