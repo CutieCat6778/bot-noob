@@ -1,5 +1,3 @@
-const newEmbed = require('../../classes/newEmbed');
-
 module.exports = async (client, reaction, user) => {
     if (reaction.emoji.name == "⭐") {
         if(user.bot) return;
@@ -21,6 +19,9 @@ module.exports = async (client, reaction, user) => {
             data = client.starboard.get(message.id);
         }
         if(data.upvoters.includes(user.id)) return;
+        if(message.embeds){
+            data.content = `${message.embeds.title ? message.embeds.title : null}${message.embeds.description && message.embeds.title ? `\n\n${message.embeds.description}` : (message.embeds.description ? message.embed.description : null)}`
+        }
         const userData = message.guild.members.cache.get(data.author);
         data.upvotes++;
         data.upvoters.push(user.id);
