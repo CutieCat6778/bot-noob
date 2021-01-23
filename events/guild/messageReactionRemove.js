@@ -12,19 +12,16 @@ module.exports = async (client, reaction, user) => {
                 timeStamp: (new Date()).getTime(),
                 author: user.id,
                 upvotes: 0,
-                upvoters: []
+                upvoters: [message.author.id]
             }
             message.attachments.first() ? obj.url = message.attachments.first().url : null;
             client.starboard.set(message.id, obj);
             data = client.starboard.get(message.id);
         }
-        if(data.upvoters.includes(user.id)) return;
-        if(message.embeds[0]){
-            data.content = `${message.embeds[0].title ? `**${message.embeds[0].title}**` : null}${message.embeds[0].description && message.embeds[0].title ? `\n${message.embeds[0].description}` : (message.embeds[0].description ? message.embed.description : null)}`
-        }
+        if(data.upvoters.includes(user.id) == false) return;
         const userData = message.guild.members.cache.get(data.author);
-        data.upvotes++;
-        data.upvoters.push(user.id);
+        data.upvotes--;
+        data.upvoters.splice(data.upvoters.indexOf(user.id), 1);
         const embed = {
             "description": `<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n${data.content.toString()}`,
             "color": "#fdd03b",
@@ -47,6 +44,9 @@ module.exports = async (client, reaction, user) => {
             await msg.edit({ embed: embed });
             await msg.reactions.removeAll();
             await msg.react('⭐');
-        } else return;
+        } else if(data.upvotes == 0){
+            const msg = await channel.messages.fetch(data.msgId);
+            await msg.delete();
+        }
     }
 }
