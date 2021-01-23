@@ -10,7 +10,7 @@ module.exports = async (client, reaction, user) => {
                 _id: message.id,
                 content: message.content,
                 timeStamp: (new Date()).getTime(),
-                author: user.id,
+                author: message.author.id,
                 upvotes: 0,
                 upvoters: [message.author.id]
             }

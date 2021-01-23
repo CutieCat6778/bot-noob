@@ -8,6 +8,10 @@ module.exports = {
         category: "members"
     },
     async execute(client, message, args, guild){
-        message.channel.send({embed: {}})
+        if(!args[0]){
+            return message.channel.send({embed: {}})
+        }else if(args[0]){
+            
+        }
     }
 }
