@@ -13,19 +13,23 @@ module.exports = async (client, reaction, user) => {
                 content: message.content,
                 timeStamp: (new Date()).getTime(),
                 author: user.id,
-                upvotes: 0
+                upvotes: 0,
+                upvoters: []
             }
             message.attachments.first() ? obj.url = message.attachments.first().url : null;
             client.starboard.set(message.id, obj);
             data = client.starboard.get(message.id);
         }
+        if(data.upvoters.includes(user.id)) return;
+        const userData = message.guild.members.cache.get(data.author);
         data.upvotes++;
+        data.upvoters.push(user.id);
         const embed = {
-            "description": `**${data.content.toString().replace("**", "").replace("**", "")}**\n\n<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
+            "description": `**${data.content.toString().split("**").join("")}**\n\n<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
             "color": "#fdd03b",
             "author": {
-                "name": message.author.tag,
-                "icon_url": message.author.displayAvatarURL()
+                "name": userData.user.tag,
+                "icon_url": userData.user.displayAvatarURL()
             },
             "footer": {
                 "text": `⭐ ${data.upvotes}`
