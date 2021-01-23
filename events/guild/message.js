@@ -14,12 +14,12 @@ module.exports = async(client, message) => {
                 const addExp = Math.floor(Math.random() * 4) + 4;
                 data.exp += addExp;
                 data.total++;
-                if(data.exp == data.level * 400){
+                if(data.exp == data.level * 400 || (data.exp > 400 && data.level == 0)){
                     data.level++;
+                    data.exp == 0;
                     const channel = message.guild.channels.cache.get('801567245351780433');
-                    channel.send(`Amazing gút chóp **${message.member.displayName}**. Bạn đã lên level **${data.level}**`);
+                    channel.send(`GG ${message.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                 }
-                console.log(data)
                 await data.save();
             }
             //bot mention
