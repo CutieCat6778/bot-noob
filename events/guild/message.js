@@ -8,6 +8,20 @@ module.exports = async(client, message) => {
 			if(!guildCache || guildCache.length == 0){
 				guildCache = await require('../../tools/database/getGuild.js')()
             }
+            //Adding the exp
+            const data = await require('../../tools/database/getLevel')(message.author.id);
+            if(data){
+                const addExp = Math.floor(Math.random() * 4) + 4;
+                data.exp += addExp;
+                data.total++;
+                if(data.exp == data.level * 400){
+                    data.level++;
+                    const channel = message.guild.channels.cache.get('801567245351780433');
+                    channel.send(`Amazing gút chóp **${message.member.displayName}**. Bạn đã lên level **${data.level}**`);
+                }
+                console.log(data)
+                await data.save();
+            }
             //bot mention
 			if (message.mentions.members) {
                 if (!message.content.includes("@everyone")) {
