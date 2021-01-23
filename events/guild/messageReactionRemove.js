@@ -12,7 +12,7 @@ module.exports = async (client, reaction, user) => {
                 timeStamp: (new Date()).getTime(),
                 author: message.author.id,
                 upvotes: 0,
-                upvoters: [message.author.id]
+                upvoters: [user.id]
             }
             message.attachments.first() ? obj.url = message.attachments.first().url : null;
             client.starboard.set(message.id, obj);
