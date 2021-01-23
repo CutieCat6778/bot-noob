@@ -25,7 +25,7 @@ module.exports = async (client, reaction, user) => {
         data.upvotes++;
         data.upvoters.push(user.id);
         const embed = {
-            "description": `**${data.content.toString().split("**").join("")}**\n\n<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)`,
+            "description": `<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n**${data.content.toString().split("**").join("")}**`,
             "color": "#fdd03b",
             "author": {
                 "name": userData.user.tag,
