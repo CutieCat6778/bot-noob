@@ -16,7 +16,7 @@ module.exports = async(client, message) => {
                 data.total++;
                 if(data.exp >= data.level * 400 || (data.exp > 400 && data.level == 0)){
                     data.level++;
-                    data.exp == 0;
+                    data.exp = 0;
                     const channel = message.guild.channels.cache.get('801567245351780433');
                     channel.send(`GG ${message.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                 }
