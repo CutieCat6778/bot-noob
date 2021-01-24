@@ -14,7 +14,7 @@ module.exports = async(client, message) => {
                 const addExp = Math.floor(Math.random() * 4) + 4;
                 data.exp += addExp;
                 data.total++;
-                if(data.exp == data.level * 400 || (data.exp > 400 && data.level == 0)){
+                if(data.exp >= data.level * 400 || (data.exp > 400 && data.level == 0)){
                     data.level++;
                     data.exp == 0;
                     const channel = message.guild.channels.cache.get('801567245351780433');
