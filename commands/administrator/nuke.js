@@ -12,7 +12,7 @@ module.exports = {
             if (!args[0]) {
                 message.channel.send("Bạn có chắc chắn là muốn **nuke** channel này không? [y/n]");
                 const filter = (user) => user.id == message.author.id;
-                let collected = await require('../../tools/collectMessage')(message, filter);
+                let collected = await require('../../tools/functions/collectMessage')(message, filter);
                 switch (collected.content.toLowerCase()) {
                     default:
                         return message.channel.send("Câu trả lời không hợp lệ.");
@@ -39,7 +39,7 @@ module.exports = {
                 if (!oldChannel) return message.channel.send("Không tìm thấy channel");
                 message.channel.send("Bạn có chắc chắn là muốn **nuke** channel này không? [y/n]");
                 const filter = (user) => user.id == message.author.id;
-                let collected = await require('../../tools/collectMessage')(message, filter);
+                let collected = await require('../../tools/functions/collectMessage')(message, filter);
                 switch (collected.content) {
                     default:
                         return message.channel.send("Câu trả lời không hợp lệ.");
