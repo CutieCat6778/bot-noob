@@ -30,7 +30,7 @@ module.exports = async(client, message) => {
                         let userCache = client.afk.get(users[0]);
                         if (userCache && userCache.enable == true) {
                             let embed = new MessageEmbed()
-                                .setDescription(`<@!${users}> AFK - **${userCache.status}**`)
+                                .setDescription(`<@${users}> AFK - **${userCache.status}**`)
                                 .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
                             message.channel.send(embed);
                         }
@@ -39,7 +39,7 @@ module.exports = async(client, message) => {
                             let userCache = client.afk.get(user);
                             if (userCache && userCache.enable == true) {
                                 let embed = new MessageEmbed()
-                                    .setDescription(`<@!${user}> AFK - **${userCache.status}**`)
+                                    .setDescription(`<@${user}> AFK - **${userCache.status}**`)
                                     .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
                                 message.channel.send(embed);
                             }
