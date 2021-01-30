@@ -15,7 +15,6 @@ module.exports = {
 			if(!time) return message.channel.send("Thời gian không hợp lệ!");
 			else if(time){
 				function f() {
-					const author = client.users.cache.get(message.author.id);
 					if(author){
 						author.send({embed: {
 							description: `**${args.slice(1).join(" ")}**`
@@ -23,9 +22,11 @@ module.exports = {
 					}
 				}
 				require('../../tools/database/newTimeout')({
+					id: message.author.id,
 					from: (new Date()).getTime(),
 					to: (new Date()).getTime() + time,
-					function: f.toString()
+					function: f.toString(),
+					args: args
 				});
 				client.setTimeout(f, time);
 				return message.channel.send('Okê bạn êy.')
