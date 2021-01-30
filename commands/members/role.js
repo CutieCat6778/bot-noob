@@ -29,7 +29,7 @@ module.exports = {
 						embed.addField(`Độ tuổi`, roleCache.age > 17 ? `trên 18 tuổi` : `dưới 18 tuổi`, true)
 					}
 					if(roleCache.users){
-						embed.setDescription(`**Những người sở hữu** ${roleCache.users.map(r => `${message.guild.members.cache.get(r._id).displayName}[${r.sex == true ? `trai` : `gái`}]`)}`)
+						embed.setDescription(`Những người sở hữu **${roleCache.users.map(r => `${message.guild.members.cache.get(r._id).displayName}[${r.sex == true ? `trai` : `gái`}]`)}**`)
 					}
 					return message.channel.send(embed.addField('Được tạo vào', role.createdAt.toLocaleString()))
 				}
