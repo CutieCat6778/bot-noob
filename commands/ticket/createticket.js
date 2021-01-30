@@ -43,6 +43,10 @@ module.exports = {
 					id: "783368099487154176",
 					deny: ['VIEW_CHANNEL']
 				})
+				obj.push({
+					id: "802261976587042838",
+					allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'MANAGE_MESSAGES']
+				})
 			}
 			await channel.overwritePermissions(obj);
 			user._id = channel.id;
