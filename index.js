@@ -1,4 +1,4 @@
-const {Client, Collection} = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const client = new Client();
 require('dotenv').config();
 
@@ -17,8 +17,12 @@ client.total = new Number("0");
 client.guild = new Object();
 
 //Command handler
-require('./handlers/commands.js')(client);
-require('./handlers/events.js')(client);
+async function handling() {
+    await require('./handlers/commands.js')(client);
+    await require('./handlers/events.js')(client);
+}
+handling().then(() => {
+    //Login to the bot
+    client.login(process.env.token);
+})
 
-//Login to the bot
-client.login(process.env.token);
