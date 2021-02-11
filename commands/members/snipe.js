@@ -23,7 +23,7 @@ module.exports = {
                     .setAuthor(`${user.displayName}`, user.user.displayAvatarURL())
                     .setDescription(`   ${snipe.content}`)
                     .setFooter(require("ms")((new Date() - snipe.time), { long: true }) + " ago")
-                return message.channel.send(message, embed);
+                return message.channel.send(embed);
             } else {
                 return;
             }
