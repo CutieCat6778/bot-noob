@@ -15,7 +15,7 @@ module.exports = {
             let user;
             if (!args[0]) user = message.member;
             if(args[0]){
-                user = message.guild.members.cache.get(require("../../tools/string/mention")(args[0]));
+                user = message.guild.members.cache.get(require('mention-converter')(args[0]));
                 if(!user) return message.channel.send("Member not found");
             }
             let embed = new MessageEmbed()

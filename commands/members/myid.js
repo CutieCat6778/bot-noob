@@ -12,7 +12,7 @@ module.exports = {
             if (!args[0]) {
                 return message.channel.send(message.author.id);
             } else if (args[0]) {
-                return message.channel.send(require('mention-validator')(args[0]))
+                return message.channel.send(require('mention-converter')(args[0]))
             }
         } catch (e) {
             return require('../../tools/functions/error')(e, message);

@@ -15,7 +15,7 @@ module.exports = {
             if (!args[0]) {
                 return message.channel.send('Xin bạn hãy mention một ai đó mà bạn muốn kick.')
             }
-            const target = message.guild.members.cache.get(require("../../tools/string/mention")(args[0]));
+            const target = message.guild.members.cache.get(require('mention-converter')(args[0]));
             if (!target) return message.channel.send("Không tìm thấy người dùng");
             let reason = args.slice(1).join(" ");
             if (!reason || !target) {
