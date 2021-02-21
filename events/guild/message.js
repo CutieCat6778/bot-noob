@@ -52,10 +52,10 @@ module.exports = async(client, message) => {
                 let userCache = client.afk.get(message.author.id);
                 if (userCache.enable == true) {
                     message.reply("chào mừng bạn quay trở lại!").then(m => m.delete({timeout: 5000}));
-                    client.afk.delete(message.author.id);
-                    if(userCache.name == true && message.member.displayName.startsWith('[AFK]')){
+                    if(userCache.name == true || message.member.displayName.startsWith('[AFK]')){
                         message.member.setNickname(message.member.displayName.replace('[AFK]', ''))
                     }
+                    client.afk.delete(message.author.id);
                     require('../../tools/database/removeAfk')(message.author.id);
                 }
             }
