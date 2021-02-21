@@ -30,7 +30,7 @@ module.exports = {
                 return message.channel.send(convertedText);
             }
         } catch (e) {
-            return require('../../tools/functions/error')(error, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }
