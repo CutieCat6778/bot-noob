@@ -13,7 +13,7 @@ module.exports = {
         try {
             let nooutput = message.content.endsWith('-nou');
             if(nooutput){
-                message.content.replace('-nou', '');
+                args.pop();
             }
             const date1 = new Date();
             if (!args[0]) return;
