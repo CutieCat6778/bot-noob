@@ -38,7 +38,7 @@ module.exports = async (error, message, text) => {
                 let embed1 = new MessageEmbed()
                     .setTitle(":x: Error")
                     .setColor("#40598F")
-                    .setDescription("Oh no, tôi đang có vấn đề, hãy kêu thằng **CutieCat#6778** để sửa lỗi!")
+                    .setDescription("Oh no, tôi đang có vấn đề, hãy kêu thằng **Cat_#9289** để sửa lỗi!")
                     .setTimestamp()
                 message.channel.send(embed1);
                 let array = stringTools.toChunks(e, 5);
