@@ -11,17 +11,17 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try {
             if (!args[0]) {
-                return require('../../tools/function/sendMessage.js')(message, require('../../noArgs/api/dnslookup.js')(guildCache.prefix));
+                return require('../../tools/functions/sendMessage.js')(message, require('../../noArgs/api/dnslookup.js')(guildCache.prefix));
             } else if (args[0]) {
                 if (require('../../tools/string/domainValidation')(args[0])) {
                     lookup(args[0], (err, andress, family) => {
                         if (err) throw err;
-                        return require('../../tools/function/sendMessage')(message, andress, true);
+                        return require('../../tools/functions/sendMessage')(message, andress, true);
                     })
                 } else return message.channel.send("Invalid domain name!");
             }
         } catch (e) {
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }

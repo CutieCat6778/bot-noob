@@ -17,11 +17,11 @@ module.exports = {
                             m.delete({ timeout: 5000 });
                         })
                     }).catch(e => {
-                        return require("../../tools/function/error")(e, message)
+                        return require("../../tools/functions/error")(e, message)
                     })
             });
         } catch (e) {
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
 
     }

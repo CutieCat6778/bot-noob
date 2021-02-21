@@ -12,7 +12,7 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try {
             if (!args[0]) {
-                return require('../../tools/function/sendMessage')(message, require('../../noArgs/api/iplookup.js')(guildCache.prefix))
+                return require('../../tools/functions/sendMessage')(message, require('../../noArgs/api/iplookup.js')(guildCache.prefix))
             } else if (args[0]) {
                 if (require('../../tools/string/validateIP')(args[0])) {
                     const data = await lookup(args[0].toString());
@@ -26,11 +26,11 @@ module.exports = {
                         .addField("Country", data.country ? data.country : "None", true)
                         .addField('Region', data.region ? data.region : "None", true)
                         .addField('Timezone', data.timezone, true)
-                    return require('../../tools/function/sendMessage')(message, embed);
+                    return require('../../tools/functions/sendMessage')(message, embed);
                 } else return message.channel.send("Invalid IP andress!")
             }
         } catch (e) {
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }

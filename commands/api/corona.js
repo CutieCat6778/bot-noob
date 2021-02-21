@@ -21,7 +21,7 @@ module.exports = {
                 }
             }, function (err, response, body) {
                 if (err) {
-                    return require('../../tools/function/error')(err, message)
+                    return require('../../tools/functions/error')(err, message)
                 }
                 body = JSON.parse(body);
                 let country;
@@ -44,10 +44,10 @@ module.exports = {
                     .addField("Total deaths", country.TotalDeaths, true)
                     .addField("New recovered", country.NewRecovered, true)
                     .addField("Total recovered", country.TotalRecovered, true)
-                return require('../../tools/function/sendMessage')(message, embed);
+                return require('../../tools/functions/sendMessage')(message, embed);
             })
         }catch(e){
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }

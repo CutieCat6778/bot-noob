@@ -34,7 +34,7 @@ module.exports = {
                     }
                     message.channel.send(embed).then(async m => {
                         const filter = m => m.author.id == message.author.id;
-                        let collected = await require('../../tools/function/collectMessage')(message, filter);
+                        let collected = await require('../../tools/functions/collectMessage')(message, filter);
                         if (isNaN(collected.content) == true) return message.channel.send("Invalid number");
                         let num = parseInt(collected.content) - 1;
                         if (parseInt(num) > 5) return message.channel.send("Result not found");
@@ -63,7 +63,7 @@ module.exports = {
 
             }
         } catch (e) {
-            return require("../../tools/function/error")(e, message);
+            return require("../../tools/functions/error")(e, message);
         }
     }
 }
