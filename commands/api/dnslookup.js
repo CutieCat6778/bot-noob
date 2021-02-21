@@ -11,12 +11,12 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try {
             if (!args[0]) {
-                return require('../../tools/functions/sendMessage.js')(message, require('../../noArgs/api/dnslookup.js')(guildCache.prefix));
+                return ;
             } else if (args[0]) {
                 if (require('../../tools/string/domainValidation')(args[0])) {
                     lookup(args[0], (err, andress, family) => {
                         if (err) throw err;
-                        return require('../../tools/functions/sendMessage')(message, andress, true);
+                        return message.channel.send(andress + " || " + family)
                     })
                 } else return message.channel.send("Invalid domain name!");
             }

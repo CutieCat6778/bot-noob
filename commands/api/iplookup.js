@@ -26,7 +26,7 @@ module.exports = {
                         .addField("Country", data.country ? data.country : "None", true)
                         .addField('Region', data.region ? data.region : "None", true)
                         .addField('Timezone', data.timezone, true)
-                    return require('../../tools/functions/sendMessage')(message, embed);
+                    return message.channel.send(embed);
                 } else return message.channel.send("Invalid IP andress!")
             }
         } catch (e) {
