@@ -11,6 +11,10 @@ module.exports = {
     },
     async execute(client, message, args) {
         try {
+            let nooutput = message.content.endsWith('-nou');
+            if(nooutput){
+                message.content.replace('-nou', '');
+            }
             const date1 = new Date();
             if (!args[0]) return;
             if (args[0] == "map") {
@@ -23,10 +27,12 @@ module.exports = {
             }
             console.log(args.slice(0).join(" "));
             const evaluted = eval(args.slice(0).join(" "));
-            if (!evaluted) return message.channel.send("Undefined")
-            const output = await require("../../tools/string/textsplit")(evaluted);
-            await message.channel.send(`Type of: ${typeof (evaluted)} | ${require("ms")((new Date() - date1), { long: true })}`);
-            message.channel.send(output);
+            if (!evaluted) return message.channel.send("Undefined");
+            if(!nooutput){
+                const output = await require("../../tools/string/textsplit")(evaluted);
+                await message.channel.send(`Type of: ${typeof (evaluted)} | ${require("ms")((new Date() - date1), { long: true })}`);
+                message.channel.send(output);
+            }
         } catch (error) {
             const output = require('../../tools/string/textsplit')(error.stack);
             console.log(error);
