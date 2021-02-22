@@ -74,7 +74,7 @@ module.exports = {
                         if (target.roles.highest.position >= message.guild.me.roles.highest.position && target.permissions.has("ADMINISTRATOR")) {
                             return m.edit(embed.setDescription(`<@!${target.id}> is guilty, with ${posiv} votes. Please mentions a Moderator or Admin to kick the user, I don't have permission to kick him/her.`))
                         } else if (target.roles.highest.position < message.guild.me.roles.highest.position && !target.permissions.has("ADMINISTRATOR")) {
-                            await target.ban({ reason: reason });
+                            await target.kick({ reason: reason });
                             m.edit(embed.setDescription(`Đã kick ${target.displayName} với ${posiv} vote đồng ý.`))
                         }
                     } else if (posiv < nega) {
