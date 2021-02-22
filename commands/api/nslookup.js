@@ -3,10 +3,10 @@ const fetch = require('node-fetch');
 
 module.exports = {
     config: {
-        name: "dnslookup",
+        name: "nslookup",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['dns', 'dnslookup'],
+        aliases: ['ns', 'nameserver'],
         category: 'api'
     },
     async execute(client, message, args, guildCache) {
@@ -21,24 +21,20 @@ module.exports = {
                         .setDescription('<a:loading:811171036745695283> **Please wait . . . **')
                     const msg = await message.channel.send(embed1);
                     const query = args[0].toString();
-                    const key = "QF9KcsSbhWRadkdHVND28HuF1l6eYVGx";
-                    const opt = {
-                        method: 'GET',
-                        redirect: 'follow',
-                        headers: {
-                            "apikey": key
-                        }
-                    };
-                    const url = `https://api.promptapi.com/dns_lookup/api/a/${query}`
-                    fetch(url, opt)
+                    const key = "fb3618a3d82246f3d05feef22893556c176bac03";
+                    const url = `https://endpoint.apivoid.com/dnslookup/v1/pay-as-you-go/?key=${key}&action=dns-ns&host=${query}`
+                    fetch(url)
                         .then(a => a.json())
                         .then(res => {
-                            if (res.message || res.error) {
-                                return msg.edit({ embed: { description: `**STATUS**\xa0\xa0\xa0\xa0\`${res.message || res.error}\`` } });
-                            } else if (!res.message) {
+                            if (!res.success) {
+                                return msg.edit('Unable to look for the domain up!');
+                            } else if (res.success) {
                                 const embed = new MessageEmbed()
                                     .setColor('#40598F')
-                                    .setDescription(`${res?.results?.map(a => `${a.ipAddress}`)?.join('\n')}`)
+                                    .setTitle(query)
+                                    .setDescription(`${res?.data?.records?.items?.map(a => `Host: **${a.host}** \xa0\xa0\xa0\xa0\xa0\xa0 Target: **${a.target}**`)?.join('\n')}`)
+                                    .setTimestamp()
+                                    .setFooter('API by apivoid.com', message.guild.me.user.displayAvatarURL())
                                 return msg.edit(embed);
                             }
                         })

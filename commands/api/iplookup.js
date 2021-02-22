@@ -1,10 +1,10 @@
-const MessageEmbed = require('../../classes/newEmbed');
-const { lookup } = require('geoip-lite');
+const { MessageEmbed } = require('discord.js');
+const fetch = require('node-fetch');
 
 module.exports = {
     config: {
         name: "iplookup",
-        aliases: ["geoip", "locateip"],
+        aliases: ["ip", "locateip"],
         perms: ['SEND_MESSAGES'],
         bot: ["SEND_MESSAGES"],
         category: 'api'
@@ -12,21 +12,43 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try {
             if (!args[0]) {
-                return require('../../tools/functions/sendMessage')(message, require('../../noArgs/api/iplookup.js')(guildCache.prefix))
+                return ;
             } else if (args[0]) {
                 if (require('../../tools/string/validateIP')(args[0])) {
-                    const data = await lookup(args[0].toString());
-                    if (!data) return message.channel.send("IP andress not found!");
-                    const embed = new MessageEmbed()
+                    const embed1 = new MessageEmbed()
                         .setColor("#40598F")
-                        .setFooter(`Requested by ${message.member.displayName}`, message.author.displayAvatarURL())
-                        .setTimestamp()
-                        .setTitle(data.city ? data.city : "Not Found")
-                        .setDescription(`X: ${data.range[0]} | Y: ${data.range[1]}`)
-                        .addField("Country", data.country ? data.country : "None", true)
-                        .addField('Region', data.region ? data.region : "None", true)
-                        .addField('Timezone', data.timezone, true)
-                    return message.channel.send(embed);
+                        .setDescription('<a:loading:811171036745695283> **Please wait . . . **')
+                    const msg = await message.channel.send(embed1);
+                    const ip = args[0].toString();
+                    fetch(`http://ip-api.com/json/${ip}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,reverse,query`)
+                        .then(a => a.json())
+                        .then(res => {
+                            if (res.status != 'success') {
+                                return msg.edit({ embed: { description: `**STATUS**\xa0\xa0\xa0\xa0\`${res.message}\`` } })
+                            } else if (res.status == 'success') {
+                                const embed = new MessageEmbed()
+                                    .setColor('#40598F')
+                                    .setTitle(`${res?.query}`)
+                                    .setDescription(`x: ${res?.lat} | y: ${res?.lon}`)
+                                    .addFields([
+                                        { "name": `Continent`, "value": `${res?.continent} | ${res?.continentCode}` },
+                                        { "name": `Country`, "value": `${res?.country} | ${res?.countryCode}` },
+                                        { "name": "Region", "value": `${res?.regionName} | ${res?.region}` },
+                                        { "name": "City", "value": res.city },
+                                        { "name": "ZIP code", "value": res?.zip },
+                                        { "name": "Timezone", "value": res.timezone },
+                                        { "name": "DNS", "value": res?.reverse },
+                                        { "name": "ISP", "value": res?.isp },
+                                        { "name": "Organization", "value": `${res?.org} | ${res?.as}` },
+                                    ])
+                                    .setTimestamp()
+                                    .setFooter('API by ip-api.com', message.guild.me.user.displayAvatarURL())
+                                client.setTimeout(() => {
+                                    msg.edit(embed)
+                                }, 3000)
+                            }
+                        })
+                        .catch(e => require('../../tools/functions/error')(e, message))
                 } else return message.channel.send("Invalid IP andress!")
             }
         } catch (e) {
