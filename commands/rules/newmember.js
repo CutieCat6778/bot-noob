@@ -18,7 +18,7 @@ module.exports = {
 			}
 			const embed = new MessageEmbed()
 				.setTitle('Luật dành cho những bạn mới vào')
-				.setDescription(`- Xin bạn hãy vào kênh <#${guild.rules._id}> để có thể đọc **tất cả các luật mà server này đưa ra**.\n - Và làm ơn bạn hãy điền vào cái **[form](https://forms.gle/mBcYCqQNv5ugXSUW7)** này, để chúng mình có thể dễ __làm quen và nhận biết__ hơn.\n\n**Cảm ơn và chúc bạn một ngày tốt lành :)**`)
+				.setDescription(`- Xin bạn hãy vào kênh <#${guild.rules._id}> để có thể đọc **tất cả các luật mà server này đưa ra**.\n - Và làm ơn bạn hãy điền vào cái **[form](https://forms.gle/mBcYCqQNv5ugXSUW7)** này, để chúng mình có thể dễ __làm quen và nhận biết__ hơn.\n- Bạn hãy vào **<#802254125970358273>** để có thể lấy role theo độ tuổi của mình!\n\n**Cảm ơn và chúc bạn một ngày tốt lành :)**`)
 				.setTimestamp()
 				.setFooter('luật dành cho những bạn mới vào', message.guild.iconURL())
 			message.delete();
