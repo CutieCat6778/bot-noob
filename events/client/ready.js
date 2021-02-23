@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
+const {WebhookClient} = require('discord.js');
+
+const hook = new WebhookClient(process.env.hookId, process.env.hookToken);
 
 module.exports = async (client) => {
     try {
-        await client.user.setActivity(`noobs members`, { type: "WATCHING" });
+        await client.user.setActivity(`các thành viên Noobs`, { type: "WATCHING" });
         await mongoose.connect(process.env.mongo, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
+        hook.send('Bot started!');
         await require("../../tools/cache/loadGuild")(client);
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
