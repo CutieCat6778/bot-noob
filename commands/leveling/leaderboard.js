@@ -18,7 +18,7 @@ module.exports = {
             .setTimestamp()
             .setFooter('bảng xếp hạng tương tác', message.guild.iconURL())
             .setThumbnail(message.guild.iconURL())
-            .setDescription(`${levels.slice(0, 10).map(a => `**[${levels.indexOf(a) + 1}]** ${message.guild.members.cache.get(a._id)} ➜ [EXP: ${a.exp}, LEVEL: ${a.level}]`).join("\n")}`)
+            .setDescription(`Rank hiện tại của bạn là **${levels.indexOf(levels.find(a => a._id == message.author.id)) + 1}**\n\n${levels.slice(0, 10).map(a => `**[${levels.indexOf(a) + 1}]** ${message.guild.members.cache.get(a._id)} ➜ [EXP: ${a.exp}, LEVEL: ${a.level}]`).join("\n")}`)
         return message.channel.send(embed);
     }
 }
