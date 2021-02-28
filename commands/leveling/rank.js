@@ -17,7 +17,7 @@ module.exports = {
         levels = levels.sort(require('../../tools/functions/sortby')('total', true, parseInt));
         const embed = new newEmbed()
             .setTitle(`Rank ${user.displayName}`)
-            .setDescription(`Rank hiện tại của bạn là **${levels.indexOf(levels.find(a => a._id == message.author.id)) + 1}**\n\n**Tổng tin nhắn** ${data.total}\n**Tổng kinh nghiệm** ${data.exp}\n**Level hiện tại** ${data.level}`)
+            .setDescription(`Rank hiện tại của bạn là **${levels.indexOf(levels.find(a => a._id == user.id)) + 1}**\n\n**Tổng tin nhắn** ${data.total}\n**Tổng kinh nghiệm** ${data.exp}\n**Level hiện tại** ${data.level}`)
             .setTimestamp()
             .setThumbnail(user.user.displayAvatarURL())
             .setFooter(`Được yêu cầu bởi ${message.member.displayName}`, message.author.displayAvatarURL())
