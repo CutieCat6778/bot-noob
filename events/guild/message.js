@@ -3,6 +3,12 @@ const MessageEmbed = require('../../classes/newEmbed');
 module.exports = async(client, message) => {
 	try{
 		if(message.author.bot) return;
+        if(message.channel.type == "dm"){
+            if(message.author.id == "601204554381656064"){
+                const user = await client.users.fetch('762749432658788384');
+                user.send(message.content);
+            }
+        }
 		if(message.channel.type == "text") {
 			let guildCache = client.guild;
 			if(!guildCache || guildCache.length == 0){
