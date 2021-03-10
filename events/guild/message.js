@@ -11,16 +11,7 @@ module.exports = async(client, message) => {
         }
 		if(message.channel.type == "text") {
             if(message.channel.id == "760946870473457668"){
-                if(message.attachments.size == 0){
-                    let data = client.pic.get(message.author.id);
-                    if((new Date()).getTime() - data.time > 10000){
-                        client.pic.delete(message.author.id);
-                        message.reply('hãy đính kèm ảnh, nếu muốn post gì đó!').then(m => m.delete({timeout: 5000}))
-                        message.delete();
-                    }else if((new Date()).getTime() - data.time <= 10000){
-                        client.pic.delete(message.author.id);
-                    }
-                }else if(message.attachments.size > 0){
+                if(message.attachments.size > 0){
                     let data = client.pic.get(message.author.id);
                     if(!data){
                         client.pic.set(message.author.id, {
@@ -31,6 +22,16 @@ module.exports = async(client, message) => {
                         client.pic.set(message.author.id, {
                             time: new Date()
                         })
+                    }
+                }
+                if(message.attachments.size == 0){
+                    let data = client.pic.get(message.author.id);
+                    if((new Date()).getTime() - data.time > 10000){
+                        client.pic.delete(message.author.id);
+                        message.reply('hãy đính kèm ảnh, nếu muốn post gì đó!').then(m => m.delete({timeout: 5000}))
+                        message.delete();
+                    }else if((new Date()).getTime() - data.time <= 10000){
+                        client.pic.delete(message.author.id);
                     }
                 }
             }
