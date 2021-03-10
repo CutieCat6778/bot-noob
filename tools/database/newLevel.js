@@ -8,7 +8,11 @@ module.exports = async(id) => {
             _id: id,
             total: 0,
             exp: 0,
-            level: 0
+            level: 0,
+            balance: 0,
+            bank: 0,
+            boost: 1,
+            inventory: []
         })
         await data.save();
         return data;
