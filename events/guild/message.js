@@ -15,18 +15,15 @@ module.exports = async(client, message) => {
                     let data = client.pic.get(message.author.id);
                     if(!data){
                         client.pic.set(message.author.id, {
-                            time: new Date()
+                            time: (new Date()).getTime()
                         })
                     }else if(data){
-                        client.pic.delete(message.author.id);
-                        client.pic.set(message.author.id, {
-                            time: new Date()
-                        })
+                        data.time = (new Date()).getTime()
                     }
                 }
                 if(message.attachments.size == 0){
                     let data = client.pic.get(message.author.id);
-                    if((new Date()).getTime() - data.time > 10000){
+                    if(!data || (new Date()).getTime() - data.time > 10000){
                         client.pic.delete(message.author.id);
                         message.reply('hãy đính kèm ảnh, nếu muốn post gì đó!').then(m => m.delete({timeout: 5000}))
                         message.delete();
