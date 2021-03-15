@@ -19,7 +19,7 @@ module.exports = async (client) => {
         let counter = 0;
         client.setInterval(() => {
             const role = client.guilds.cache.get("721203266452586507").roles.cache.get("820904733455024141");
-            const colors = ["#ee1c25", "#f26521", "#f7941d", "#ffc20f", "#fef200", "#cadb2a", "#8ec63f", "#3ab549", "#01a553", "#00a674", "#01a89e", "#00abc5", "#008fd5", "#0072bb", "#0054a5", "#2e3192", "#662e91", "#92278f", "#92278f", "#bd1a8d", "#ed008c", "#ec0974", "#ed145b", "#ed1941"];
+            const colors = ["#C0392B", "#E74C3C", "#E74C3C", "#8E44AD", "#2980B9", "#3498DB", "#1ABC9C", "#16A085", "#27AE60", "#2ECC71", "#F1C40F", "#F39C12", "#E67E22", "#ECF0F1", "#BDC3C7", "#95A5A6", "#7F8C8D", "#34495E", "#2C3E50"];
             if(counter == colors.length - 1) counter = 0;
             role.setColor(colors[counter]);
             counter++;
