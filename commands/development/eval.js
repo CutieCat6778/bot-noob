@@ -20,16 +20,17 @@ module.exports = {
             if (args[0] == "map") {
                 const util = require("util");
                 const evaluted = eval(args.slice(1).join(" "));
-                if (!evaluted) return message.channel.send("Undefined")
                 const output = await require("../../tools/string/textsplit")(util.inspect(evaluted), true);
+                if (!output) return message.channel.send("Undefined")
                 await message.channel.send(`Type of: ${typeof (evaluted)} | ${require("ms")((new Date() - date1), { long: true })}`);
                 return message.channel.send(output);
             }
             console.log(args.slice(0).join(" "));
             const evaluted = eval(args.slice(0).join(" "));
-            if (!evaluted) return message.channel.send("Undefined");
             if(!nooutput){
+                console.log(evaluted)
                 const output = await require("../../tools/string/textsplit")(evaluted);
+                if (!output) return message.channel.send("Undefined")
                 await message.channel.send(`Type of: ${typeof (evaluted)} | ${require("ms")((new Date() - date1), { long: true })}`);
                 message.channel.send(output);
             }
