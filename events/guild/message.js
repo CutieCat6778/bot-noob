@@ -19,7 +19,7 @@ module.exports = async(client, message) => {
             }
             if(trigger){
                 message.delete();
-                message.reply('**đường link này đã bị chặn!!!**');
+                message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({timeout: 7000}))
                 const channel = message.guild.channels.cache.get('813765397353725962');
                 channel.send({embed: {title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}`}});
             }
