@@ -13,5 +13,4 @@ module.exports = async(client) => {
             if(err) throw err;
         })
     })
-
 }

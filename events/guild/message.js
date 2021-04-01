@@ -10,6 +10,19 @@ module.exports = async(client, message) => {
             }
         }
 		if(message.channel.type == "text") {
+            let trigger = false;
+            const blocklistdomains = require('../../asset/blocklist/domains.json');
+            if(message.content.includes('.') && message.content.startsWith('http') && message.content.includes('://')){
+                blocklistdomains.some(a => {
+                    if(message.content.includes(a)) trigger = true;
+                })
+            }
+            if(trigger){
+                message.delete();
+                message.reply('**đường link này đã bị chặn!!!**');
+                const channel = message.guild.channels.cache.get('813765397353725962');
+                channel.send({embed: {title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}`}});
+            }
             if(message.channel.id == "760946870473457668"){
                 if(message.attachments.size > 0){
                     let data = client.pic.get(message.author.id);
