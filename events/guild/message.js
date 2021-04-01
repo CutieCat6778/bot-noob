@@ -12,7 +12,7 @@ module.exports = async(client, message) => {
 		if(message.channel.type == "text") {
             let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
-            if(message.content.includes('.') && message.content.startsWith('http') && message.content.includes('://')){
+            if(message.content.includes('.')){
                 blocklistdomains.some(a => {
                     if(message.content.includes(a)) trigger = true;
                 })
