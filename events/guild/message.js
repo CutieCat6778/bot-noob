@@ -49,6 +49,9 @@ module.exports = async(client, message) => {
 			if(!guildCache || guildCache.length == 0){
 				guildCache = await require('../../tools/database/getGuild.js')()
             }
+            if(client.noImage.includes(message.member.id) && message.attachments && message.attachments.size > 0){
+                message.delete();
+            }
             //Adding the exp
             const data = await require('../../tools/database/getLevel')(message.author.id);
             if(data){
