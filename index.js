@@ -17,6 +17,7 @@ client.pic = new Map();
 client.startup = new Date().getTime();
 client.total = new Number("0");
 client.guild = new Object();
+client.noImage = new Array();
 
 //Command handler
 async function handling() {
