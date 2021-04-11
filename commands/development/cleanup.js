@@ -7,10 +7,11 @@ module.exports = {
     },
     async execute(client, message, args, guildCache) {
         try {
+            args[0] ? args[0] : args[0] = "80";
             message.channel.messages.fetch({
-                limit: 80,
+                limit: parseInt(args[0]),
             }).then(async (messages) => {
-                messages = messages.filter(m => m.author.id === client.user.id).array().slice(0, 80);
+                messages = messages.filter(m => m.author.id === client.user.id).array().slice(0, parseInt(args[0]));
                 message.channel.bulkDelete(messages)
                     .then((m) => {
                         message.reply(`Deleted ${m.size} messages`).then(m => {
