@@ -1,4 +1,5 @@
 const thinh = require('../../asset/useFullArrays/thathinh.json');
+const thinhEn = require('../../asset/useFullArrays/thathinh_en.json');
 
 module.exports = {
     config: {
@@ -10,8 +11,12 @@ module.exports = {
     },
     async execute(client, message, args, guildCache) {
         try {
+            if(message.content.endsWith('-en')){
+                const random = Math.floor(Math.random() * thinhEn.length);
+                return message.channel.send(thinhEn[random]);
+            }
             const random = Math.floor(Math.random() * thinh.length);
-            message.channel.send(thinh[random]);
+            return message.channel.send(thinh[random]);
         } catch (e) {
             return require('../../tools/function/error')(e, message);
         }
