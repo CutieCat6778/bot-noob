@@ -12,6 +12,7 @@ client.snipe = new Map();
 client.starboard = new Collection();
 client.economy = new Collection();
 client.pic = new Map();
+client.chatlimit = new Map();
 
 //All variable that we need to store in Client
 client.startup = new Date().getTime();
