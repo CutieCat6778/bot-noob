@@ -114,7 +114,7 @@ module.exports = async (client, message) => {
                     if (userData) {
                         const minus = (date - userData.time)
                         if (minus < 10000) {
-                            message.delete({timeout: 5000});
+                            message.delete();
                             return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`).then(m => m.delete({timeout: 5000}));
                         } else if (minus > 10000) {
                             client.chatlimit.delete(message.author.id);
