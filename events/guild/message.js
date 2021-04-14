@@ -10,7 +10,6 @@ module.exports = async (client, message) => {
             }
         }
         if (message.channel.type == "text") {
-            const date = (new Date()).getTime();
             let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.')) {
@@ -46,6 +45,7 @@ module.exports = async (client, message) => {
                     }
                 }
             }
+            const date = (new Date()).getTime();
             let guildCache = client.guild;
             if (!guildCache || guildCache.length == 0) {
                 guildCache = await require('../../tools/database/getGuild.js')()
@@ -110,19 +110,12 @@ module.exports = async (client, message) => {
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if (!commandfile) return;
                 if (commandfile.config.name == "thathinh") {
-                    const userData = client.chatlimit.get(message.author.id);
-                    if (userData) {
-                        const minus = (date - userData.time)
-                        if (minus < 10000) {
-                            message.delete();
-                            return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`).then(m => m.delete({timeout: 5000}));
-                        } else if (minus > 10000) {
-                            client.chatlimit.delete(message.author.id);
-                        }
-                    } else if (!userData) {
-                        client.chatlimit.set(message.author.id, {
-                            time: date
-                        })
+                    const minus = (date - client.thinh)
+                    if (minus < 10000) {
+                        message.delete();
+                        return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`).then(m => m.delete({timeout: 5000}));
+                    } else if (minus > 10000) {
+                        client.thinh = date;
                     }
                 }
                 if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return;
