@@ -112,9 +112,9 @@ module.exports = async (client, message) => {
                 if (commandfile.config.name == "thathinh") {
                     const userData = client.chatlimit.get(message.author.id);
                     if (userData) {
-                        if ((date - userData.time) < 5000) {
+                        if ((date - userData.time) < 10000) {
                             return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - (date - userData.time))}** nữa!`).then(m => m.delete({timeout: 5000}));
-                        } else if ((date - userData.time) > 5000) {
+                        } else if ((date - userData.time) > 10000) {
                             client.chatlimit.delete(message.author.id);
                         }
                     } else if (!userData) {
