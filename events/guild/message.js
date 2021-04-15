@@ -109,6 +109,7 @@ module.exports = async (client, message) => {
                 const cmd = args.shift().toLowerCase();
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if (!commandfile) return;
+                if(commandfile.config.name == "gai" && message.channel.id != "763147371106271232") return message.reply('xin mời thí chủ vào <#763147371106271232> để test lệnh <:zuataolam:785778089120497724>')
                 if (commandfile.config.name == "thathinh" || commandfile.config.name == "gai") {
                     const minus = (date - client.thinh)
                     if (minus < 10000) {
