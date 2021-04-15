@@ -12,7 +12,6 @@ module.exports = async (client) => {
         })
         hook.send('Bot started!');
         await require("../../tools/cache/loadGuild")(client);
-        await require("../../locmem.js")(client);
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
         //await require('../../tools/collectors/roles')(client);
