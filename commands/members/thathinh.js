@@ -6,7 +6,7 @@ module.exports = {
         name: "thathinh",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['thinh'],
+        aliases: ['thinh', 'thảthính', 'thính'],
         category: "members"
     },
     async execute(client, message, args, guildCache) {

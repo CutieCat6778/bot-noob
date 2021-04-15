@@ -23,6 +23,7 @@
     "discord.js": "^12.5.1",
     "dns-lookup": "^0.1.0",
     "dotenv": "^8.2.0",
+    "flickr-sdk": "^3.10.0",
     "geoip-lite": "^1.4.2",
     "html-to-text": "^7.0.0",
     "mention-converter": "0.0.1",

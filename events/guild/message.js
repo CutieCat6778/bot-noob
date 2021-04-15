@@ -109,7 +109,7 @@ module.exports = async (client, message) => {
                 const cmd = args.shift().toLowerCase();
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if (!commandfile) return;
-                if (commandfile.config.name == "thathinh") {
+                if (commandfile.config.name == "thathinh" || commandfile.config.name == "gai") {
                     const minus = (date - client.thinh)
                     if (minus < 10000) {
                         message.delete();
