@@ -8,10 +8,12 @@ module.exports = async () => {
         if(a.toString() == "\r"){
             file.splice(file.indexOf(a), 1);
         }
-        if(isNaN(a.slice(0, 2)) == false){
+        if(isNaN(a[0]) == true){
+            return arr.push(a);
+        }else if(isNaN(a[0]) == false && (a.slice(0, 2)) == false){
             const b = a.slice(3)
             b == "" ? null : arr.push(b);
-        }else if(isNaN(a.slice(0, 2)) == true){
+        }else if(isNaN(a[0]) == false && isNaN(a.slice(0, 2)) == true){
             const b = a.slice(2)
             b == "" ? null : arr.push(b);
         }
