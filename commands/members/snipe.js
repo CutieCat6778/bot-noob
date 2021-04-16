@@ -28,7 +28,7 @@ module.exports = {
                 if(!data) return message.channel.send('không tìm thấy tin nhắn!');
                 const embed = new MessageEmbed()
                     .setAuthor(message.guild.members.cache.get(data.author).displayName, message.guild.members.cache.get(data.author).user.displayAvatarURL())
-                    .setDescription(data.content + `\n\n${data.attachments ? data.attachments.join('\n') : null}`)
+                    .setDescription(data.content + `${data.attachments ? `\n\n${data.attachments.join('\n')}` : ''}`)
                     .setFooter(`cách đây ${require('ms')(client.uptime, data.time, {long: true})}`)
                 if(data.attachments) embed.setImage(data.attachments[0]);
                 return message.channel.send(embed);
