@@ -13,11 +13,11 @@ module.exports = (client, oldMessage, newMessage) => {
             attachments: newMessage.attachments.size > 0 ? newMessage.attachments.map(a => a.url) : null,
             embeds: newMessage.embeds.length > 0 ? newMessage.embeds[0] : null
         }
-        if (channel.length <= 2) {
+        if (channel.length <= 10) {
             channel.push(obj);
-        }else if (channel.length > 2) {
+        }
+        if (channel.length > 10) {
             const shift = channel.shift();
-            channel.push(obj);
         }
     } catch (e) {
         return require('../../tools/functions/error')(e, newMessage);

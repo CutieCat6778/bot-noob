@@ -12,11 +12,10 @@ module.exports = (client, message) => {
             attachments: message.attachments.size > 0 ? message.attachments.map(a => a.url) : null,
             embeds: message.embeds.length > 0 ? message.embeds[0] : null
         }
-        if (channel.length <= 2) {
-            channel.push(obj);
-        }else if (channel.length > 2) {
+        if (channel.length <= 10) {
+        }
+        if (channel.length > 10) {
             const shift = channel.shift();
-            channel.push(obj);
         }
     } catch (e) {
         return require('../../tools/functions/error')(e, message);
