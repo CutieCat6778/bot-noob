@@ -20,7 +20,7 @@ module.exports = {
 					if (rule) {
 						const embed = new MessageEmbed()
 							.setTitle(`Luật số ${num} dành cho bạn mới vào`)
-							.setDescription(`**-  ${rule.content}** \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
+							.setDescription(`-  ${rule.content} \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
 							.setTimestamp()
 							.setFooter('Bộ luật dành cho những bạn mới vào', message.guild.iconURL())
 						const id = require('../../tools/string/mention')(args[1]);
@@ -40,7 +40,7 @@ module.exports = {
 					if (rule) {
 						const embed = new MessageEmbed()
 							.setTitle(`Luật số ${num}`)
-							.setDescription(`**-  ${rule.content}** \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
+							.setDescription(`-  ${rule.content} \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
 							.setTimestamp()
 							.setFooter('Bộ luật dành cho tất cả mọi người', message.guild.iconURL())
 						const id = require('../../tools/string/mention')(args[1]);

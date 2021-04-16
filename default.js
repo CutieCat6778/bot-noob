@@ -3,84 +3,34 @@ const obj = {
     "rules": {
         "_id": "766805956720852998",
         "list": [{
-            "num": 1, "content": "Khi chơi AMONG US hoặc games nói chung không được hack, nếu biết sẽ bị ban/kick vĩnh viễn không vào lại (bắt buộc để tên có trên Discord hoặc giống cũng được). Nhớ điểm danh trước khi chơi để biết ai là ai 👌",
+            "num": 1, "content": "**Noobs** là nơi không có phán xét (no judgment zone) và bắt buộc phải tôn trọng lẫn nhau",
         },{
-            "num": 2, "content": "Khi chơi game vẫn là anh em trong phòng, không được gây chuyện và cãi nhau",
+            "num": 2, "content": "Chơi games nói chung - **Không được hack**, nếu biết sẽ bị ban/kick vĩnh viễn không vào lại!",
         },{
-            "num": 3, "content": "Không được gửi các hình hay video khiêu gợi, 18+... (ban/kick khỏi group)",
+            "num": 3, "content": "**Không được gây chuyện và cãi nhau** - Dù có chuyện gì vẫn là anh em trong phòng",
         },{
-            "num": 4, "content": "Không spam các link, box, quảng cáo.... (i.e., quảng bá cho thương hiệu)",
+            "num": 4, "content": "**NO 18+** không được gửi các hình hay video khiêu gợi... (ban/kick khỏi group). Nhận <#802254125970358273> để được tìm hiểu thêm",
         },{
-            "num": 5, "content": "Đây là một nhóm và cũng như là gia đình, luôn luôn vui vẻ, hòa đồng, giúp đỡ nhau không quạo, không cãi nhau!",
+            "num": 5, "content": "**Không quảng cáo trên mọi hình thức** không spam các link server khác, box,.... (i.e., quảng bá cho thương hiệu, products...). Muốn gửi `link server` khác thì xin inbox riêng",
         },{
-            "num": 6, "content": "**Muốn gửi link của nhóm khác phải thông qua Cán bộ (link được chấp thuận đăng trên thông báo, xóa trong vòng 1 ngày)**",
+            "num": 6, "content": "**Nếu bị quấy rối trên mọi hình thức, có quyền chụp lại chứng cứ và báo lại cho ban cán bộ. Hành vi này sẽ bị ban vĩnh viễn**",
         }],
-        "specialRequest": "Đây là nhóm chung nên những chuyện cá nhân riêng đời tư, admin sẽ không can thiệp. Trừ khi.......ai đó áp dụng __Special Request__\nLuật này được áp dụng khi 1 thành viên đặc biệt yêu cầu kick, ban ai đó vì 1 vấn đề cá nhân với lí dó chính đáng (và nếu chủ tịch thấy hợp lí)\n\nCách áp dụng: nhắn riêng cho ban quản trị -> \"Special request, tôi muốn......\"",
-        "attention": "admin sẽ không kick 1 cá thể nào đó vì muốn tự kick bản thân. Vì Noobs quan trọng chất lượng hơn số lượng, nên chuyện tự out vì có lí do riêng sẽ không vi phạm nội quy (nhưng nhớ tui sẽ đeo bám người đó để mong mời vào lại 😌 )",
-        "roles":[{
-            "_id": "760372254143283230",
-            "users": [{
-                "_id": "763952135095582757", "sex": false
-            }],
-            "age": null
-        },{
-            "_id": "784296740937138196",
-            "users": [{
-                "_id": "761810517245165578", "sex": true
-            },{
-                "_id": "619797943469473792", "sex": false
-            }],
-            "age": null
-        },{
-            "_id": "784470417078485032",
-            "users": [{
-                "_id": "759989092263002192", "sex": true
-            }],
-            "age": null
-        },{
-            "_id": "761483126181462018",
-            "users": [{
-                "_id": "711087556456087622", "sex": true
-            },{
-                "_id": "758349635424092201", "sex": true
-            },{
-                "_id": "580591064101027840", "sex": true
-            }],
-            "age": null
-        },{
-            "_id": "763149761225687060",
-            "users": [],
-            "age": 18
-        },{
-            "_id": "766059605519892491",
-            "users": [],
-            "age": 17
-        },{
-            "_id": "783368099487154176",
-            "users": [{
-                "_id": "702323031036657685", "sex": false
-            }],
-            "age": null
-        }],
+        "specialRequest": "Đây là nhóm chung nên những chuyện cá nhân riêng đời tư, admin sẽ không can thiệp. Trừ khi.......ai đó áp dụng **Special Request**\n\nLuật này được áp dụng khi 1 thành viên đặc biệt yêu cầu `kick/ban` ai đó vì 1 vấn đề cá nhân với lí dó **chính đáng** (chỉ nếu chủ tịch thấy hợp lí)\n\n__Cách áp dụng:__ nhắn riêng cho ban quản trị\n**\"Special request + tôi muốn...... + lí do\"**",
+        "attention": "Đây là một nhóm và cũng như là gia đình, luôn luôn vui vẻ, hòa đồng, và giúp đỡ nhau\nCán bộ sẽ không kick 1 cá nhân nào đó vì muốn tự kick bản thân hay kick 1 ai không lí do\nTự out vì có lí do riêng sẽ không vi phạm nội quy nên vẫn luôn chào đón vào lại\n:pray: Noobs quan trọng chất lượng hơn số lượng",
         "newMem":[{
-            "num": 1, "content": "Xin anh em đọc luật của nhóm, tuy không khắt khe như các server khác nhưng Chủ Tịch tin là các bạn đủ lớn để hiểu việc tôn trọng lẫn nhau như thành viên gia đình"
+            "num": 1, "content": "Tuy không khắt khe như các server khác nhưng Chủ Tịch tin là các bạn đủ lớn để hiểu việc **tôn trọng lẫn nhau** như thành viên gia đình"
         },{
-            "num": 2, "content": "Các bạn đọc thông tin được ghim cho mỗi **#textchannel** nha"
+            "num": 2, "content": "Đọc thông tin được ghim cho mỗi `#textchannel`"
         },{
-            "num": 3, "content": "Sẽ có các sự kiện như Talkshow và Chiếu Phim, vvvv... (sẽ có thông báo trong mỗi **#event-channel**)"
+            "num": 3, "content": " Lấy role trong <#802254125970358273>\nMỗi người chỉ được 1 vai trò (trừ cán bộ)"
         },{
-            "num": 4, "content": "Group Noobs đang muốn tạo dựng cộng đồng như gia đình nên có tương tác sẽ không bị lọc, xin đừng vào rồi out..... Chủ tịch tui sẽ khóc mất 🥺"
+            "num": 4, "content": "Sẽ có các sự kiện như **chiếu phim, ca hát...** (chờ thông báo trong <#807592469725839390>)"
         },{
-            "num": 5, "content": "Khi vào, xin cho tui năm sinh và tên của bạn để tui giao role (có lợi ích nhiều lắm nha) và điền sinh nhật vào <#766075702100623377> cho vui (không bắt buộc nhưng có thể có quà :3) \n------> có hướng dẫn cách setup birthday được ghim"
+            "num": 5, "content": "Điền sinh nhật vào <#766075702100623377> cho vui (không bắt buộc/optional)\n------> có hướng dẫn cách setup birthday được ghim <------"
         }],
         "form": "https://forms.gle/mBcYCqQNv5ugXSUW7"
     },
     "prefix": "!",
-    "hook": {
-        "id": "",
-        "token": ""
-    },
-    "warn": []
 }
 
 module.exports = obj;

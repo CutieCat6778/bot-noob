@@ -9,6 +9,7 @@ client.timeouts = new Map();
 client.ticket = new Map();
 client.afk = new Map();
 client.snipe = new Map();
+client.edits = new Map();
 client.starboard = new Collection();
 client.economy = new Collection();
 client.pic = new Map();
