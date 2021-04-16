@@ -11,7 +11,7 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try {
             let snipe = client.snipe.get(message.channel.id);
-            if (!snipe) return message.channel.send("Không có tin nhắn nào đc xóa gần đây !");
+            if (!snipe || snipe.length == 0) return message.channel.send("Không có tin nhắn nào đc xóa gần đây !");
             if(!args[0]){
                 const embed = new MessageEmbed({
                     "title": "Tin nhắn được xóa gần đây!",

@@ -13,6 +13,7 @@ module.exports = (client, message) => {
             embeds: message.embeds.length > 0 ? message.embeds[0] : null
         }
         if (channel.length <= 10) {
+            channel.push(obj);
         }
         if (channel.length > 10) {
             const shift = channel.shift();
