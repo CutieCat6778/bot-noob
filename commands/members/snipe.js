@@ -31,7 +31,7 @@ module.exports = {
                     .setDescription(data.content + `${data.attachments ? `\n\n${data.attachments.join('\n')}` : ''}`)
                     .setFooter(`cách đây ${require('ms')(client.uptime, data.time, {long: true})}`)
                 if(data.attachments) embed.setImage(data.attachments[0]);
-                return message.channel.send(embed);
+                return data.embeds ? message.channel.send('Đã tìm thấy một cái embed!',{embed: data.embeds}) : message.channel.send(embed);
             }
         } catch (e) {
             return require("../../tools/functions/error")(e, message)
