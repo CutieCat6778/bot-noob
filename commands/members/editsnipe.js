@@ -22,7 +22,11 @@ module.exports = {
                         "icon_url": message.author.displayAvatarURL()
                     }
                 })
-                return message.channel.send(embed).then(m => m.delete({timeout: 10000}))
+                const msg = await message.channel.send(embed);
+                return client.setTimeout(() => {
+                    message.delete();
+                    msg.delete();
+                }, 10000);
             }else if(args[0] && !isNaN(args[0]) && parseInt(args[0])){
                 const data = edits[parseInt(args[0] - 1)];
                 if(!data) return message.channel.send('không tìm thấy tin nhắn!');
