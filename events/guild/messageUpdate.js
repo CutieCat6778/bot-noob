@@ -1,7 +1,7 @@
 module.exports = (client, oldMessage, newMessage) => {
-    try{
+    try {
         let channel = client.edits.get(newMessage.channel.id);
-        if(!channel){
+        if (!channel) {
             client.edits.set(newMessage.channel.id, []);
             channel = client.edits.get(newMessage.channel.id);
         }
@@ -13,13 +13,13 @@ module.exports = (client, oldMessage, newMessage) => {
             attachments: newMessage.attachments.size > 0 ? newMessage.attachments.map(a => a.url) : null,
             embeds: newMessage.embeds.length > 0 ? newMessage.embeds[0] : null
         }
-        if(channel.length > 10){
-            channel.shift();
+        if (channel.length <= 2) {
             channel.push(obj);
-        }else if(channel.length < 10){
+        }else if (channel.length > 2) {
+            const shift = channel.shift();
             channel.push(obj);
         }
-    }catch(e){
+    } catch (e) {
         return require('../../tools/functions/error')(e, newMessage);
     }
 }
