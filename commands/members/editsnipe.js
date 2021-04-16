@@ -15,7 +15,7 @@ module.exports = {
             if(!args[0]){
                 const embed = new MessageEmbed({
                     "title": "Tin nhắn được sửa gần đây!",
-                    "description": `${edits.map(a => `**[${edits.indexOf(a) + 1}]** | ${message.guild.members.cache.get(a.author)} | ${require('ms')(client.uptime - a.time, {long: true})}`).join('\n')} trước`,
+                    "description": `${edits.map(a => `**[${edits.indexOf(a) + 1}]** | ${message.guild.members.cache.get(a.author)} | ${require('ms')(client.uptime - a.time, {long: true})} trước`).join('\n')} `,
                     "timestamp": new Date(),
                     "footer": {
                         "text": "được yêu cầu bởi " + message.member.displayName,
