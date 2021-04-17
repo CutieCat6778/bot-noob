@@ -17,8 +17,7 @@ module.exports = {
                 const validator = require('../../tools/string/domainValidation');
                 if (validator(args[0].toString())) {
                     const embed1 = new MessageEmbed()
-                        .setColor("#40598F")
-                        .setDescription('<a:loading:811171036745695283> **Please wait . . . **')
+                        .setDescription('**Please wait . . . **')
                     const msg = await message.channel.send(embed1);
                     const query = args[0].toString();
                     const key = "QF9KcsSbhWRadkdHVND28HuF1l6eYVGx";
@@ -37,7 +36,6 @@ module.exports = {
                                 return msg.edit({ embed: { description: `**STATUS**\xa0\xa0\xa0\xa0\`${res.message || res.error}\`` } });
                             } else if (!res.message) {
                                 const embed = new MessageEmbed()
-                                    .setColor('#40598F')
                                     .setDescription(`${res?.results?.map(a => `${a.ipAddress}`)?.join('\n')}`)
                                 return msg.edit(embed);
                             }

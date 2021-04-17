@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const MessageEmbed = require('../../classes/newEmbed');
 const fetch = require('node-fetch');
 
 module.exports = {
@@ -17,8 +17,7 @@ module.exports = {
                 const validator = require('../../tools/string/domainValidation');
                 if (validator(args[0].toString())) {
                     const embed1 = new MessageEmbed()
-                        .setColor("#40598F")
-                        .setDescription('<a:loading:811171036745695283> **Please wait . . . **')
+                        .setDescription('**Please wait . . . **')
                     const msg = await message.channel.send(embed1);
                     const query = args[0].toString();
                     const key = "fb3618a3d82246f3d05feef22893556c176bac03";
@@ -30,7 +29,6 @@ module.exports = {
                                 return msg.edit('Unable to look for the domain up!');
                             } else if (res.success) {
                                 const embed = new MessageEmbed()
-                                    .setColor('#40598F')
                                     .setTitle(query)
                                     .setDescription(`${res?.data?.records?.items?.map(a => `Host: **${a.host}** \xa0\xa0\xa0\xa0\xa0\xa0 Target: **${a.target}**`)?.join('\n')}`)
                                     .setTimestamp()

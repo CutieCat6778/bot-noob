@@ -20,7 +20,6 @@ module.exports = {
                 let url = await getUrl(value);
                 if (info.length >= 1) {
                     let embed = new MessageEmbed()
-                        .setColor("#40598F")
                         .setTitle(`I found ${info.length} result`)
                         .setDescription(`Enter a number to get result about it or type \`cancel\` to cancel`)
                     if (info.length < 5) {

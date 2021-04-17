@@ -14,8 +14,7 @@ module.exports = {
             let topic = args.slice(0).join("+");
             const url = `https://www.google.com/search?q=${topic}`;
             let embed = new MessageEmbed()
-                .setColor("#40598F")
-                .setTitle("<:google:774311088958341120> Link for the result")
+                .setTitle("Link for the result")
                 .setDescription(`[Click here](${url})`)
                 .setTimestamp()
             return require('../../tools/functions/sendMessage')(message, embed);

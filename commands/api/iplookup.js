@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const MessageEmbed = require('../../classes/newEmbed');
 const fetch = require('node-fetch');
 
 module.exports = {
@@ -16,8 +16,7 @@ module.exports = {
             } else if (args[0]) {
                 if (require('../../tools/string/validateIP')(args[0])) {
                     const embed1 = new MessageEmbed()
-                        .setColor("#40598F")
-                        .setDescription('<a:loading:811171036745695283> **Please wait . . . **')
+                        .setDescription('**Please wait . . . **')
                     const msg = await message.channel.send(embed1);
                     const ip = args[0].toString();
                     fetch(`http://ip-api.com/json/${ip}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,reverse,query`)
@@ -27,7 +26,6 @@ module.exports = {
                                 return msg.edit({ embed: { description: `**STATUS**\xa0\xa0\xa0\xa0\`${res.message}\`` } })
                             } else if (res.status == 'success') {
                                 const embed = new MessageEmbed()
-                                    .setColor('#40598F')
                                     .setTitle(`${res?.query}`)
                                     .setDescription(`x: ${res?.lat} | y: ${res?.lon}`)
                                     .addFields([
