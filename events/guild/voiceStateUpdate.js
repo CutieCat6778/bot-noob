@@ -1,5 +1,6 @@
 module.exports = async (client, old, n) => {
     try {
+        return;
         if(n.member.bot) return;
         if(!n.guild.me.permissions.has(['MOVE_MEMBERS', 'MANAGE_CHANNELS', 'MANAGE_ROLES'])) return;
         if (!old.channel && n.channel) {

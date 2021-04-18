@@ -1,19 +1,18 @@
 module.exports = {
     config: {
-        name: "vclimit",
+        name: "vcclaim",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['vcmax'],
+        aliases: ['vcgetowner'],
         category: "voice",
-        usage: ['[number]']
+        usage: []
     },
     async execute(client, message, args, guildCache) {
         try{
             const voice = client.voices.get(message.member.voice.channelID);
-            if(voice && voice.owner == message.member.id){
+            if(voice && voice.owner == null){
                 if(args[0] || parseInt(args[0]) || !isNaN(args[0])){
-                    const max = parseInt(args[0]);
-                    await message.member.voice.channel.setUserLimit(max);
+                    voice.owner = message.member.id;
                     return message.react('<:hmmmmm:770520614444335104>');
                 }else return message.react('❌');
             }else if(!voice) return message.react('❌');

@@ -4,7 +4,8 @@ module.exports = {
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
         aliases: ['vcdeny'],
-        category: "voice"
+        category: "voice",
+        usage: ['[@user]']
     },
     async execute(client, message, args, guildCache) {
         try{
