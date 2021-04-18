@@ -3,7 +3,7 @@ module.exports = async (client, old, n) => {
         if(n.member.bot) return;
         if(!n.guild.me.permissions.has(['MOVE_MEMBERS', 'MANAGE_CHANNELS', 'MANAGE_ROLES'])) return;
         if (!old.channel && n.channel) {
-            if (n.channelID == "811819717944934460") {
+            if (n.channelID == "816625926401163284") {
                 const channel = await n.guild.channels.create("Phòng #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'voice', parent: '800139706250559518' });
                 n.setChannel(channel, "Người dùng đã vào channel tạo voice!");
                 let voiceCache = client.voices.get(channel.id);
