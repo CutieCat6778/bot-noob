@@ -5,13 +5,14 @@ require('dotenv').config();
 //All Importain Cache stuffs
 client.commands = new Collection();
 client.aliases = new Collection();
+client.starboard = new Collection();
+client.economy = new Collection();
+client.voices = new Collection();
 client.timeouts = new Map();
 client.ticket = new Map();
 client.afk = new Map();
 client.snipe = new Map();
 client.edits = new Map();
-client.starboard = new Collection();
-client.economy = new Collection();
 client.pic = new Map();
 
 //All variable that we need to store in Client

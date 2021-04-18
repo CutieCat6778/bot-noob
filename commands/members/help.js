@@ -51,6 +51,7 @@ module.exports = {
                     .addFields([
                         {"name": "Tên của lệnh", "value": command.config.name},
                         {"name": "Viết tắt", "value": command.config.aliases ? command.config.aliases.join(', ') : "Không có"},
+                        {"name": "Sử dụng", "value": command.config.aliases ? `${client.guild.prefix}${command.config.name} ${command.config.usage.join(' ')}` : "Không có"},
                         {"name": "Yêu cầu quyền", "value": `\`\`\`css\n${command.config.perms.map(a => a.toLowerCase().split("_").join(" ")).join('\n')}\n\`\`\``}
                     ])
                 command.config.description ? embed.setDescription(command.config.description) : null;

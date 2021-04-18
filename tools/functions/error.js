@@ -18,7 +18,7 @@ module.exports = async (error, message, text) => {
         if (e) {
             if (text) {
                 let embed1 = new MessageEmbed()
-                    .setTitle(`:x: Error`)
+                    .setTitle(`❌ Error`)
                     .setColor("#40598F")
                     .setDescription(`Oh no, tôi đang có vấn đề. \n\n __Error message:__\n \`${text}\``)
                     .setTimestamp()
@@ -36,7 +36,7 @@ module.exports = async (error, message, text) => {
                 return hook.send(embed);
             } else if (message) {
                 let embed1 = new MessageEmbed()
-                    .setTitle(":x: Error")
+                    .setTitle("❌ Error")
                     .setColor("#40598F")
                     .setDescription("Oh no, tôi đang có vấn đề, hãy kêu thằng **Cat_#9289** để sửa lỗi!")
                     .setTimestamp()
@@ -58,7 +58,7 @@ module.exports = async (error, message, text) => {
                 const narary = array.slice(0, Math.floor((1000 / 5))).join('');
                 let embed = new MessageEmbed()
                     .setColor("#40598F")
-                    .addField(":x: Client error", `
+                    .addField("❌ Client error", `
                     \`\`\`console\n${narary}\`\`\`
                 `)
                     .setTimestamp()
