@@ -47,9 +47,9 @@ module.exports = {
             const command = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
             if(command){
                 const embed = new newEmbed()
-                    .setTitle(command.config.name)
+                    .setTitle(command.config.name.slice(0, 1).toString().toUpperCase() + command.config.name.slice(1))
                     .addFields([
-                        {"name": "Tên của lệnh", "value": command.config.name.slice(0, 1).toString().toUpperCase() + command.config.name.slice(1)},
+                        {"name": "Tên của lệnh", "value": command.config.name},
                         {"name": "Viết tắt", "value": command.config.aliases ? command.config.aliases.join(', ') : "Không có"},
                         {"name": "Yêu cầu quyền", "value": `\`\`\`css\n${command.config.perms.map(a => a.toLowerCase().split("_").join(" ")).join('\n')}\n\`\`\``}
                     ])

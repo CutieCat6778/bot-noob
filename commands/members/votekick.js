@@ -6,7 +6,7 @@ module.exports = {
         aliases: ["votek", "vkick"],
         category: "moderation",
         perms: ["SEND_MESSAGES"],
-        description: "The moderator or administrator use this command to sue some one",
+        description: "Mọi người có thể dùng command để có thể vote và kick một ai đó!",
         bot: ["ADD_REACTIONS", "EMBED_LINKS"],
         usage: ['@user', 'reason']
     },
