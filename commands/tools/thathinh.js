@@ -19,7 +19,7 @@ module.exports = {
             const random = Math.floor(Math.random() * thinh.length);
             return message.channel.send(thinh[random]);
         } catch (e) {
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }

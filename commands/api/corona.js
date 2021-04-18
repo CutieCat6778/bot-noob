@@ -22,7 +22,7 @@ module.exports = {
                 }
             }, function (err, response, body) {
                 if (err || JSON.parse(body).code != 200) {
-                    return require('../../tools/function/error')(err, message)
+                    return require('../../tools/functions/error')(err, message)
                 }
                 body = JSON.parse(body);
                 const country = body.data[0];

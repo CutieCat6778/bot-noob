@@ -4,16 +4,17 @@ const MessageEmbed = require('../../classes/newEmbed');
 
 module.exports = {
     config: {
-        name: "gai",
+        name: "image",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['gaixinh', 'gái', 'gáixinh'],
-        category: "members"
+        aliases: ['generateimage'],
+        category: "api"
     },
     async execute(client, message, args, guildCache) {
-        try {
+        try{
+            if(!args[0]) return;
             flickr.photos.search({
-                text: 'Gái Xinh Chọn Lọc'
+                text: args.slice(0).join(" ")
             }).then(function (res) {
                 const body = res.body
                 if (body.stat != "ok") return new Error('API res stat is not ok!');
@@ -35,7 +36,7 @@ module.exports = {
             }).catch(function (err) {
                 return require('../../tools/functions/error')(err, message);
             });
-        } catch (e) {
+        }catch(e) {
             return require('../../tools/functions/error')(e, message);
         }
     }

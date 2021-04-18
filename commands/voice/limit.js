@@ -18,7 +18,7 @@ module.exports = {
                 }else return message.react('❌');
             }else if(!voice) return message.react('❌');
         }catch(e) {
-            return require('../../tools/function/error')(e, message);
+            return require('../../tools/functions/error')(e, message);
         }
     }
 }

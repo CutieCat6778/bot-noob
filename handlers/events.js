@@ -10,7 +10,7 @@ module.exports = (client) => {
                 client.on(eName, evt.bind(null, client));
             };
         };
-        readdirSync("./events/").forEach(x => load(x));
+        ["guild", "client"].forEach(x => load(x));
     } catch (e) {
         return require("../tools/functions/error")(e, undefined)
     }

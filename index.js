@@ -6,7 +6,6 @@ require('dotenv').config();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.starboard = new Collection();
-client.economy = new Collection();
 client.voices = new Collection();
 client.timeouts = new Map();
 client.ticket = new Map();
@@ -22,13 +21,9 @@ client.guild = new Object();
 client.noImage = new Array();
 client.thinh = new Date().getTime();
 
-//Command handler
-async function handling() {
+(async() => {
     await require('./handlers/commands.js')(client);
     await require('./handlers/events.js')(client);
-}
-handling().then(() => {
-    //Login to the bot
+})().then(() => {
     client.login(process.env.token);
 })
-
