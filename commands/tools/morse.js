@@ -6,7 +6,8 @@ module.exports = {
         aliases: ['morsecode', 'mrose'],
         category: 'chat',
         perms: ["SEND_MESSAGES"],
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['[text]']
     },
     async execute(client, message, args, guildCache) {
         try {

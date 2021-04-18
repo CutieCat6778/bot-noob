@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const MessageEmbed = require('../../classes/newEmbed');
 const fetch = require('node-fetch');
 
 module.exports = {
@@ -7,7 +7,8 @@ module.exports = {
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
         aliases: ['dns', 'dnslookup'],
-        category: 'api'
+        category: 'api',
+        usage: ['[domain_name]']
     },
     async execute(client, message, args, guildCache) {
         try {

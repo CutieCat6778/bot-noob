@@ -7,7 +7,8 @@ module.exports = {
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
         aliases: ['ns', 'nameserver'],
-        category: 'api'
+        category: 'api',
+        usage: ['[name_server]']
     },
     async execute(client, message, args, guildCache) {
         try {

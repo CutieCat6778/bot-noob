@@ -7,7 +7,8 @@ module.exports = {
         aliases: ["ip", "locateip"],
         perms: ['SEND_MESSAGES'],
         bot: ["SEND_MESSAGES"],
-        category: 'api'
+        category: 'api',
+        usage: ['[ip_andress]']
     },
     async execute(client, message, args, guildCache) {
         try {

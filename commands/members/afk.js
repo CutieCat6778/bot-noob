@@ -5,7 +5,8 @@ module.exports = {
         category: "members",
         perms: ["SEND_MESSAGES"],
         description: "You use this command to tell people that you are offline",
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['[afk_message]']
     },
     async execute (client, message, args, guild) {
         try{

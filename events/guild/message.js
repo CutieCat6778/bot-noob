@@ -119,7 +119,7 @@ module.exports = async (client, message) => {
                         client.thinh = date;
                     }
                 }
-                if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return;
+                if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return message.reply('làm ơn hãy sử dụng command này ở trong <#801567245351780433>');
                 if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
                     return;
                 } else if (!commandfile.config.perms.includes("BOT_OWNER")) {

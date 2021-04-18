@@ -6,7 +6,8 @@ module.exports = {
         aliases: ["delmsg", "deletemsg"],
         category: "members",
         perms: ["SEND_MESSAGES"],
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['[Snipe_number]']
     },
     async execute(client, message, args, guildCache) {
         try {

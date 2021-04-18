@@ -7,7 +7,8 @@ module.exports = {
         aliases: ["wiki"],
         category: "api",
         perms: ["SEND_MESSAGES"],
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['[chủ đề]']
     },
     async execute(client, message, args, guildCache) {
         try {
@@ -43,8 +44,7 @@ module.exports = {
                             } else if (info[num]) {
                                 let res = info[num];
                                 let embed = new MessageEmbed()
-                                    .setColor("#40598F")
-                                    .setTitle("<:wiki:774348022917759016> " + res.title)
+                                    .setTitle(res.title)
                                     .setDescription(`[More information](${url[3][num]})\n\n${htmlToText.fromString(res.snippet)} ...`)
                                     .setTimestamp(res.timestamp)
                                     .setFooter("Last update")

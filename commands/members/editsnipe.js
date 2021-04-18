@@ -6,7 +6,8 @@ module.exports = {
         aliases: ["editssnipe", "edits"],
         category: "members",
         perms: ["SEND_MESSAGES"],
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['edit_number']
     },
     async execute(client, message, args, guildCache) {
         try {

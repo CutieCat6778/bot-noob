@@ -6,7 +6,8 @@ module.exports = {
         aliases: ["google"],
         category: "api",
         perms: ["SEND_MESSAGES"],
-        bot: ["SEND_MESSAGES"]
+        bot: ["SEND_MESSAGES"],
+        usage: ['[chủ đề]']
     },
     async execute(client, message, args, guildCache) {
         try {
