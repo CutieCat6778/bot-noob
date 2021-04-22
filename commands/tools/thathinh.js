@@ -18,7 +18,7 @@ module.exports = {
             if(message.content.endsWith('-en')){
                 let random = randomize(thinhEn.length);
                 const run = () => {
-                    client.thinhUsed.includes(random) ? run() : client.thinhUsed.push(random);
+                    client.thinhUsedEn.includes(random) ? run() : client.thinhUsedEn.push(random);
                 }
                 run();
                 return message.channel.send(thinhEn[random]);

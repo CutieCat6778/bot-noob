@@ -21,6 +21,7 @@ client.guild = new Object();
 client.noImage = new Array();
 client.thinh = new Date().getTime();
 client.thinhUsed = new Array();
+client.thinhUsedEn = new Array();
 
 (async() => {
     await require('./handlers/commands.js')(client);
