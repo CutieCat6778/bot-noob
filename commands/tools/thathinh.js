@@ -12,11 +12,22 @@ module.exports = {
     },
     async execute(client, message, args, guildCache) {
         try {
+            const randomize = (length) => {
+                return Math.floor(Math.random() * length);
+            }
             if(message.content.endsWith('-en')){
-                const random = Math.floor(Math.random() * thinhEn.length);
+                let random = randomize(thinhEn.length);
+                const run = () => {
+                    client.thinhUsed.includes(random) ? run() : client.thinhUsed.push(random);
+                }
+                run();
                 return message.channel.send(thinhEn[random]);
             }
-            const random = Math.floor(Math.random() * thinh.length);
+            let random = randomize(thinh.length);
+            const run = () => {
+                client.thinhUsed.includes(random) ? run() : client.thinhUsed.push(random);
+            }
+            run();
             return message.channel.send(thinh[random]);
         } catch (e) {
             return require('../../tools/functions/error')(e, message);

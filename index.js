@@ -20,6 +20,7 @@ client.total = new Number("0");
 client.guild = new Object();
 client.noImage = new Array();
 client.thinh = new Date().getTime();
+client.thinhUsed = new Array();
 
 (async() => {
     await require('./handlers/commands.js')(client);
