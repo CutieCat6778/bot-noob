@@ -30,7 +30,7 @@ const obj = {
         }],
         "form": "https://forms.gle/mBcYCqQNv5ugXSUW7"
     },
-    "prefix": "!",
+    "prefix": ".",
 }
 
 module.exports = obj;
