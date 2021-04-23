@@ -11,7 +11,7 @@ module.exports = async (client) => {
             useUnifiedTopology: true
         })
         hook.send('Bot started!');
-        //await require("../../tools/database/updateGuild")(client);
+        await require("../../tools/database/updateGuild")(client);
         await require("../../tools/cache/loadGuild")(client);
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);

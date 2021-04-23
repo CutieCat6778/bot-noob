@@ -104,6 +104,8 @@ module.exports = async (client, message) => {
                     require('../../tools/database/removeAfk')(message.author.id);
                 }
             }
+            console.log(guildCache);
+            guildCache.prefix = "."
             if (message.content.toLowerCase().startsWith(guildCache.prefix) || message.content.toLowerCase().startsWith(`<@!${client.user.id}>`) || message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {
                 console.log('a');
                 const args = message.content.slice(guildCache.prefix.length).trim().split(/ +/g);
