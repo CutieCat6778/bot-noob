@@ -25,7 +25,6 @@ module.exports = {
             collector.on('collect', (reaction, user) => {
                 if(user.bot) return;
                 users.push(user.id);
-                console.log(user.id)
             })
             collector.on('end', collected => {
                 let user1, user2;

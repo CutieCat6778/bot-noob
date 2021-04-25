@@ -50,7 +50,6 @@ module.exports = {
 			}
 			await channel.overwritePermissions(obj);
 			user._id = channel.id;
-			console.log(user);
 			return channel.send(`<@${message.author.id}>, xin bạn hãy chờ cho đến khi một bạn Nhân sự nào đó trả lời.`);
 		} catch (e) {
 			return require("../../tools/functions/error")(e, message)

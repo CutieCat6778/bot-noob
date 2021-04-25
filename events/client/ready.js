@@ -15,9 +15,10 @@ module.exports = async (client) => {
         await require("../../tools/cache/loadGuild")(client);
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
+        await require('../../tools/cache/loadInvites')(client);
         //await require('../../tools/collectors/pages')(client);
         //await require('../../tools/converter/txtToArray')();
-        console.log(client.timeouts, client.afk);
+        console.log(client.timeouts, client.afk, client.invites);
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
     } catch (e) {
         return require("../../tools/functions/error")(e, undefined)
