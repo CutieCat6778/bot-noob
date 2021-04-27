@@ -21,17 +21,17 @@ module.exports = async (client) => {
         console.log(client.timeouts, client.afk);
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
         const text = [
-            `đang xem ${client.guilds.cache.get("721203266452586507").members.cache.size} người dùng`,
-            `đang ngồi xem ai đó post link bậy`,
+            `xem ${client.guilds.cache.get("721203266452586507").members.cache.size} tv`,
+            `chực post link bậy`,
             `xem ai đó react sao vàng`,
             `thả thính là đam mê`,
-            `Nếu bị hỏng thì gọi thằng Cat`,
+            `lỗi thì gọi thằng Cat`,
             `noobs là một cộng đồng`,
             `vào luật để đọc luật`,
-            `nếu có vấn đề, ib cho mod hoặc Cat`,
-            `ngồi xem mấy con giời xàm lờ`,
-            `người ăn cơm tró thường niên`,
-            `hãy vui lên vì đời cho phép`,
+            `nếu có vấn đề, ib cho mod`,
+            `xem mấy con giời xàm lờ`,
+            `ăn cơm tró thường niên`,
+            `vui lên vì đời cho phép`,
             `các thành viên Noobs`
         ]
         let i = 0;
