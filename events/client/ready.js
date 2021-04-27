@@ -31,7 +31,8 @@ module.exports = async (client) => {
             `nếu có vấn đề, ib cho mod hoặc Cat`,
             `ngồi xem mấy con giời xàm lờ`,
             `người ăn cơm tró thường niên`,
-            `hãy vui lên vì đời cho phép`
+            `hãy vui lên vì đời cho phép`,
+            `các thành viên Noobs`
         ]
         let i = 0;
         client.setInterval(() => {
