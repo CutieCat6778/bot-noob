@@ -133,7 +133,6 @@ module.exports = async (client, message) => {
                     }
                 }
                 client.total += 1;
-                console.log(commandfile);
                 return commandfile.execute(client, message, args, guildCache)
             }
         }

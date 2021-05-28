@@ -11,7 +11,6 @@ module.exports = {
 	},
 	async execute(client, message, args, guild) {
 		try {
-			console.log("a");
 			const text = args.slice(0).join(" ");
 			const embed = new MessageEmbed()
 				.setTitle('📢 Thông báo 📢')
