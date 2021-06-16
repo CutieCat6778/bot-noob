@@ -18,7 +18,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadInvites')(client);
         //await require('../../tools/collectors/pages')(client);
         //await require('../../tools/converter/txtToArray')();
-        console.log(client.timeouts, client.afk);
+        console.log(client.timeouts, client.afk, client.invites.size);
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
         const text = [
             `xem ${client.guilds.cache.get("721203266452586507").members.cache.size} tv`,
