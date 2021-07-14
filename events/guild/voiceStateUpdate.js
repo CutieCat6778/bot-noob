@@ -1,7 +1,38 @@
 module.exports = async (client, old, n) => {
     try {
-        return;
         if(n.member.bot) return;
+        // Voice EXP++
+        if(!old.channel && n.channel){
+            // User join voice
+            let user = client.voiceexp.get(n.member.id);
+            if(!user) client.voiceexp.set(n.member.id, (new Date()).getTime()), user = client.voiceexp.get(n.member.id);
+            else if(user) user = (new Date()).getTime();
+        }else if(old.channel && !n.channel){
+            // User leave voice
+            const user = client.voiceexp.get(n.member.id);
+            if(!user) return;
+            else if(user){
+                const time = Math.floor(((new Date()).getTime() - user) / 1000);
+                if(time > 0){
+                    const addExp = time / 10;
+                    const data = await require('../../tools/database/getLevel')(n.member.id);
+                    if (data) {
+                        console.log(addExp, data.exp, data.total);
+                        data.exp += addExp;
+                        data.total += time / 2;
+                        console.log(data.exp, data.total);
+                        if ((data.exp >= data.level * 400 && data.level > 0) || (data.exp > 400 && data.level == 0)) {
+                            data.level++;
+                            data.exp = 0;
+                            const channel = n.guild ? n.guild.channels.cache.get('801567245351780433') : old.guild.channels.cache.get('801567245351780433');
+                            channel.send(`GG ${n.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
+                        }
+                        //await data.save(); 
+                    }
+                }else return;
+            }
+        }
+        // Voice Manager
         if(!n.guild.me.permissions.has(['MOVE_MEMBERS', 'MANAGE_CHANNELS', 'MANAGE_ROLES'])) return;
         if (!old.channel && n.channel) {
             if (n.channelID == "816625926401163284") {
