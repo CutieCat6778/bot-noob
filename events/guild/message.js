@@ -13,9 +13,9 @@ module.exports = async (client, message) => {
             let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
-                blocklistdomains.some(a => {
-                    if (!message.content.includes(a)) trigger = true;
-                })
+                for(let domain of blocklistdomains){
+                    if(!message.content.includes(domain)) return trigger = true;
+                }
             }
             if (trigger) {
                 message.delete();
