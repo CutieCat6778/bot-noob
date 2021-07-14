@@ -27,7 +27,7 @@ module.exports = async (client, old, n) => {
                             const channel = n.guild ? n.guild.channels.cache.get('801567245351780433') : old.guild.channels.cache.get('801567245351780433');
                             channel.send(`GG ${n.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                         }
-                        //await data.save(); 
+                        await data.save(); 
                     }
                 }else return;
             }
