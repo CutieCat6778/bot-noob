@@ -19,7 +19,7 @@ module.exports = async (client, old, n) => {
                     if (data) {
                         console.log(addExp, data.exp, data.total);
                         data.exp += addExp;
-                        data.total += time / 2;
+                        data.total += time / 1000;
                         console.log(data.exp, data.total);
                         if ((data.exp >= data.level * 400 && data.level > 0) || (data.exp > 400 && data.level == 0)) {
                             data.level++;
