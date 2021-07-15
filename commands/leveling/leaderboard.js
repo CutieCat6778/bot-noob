@@ -12,7 +12,8 @@ module.exports = {
     },
     async execute(client, message, args, guild){
         let levels = await Levels.find().catch(e => require('../../tools/functions/error')(e, message));
-        levels = levels.sort(require('../../tools/functions/sortby')('total', true, parseInt));
+        levels = levels.sort(require('../../tools/functions/sortby')('level', true, parseInt));
+        levels = levels.sort(require('../../tools/functions/sortby')('exp', true, parseInt));
         const embed = new newEmbed()
             .setTitle('Bảng xếp hạng')
             .setTimestamp()
