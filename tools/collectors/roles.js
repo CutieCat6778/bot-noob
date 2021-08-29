@@ -9,7 +9,7 @@ module.exports = async (client) => {
         message.react('<:pubg:881560572548747365>')
         if (message) {
             const filter = (reaction, user) => {
-                return ["881559332838314024", "881560677494444052", "881560939466489876", "881560572548747365"].includes(reaction.emoji.id);
+                return ["881559332838314024", "881560677494444052", "881560939466489876", "881560572548747365"].includes(reaction.emoji.id) && user.bot == false;
             };
             const collector = await message.createReactionCollector(filter);
             collector.on('collect', (reaction, userData) => {
