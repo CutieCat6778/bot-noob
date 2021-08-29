@@ -36,7 +36,7 @@ module.exports = async (client, reaction, user) => {
         }
         data.url ? embed.image = {url: data.url} : null;
         if (data.upvotes == 2) {
-            const msg = await channel.send({ embed: embed })
+            const msg = await channel.send({ embeds: [embed] })
             data.msgId = msg.id;
             msg.react('⭐')
         } else if (data.upvotes >= 2) {

@@ -22,6 +22,6 @@ module.exports = {
             .setTimestamp()
             .setThumbnail(user.user.displayAvatarURL())
             .setFooter(`Được yêu cầu bởi ${message.member.displayName}`, message.author.displayAvatarURL())
-        return message.channel.send(embed);
+        return message.channel.send({embeds: [embed]});
     }
 }

@@ -18,7 +18,7 @@ module.exports = {
 				.setTimestamp()
 				.setFooter('Sự kiện quan trọng')
 			message.delete();
-			message.channel.send(embed);
+			message.channel.send({embeds: [embed]});
 		} catch (e) {
 			return require("../../tools/functions/error")(e, message)
 		}

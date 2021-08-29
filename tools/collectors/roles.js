@@ -1,33 +1,48 @@
 module.exports = async (client) => {
     try {
-        const message = await client.channels.cache.get('802254125970358273').messages.fetch('831938780193751111')
+        const message = await client.channels.cache.get('802254125970358273').messages.fetch('881563482217132033')
         if (!message) return new Error('No message found!');
+        message.reactions.removeAll();
+        message.react('<:csgo:881559332838314024>')
+        message.react('<:valorant:881560677494444052>')
+        message.react('<:lol:881560939466489876>')
+        message.react('<:pubg:881560572548747365>')
         if (message) {
-            await message.reactions.removeAll();
-            await message.react("⚪");
-            await message.react("🔵")
             const filter = (reaction, user) => {
-                return reaction.emoji.name == "🔵" || reaction.emoji.name == "⚪";
+                return ["881559332838314024", "881560677494444052", "881560939466489876", "881560572548747365"].includes(reaction.emoji.id);
             };
             const collector = await message.createReactionCollector(filter);
             collector.on('collect', (reaction, userData) => {
-                if (reaction.emoji.name == "🔵") {
-                    const guild = client.guilds.cache.get('721203266452586507')
-                    const role = guild.roles.cache.get('763149761225687060');
-                    const user = guild.members.cache.get(userData.id);
-                    if(user.roles.cache.has('766059605519892491')) return;
-                    if (!user.roles.cache.has(role.id)) {
-                        user.roles.add(role);
-                    } else if (user.roles.cache.has(role.id)) return;
-                }
-                if (reaction.emoji.name == "⚪") {
-                    const guild = client.guilds.cache.get('721203266452586507')
-                    const role = guild.roles.cache.get('766059605519892491');
-                    const user = guild.members.cache.get(userData.id);
-                    if(user.roles.cache.has('763149761225687060')) return;
-                    if (!user.roles.cache.has(role.id)) {
-                        user.roles.add(role);
-                    } else if (user.roles.cache.has(role.id)) return
+                const guild = client.guilds.cache.get('721203266452586507');
+                switch(reaction.emoji.id){
+                    // csgo
+                    case "881559332838314024":
+                        let role1 = guild.roles.cache.get('881554344779087892');
+                        let user1 = guild.members.cache.get(userData.id);
+                        if(user1.roles.cache.has(role1.id)) return user1.roles.remove(role1.id);
+                        user1.roles.add(role1.id);
+                        break;
+                    // valorant
+                    case "881560677494444052":
+                        let role2 = guild.roles.cache.get('881553692749357076');
+                        let user2 = guild.members.cache.get(userData.id);
+                        if(user2.roles.cache.has(role2.id)) return user2.roles.remove(role2.id);
+                        user2.roles.add(role2.id);
+                        break;
+                    // lol
+                    case "881560939466489876":
+                        let role3 = guild.roles.cache.get('881553274992492594');
+                        let user3 = guild.members.cache.get(userData.id);
+                        if(user3.roles.cache.has(role3.id)) return user3.roles.remove(role3.id);
+                        user3.roles.add(role3.id);
+                        break;
+                    // pubg
+                    case "881560572548747365":
+                        let role = guild.roles.cache.get('828607951366651925');
+                        let user = guild.members.cache.get(userData.id);
+                        if(user.roles.cache.has(role.id)) return user.roles.remove(role.id);
+                        user.roles.add(role.id);
+                        break;
                 }
             });
 

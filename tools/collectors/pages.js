@@ -8,7 +8,7 @@ module.exports = async (client) => {
 	
 		const sendEmbed = async() => {
 			const embed = {embed: embeds[0]};
-			const m = await channel.send(embed);
+			const m = await channel.send({embeds: [embed]});
 			msg = await channel.messages.fetch(m.id);
 		}
 	

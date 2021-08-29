@@ -12,7 +12,7 @@ module.exports = {
     async execute(client, message, args, guild) {
         if (!args[0]) {
             return message.channel.send({
-                embed: {
+                embeds: [{
                     "description": "Chào, tớ là Gà - BOT của server Noobs và do <@762749432658788384> tạo ra.\n Prefix của tớ là: **.**",
                     "color": 15246888,
                     "fields": [
@@ -41,7 +41,7 @@ module.exports = {
                         "name": "DANH SÁCH LỆNH CỦA GÀ",
                         "icon_url": "https://i.pinimg.com/originals/86/b6/e7/86b6e7b238d2c43ef86e754e312bcd25.jpg"
                     }
-                }
+                }]
             })
         } else if (args[0]) {
             const command = client.commands.get(args[0].toLowerCase()) || client.commands.get(client.aliases.get(args[0].toLowerCase()));
@@ -55,7 +55,7 @@ module.exports = {
                         {"name": "Yêu cầu quyền", "value": `\`\`\`css\n${command.config.perms.map(a => a.toLowerCase().split("_").join(" ")).join('\n')}\n\`\`\``}
                     ])
                 command.config.description ? embed.setDescription(command.config.description) : null;
-                message.channel.send(embed);
+                message.channel.send({embeds: [embed]});
             }
         }
     }

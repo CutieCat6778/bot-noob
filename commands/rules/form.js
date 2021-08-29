@@ -17,6 +17,6 @@ module.exports = {
         }
         const embed = new newEmbed()
             .setDescription(`Bạn hãy điền vào cái **[form](https://forms.gle/mBcYCqQNv5ugXSUW7)** giúp bọn mình nhé <3\nCan you please fill this **[form](https://forms.gle/mBcYCqQNv5ugXSUW7)** for us, just for vertification <3`)
-        return message.channel.send(embed);
+        return message.channel.send({embeds: [embed]});
     }
 }

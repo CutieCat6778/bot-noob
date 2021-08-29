@@ -3,7 +3,7 @@ module.exports = async (client, member) => {
     let welcomeChannel = await client.channels.fetch('721203266892988489').catch(err => console.log(err));
     console.log(welcomeChannel)
     if (member.user.bot) return welcomeChannel.send(`${member.toString()} đã vào bằng OAuth flow.`).catch(err => console.log(err));
-    const newInvites = await member.guild.fetchInvites();
+    const newInvites = await member.guild.invites.fetch();
     console.log(newInvites.size, client.invites.size)
     if (member.guild.vanityURLCode) newInvites.set(member.guild.vanityURLCode, await member.guild.fetchVanityData());
     const usedInvite = newInvites.find(inv => (client.invites.get(inv.code).uses < inv.uses));

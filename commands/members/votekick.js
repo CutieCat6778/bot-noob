@@ -29,7 +29,7 @@ module.exports = {
                 .setTimestamp()
                 .setThumbnail(target.user.displayAvatarURL())
                 .setFooter("Vote sẽ được đóng lại trong 15 phút")
-            message.channel.send(embed).then(async m => {
+            message.channel.send({embeds: [embed]}).then(async m => {
                 m.react("✅");
                 m.react("❌");
                 await m.react("🗑️");

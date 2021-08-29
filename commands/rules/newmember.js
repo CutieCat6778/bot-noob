@@ -22,7 +22,7 @@ module.exports = {
 				.setTimestamp()
 				.setFooter('luật dành cho những bạn mới vào', message.guild.iconURL())
 			message.delete();
-			return message.channel.send(embed);
+			return message.channel.send({embeds: [embed]});
 		}catch(e){
 			return require('../../tools/functions/error')(e, message);
 		}

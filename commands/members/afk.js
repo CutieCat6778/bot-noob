@@ -35,7 +35,7 @@ module.exports = {
                 client.afk.set(message.author.id, obj);
                 await require('../../tools/database/newAfk.js')(obj1);
                 message.reply("đã chuyển bạn vào trạng thái AFK");
-                client.setTimeout(async() => {
+                setTimeout(async() => {
                     return client.afk.get(message.author.id).enable = true;
                 }, 15000);
             }else return;

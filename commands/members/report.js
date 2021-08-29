@@ -21,7 +21,7 @@ module.exports = {
             const reason = args.slice(1).join(' ');
             if(reason.length < 12) return message.channel.send('Hãy chỉ ra lý do cụ thể hơn. Phải hơn 12 ký tự!');
             const embed = {
-                color: "#aff8db",
+                color: "#ea8c55",
                 title: `Nhận được report về người dùng ${user.user.tag}`,
                 description: `[Nhảy đến đó](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n**Người báo cáo**: **${message.author.tag}**\`(${message.author.id})\`\n**Ở channel**: **\`${message.channel.name}\`**\n\n**Lý do**\n${reason}`,
                 timestamp: new Date(),
@@ -31,7 +31,7 @@ module.exports = {
                 }
             }
             const channel = message.guild.channels.cache.get('764029472701022229');
-            channel.send({embed});
+            channel.send({embeds: [embed]});
             return message.channel.send('Đã gửi bản báo cáo cho các cán bộ, họ sẽ sớm tham gia vào cuộc để điều tra!');
         }catch(e){
             return require("../../tools/functions/error")(e, message)

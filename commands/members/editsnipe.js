@@ -23,8 +23,8 @@ module.exports = {
                         "icon_url": message.author.displayAvatarURL()
                     }
                 })
-                const msg = await message.channel.send(embed);
-                return client.setTimeout(() => {
+                const msg = await message.channel.send({embeds: [embed]});
+                return setTimeout(() => {
                     message.delete();
                     msg.delete();
                 }, 10000);
@@ -36,7 +36,7 @@ module.exports = {
                     .setDescription(`**Trước**\n\xa0\xa0${data.oldContent}\n**Sau**\n\xa0\xa0${data.newContent}${data.attachments ? `\n\n${data.attachments.join('\n')}` : ''}`)
                     .setFooter(`cách đây ${require('ms')(client.uptime, data.time, {long: true})}`)
                 if(data.attachments) embed.setImage(data.attachments[0]);
-                return data.embeds ? message.channel.send('Đã tìm thấy một cái embed!',{embed: data.embeds}) : message.channel.send(embed);
+                return data.embeds ? message.channel.send('Đã tìm thấy một cái embed!',{embeds: data.embeds}) : message.channel.send({embeds: [embed]});
             }
         } catch (e) {
             return require("../../tools/functions/error")(e, message)

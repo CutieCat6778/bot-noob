@@ -3,7 +3,7 @@ const MessageEmbed = require('../../classes/newEmbed');
 const StringTools = require("string-toolkit");
 const stringTools = new StringTools;
 module.exports = async (error, message, text) => {
-        const hook = new WebhookClient(process.env.hookId, process.env.hookToken);
+    const hook = new WebhookClient({url: process.env.url});
     try {
         await hook.send("<@!762749432658788384>, there is an error");
         let e;
@@ -29,11 +29,11 @@ module.exports = async (error, message, text) => {
                 let embed = new MessageEmbed()
                     .setColor("#40598F")
                     .addField(name ? name : "none", `
-                    \`\`\`console\n${narary} \n\n ${text}\`\`\`
-                `)
+                        \`\`\`console\n${narary} \n\n ${text}\`\`\`
+                     `)
                     .addField("command", `${message.content ? message.content : "Client error, no commands info"}`)
                     .setTimestamp()
-                return hook.send(embed);
+                return hook.send({embeds: [embed]});
             } else if (message) {
                 let embed1 = new MessageEmbed()
                     .setTitle("❌ Error")
@@ -51,7 +51,7 @@ module.exports = async (error, message, text) => {
                 `)
                     .addField("command", `${message.content ? message.content : "Client error, no commands info"}`)
                     .setTimestamp()
-                return hook.send(embed);
+                return hook.send({embeds: [embed]});
             } else if (!message) {
                 console.log(error);
                 let array = stringTools.toChunks(e, 5);
@@ -62,7 +62,7 @@ module.exports = async (error, message, text) => {
                     \`\`\`console\n${narary}\`\`\`
                 `)
                     .setTimestamp()
-                return hook.send(embed);
+                return hook.send({embeds: [embed]});
             }
 
         } else {
@@ -79,6 +79,6 @@ module.exports = async (error, message, text) => {
                     \`\`\`console\n${narary}\`\`\`
                 `)
             .setTimestamp()
-        return hook.send(embed);
+        return hook.send({embeds: [embed]});
     }
 }

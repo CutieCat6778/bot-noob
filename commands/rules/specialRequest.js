@@ -21,7 +21,7 @@ module.exports = {
 				.setDescription(`**${guild.rules.specialRequest}** \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
 				.setTimestamp()
 				.setFooter('Luật Special Request', message.guild.iconURL())
-			return message.channel.send(embed);
+			return message.channel.send({embeds: [embed]});
 		} catch (e) {
 			return require("../../tools/functions/error")(e, message)
 		}

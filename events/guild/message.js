@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
                 message.delete();
                 message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
                 const channel = message.guild.channels.cache.get('813765397353725962');
-                channel.send({ embed: { title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` } });
+                channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
             }
             if (message.channel.id == "760946870473457668") {
                 if (message.attachments.size > 0) {
@@ -77,7 +77,7 @@ module.exports = async (client, message) => {
                             let embed = new MessageEmbed()
                                 .setDescription(`<@${users}> AFK - **${userCache.status}**`)
                                 .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
-                            message.channel.send(embed);
+                            message.channel.send({embeds: [embed]});
                         }
                     } else if (users.length > 1) {
                         users.forEach(user => {
@@ -86,7 +86,7 @@ module.exports = async (client, message) => {
                                 let embed = new MessageEmbed()
                                     .setDescription(`<@${user}> AFK - **${userCache.status}**`)
                                     .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
-                                message.channel.send(embed);
+                                message.channel.send({embeds: [embed]});
                             }
                         })
                     }

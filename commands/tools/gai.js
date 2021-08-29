@@ -28,7 +28,7 @@ module.exports = {
                         .setFooter(`Lượt xem ${imageData.views}`)
                         .setTimestamp(imageData.dates.posted)
                         .setImage(url)
-                    return message.channel.send(embed);
+                    return message.channel.send({embeds: [embed]});
                 }).catch(function (err) {
                     return require('../../tools/functions/error')(err, message);
                 });

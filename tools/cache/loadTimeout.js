@@ -6,7 +6,7 @@ module.exports = async(client) => {
 		for(let timeout of timeouts){
 			const date = new Date();
 			client.timeouts.set(timeouts.indexOf(timeout) ? timeouts.indexOf(timeout) : client.timeouts.size, timeout);
-			client.setTimeout(async() => {
+			setTimeout(async() => {
 				const author = await client.users.fetch(timeout.id);
 				const args = timeout.args;
 				eval(timeout.function.toString() + '\nf()');

@@ -16,9 +16,9 @@ module.exports = {
 			else if(time){
 				function f() {
 					if(author){
-						author.send({embed: {
+						author.send({embeds: [{
 							description: `**${args.slice(1).join(" ")}**`
-						}})
+						}]})
 					}
 				}
 				require('../../tools/database/newTimeout')({
@@ -28,7 +28,7 @@ module.exports = {
 					function: f.toString(),
 					args: args
 				});
-				client.setTimeout(f, time);
+				setTimeout(f, time);
 				return message.channel.send('Okê bạn êy.')
 			}
 		}catch (e) {

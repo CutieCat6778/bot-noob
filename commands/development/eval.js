@@ -44,7 +44,7 @@ module.exports = {
                 `)
                 .addField("command", `${message.content ? message.content : "Client error, no commands info"}`)
                 .setTimestamp()
-            return message.channel.send(embed);
+            return message.channel.send({embeds: [embed]});
         }
     }
 }

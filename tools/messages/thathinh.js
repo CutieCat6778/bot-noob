@@ -8,7 +8,7 @@ module.exports = async (client) => {
         channel.send(thinh[random]);
     }
     send();
-    client.setInterval(() => {
+    setInterval(() => {
         send();
     }, 1800000);
 }

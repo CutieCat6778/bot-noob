@@ -21,7 +21,7 @@ module.exports = {
 				.setDescription(`**${guild.rules.attention}** \n\n Xin bạn hãy vào lại <#${guild.rules._id}> để có thể biết thêm chi tiết!`)
 				.setTimestamp()
 				.setFooter('Lưu ý', message.guild.iconURL())
-			return message.channel.send(embed);
+			return message.channel.send({embeds: [embed]});
 		} catch (e) {
 			return require("../../tools/functions/error")(e, message)
 		}

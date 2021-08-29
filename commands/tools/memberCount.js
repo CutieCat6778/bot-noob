@@ -9,9 +9,9 @@ module.exports = {
 	},
 	async execute(client, message, args, guild){
 		try{
-		return message.channel.send({embed: {
+		return message.channel.send({embeds: [{
 			description: `Tổng số người: **${message.guild.members.cache.size}**`
-		}})
+		}]})
 		}catch (e) {
             return require("../../tools/functions/error")(e, message)
         }

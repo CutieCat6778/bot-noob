@@ -18,7 +18,7 @@ module.exports = {
 				.setTimestamp()
 				.setFooter('Thông báo quan trọng')
 			message.delete();
-			message.guild.channels.cache.get("762078655136399400").send(embed);
+			message.guild.channels.cache.get("762078655136399400").send({embeds: [embed]});
 		} catch (e) {
 			return require("../../tools/functions/error")(e, message)
 		}

@@ -28,7 +28,7 @@ module.exports = {
 							message.channel.send(`<@${id}>`);
 							message.delete();
 						}
-						return message.channel.send(embed);
+						return message.channel.send({embeds: [embed]});
 					}
 				}
 			} else {
@@ -48,7 +48,7 @@ module.exports = {
 							message.channel.send(`<@${id}>`);
 							message.delete();
 						}
-						return message.channel.send(embed);
+						return message.channel.send({embeds: [embed]});
 					}
 				}
 			}

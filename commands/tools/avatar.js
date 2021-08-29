@@ -23,7 +23,7 @@ module.exports = {
                 .setDescription(`[Click here for link](${user.user.displayAvatarURL({ size: 256, format: "png" })})`)
                 .setImage(user.user.displayAvatarURL({ size: 512 }))
                 .setTimestamp()
-            message.channel.send(embed);
+            message.channel.send({embeds: [embed]});
         }catch (e) {
             return require("../../tools/functions/error")(e, message)
         }

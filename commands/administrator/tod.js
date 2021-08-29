@@ -15,7 +15,7 @@ module.exports = {
             .setDescription('Người chơi sẽ react 👍 để có thể tham gia!')
             .setFooter('Thử thách hay sự thật?')
             .setTimestamp()
-        message.channel.send(embed).then(async m => {
+        message.channel.send({embeds: [embed]}).then(async m => {
             m.react('👍');
             const filter = (reaction, user) => {
                 return reaction.emoji.name === '👍'

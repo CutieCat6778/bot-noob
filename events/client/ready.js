@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { WebhookClient } = require('discord.js');
 
-const hook = new WebhookClient(process.env.hookId, process.env.hookToken);
+const hook = new WebhookClient({url: process.env.url});
 
 module.exports = async (client) => {
     try {
@@ -16,7 +16,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
         await require('../../tools/cache/loadInvites')(client);
-        //await require('../../tools/collectors/pages')(client);
+        await require('../../tools/collectors/roles')(client);
         //await require('../../tools/converter/txtToArray')();
         console.log(client.timeouts, client.afk, client.invites.size);
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
@@ -35,7 +35,7 @@ module.exports = async (client) => {
             `các thành viên Noobs`
         ]
         let i = 0;
-        client.setInterval(() => {
+        setInterval(() => {
             client.user.setActivity(text[i]);
             i == text.length - 1 ? i = 0 : i++;
         }, 15000);
