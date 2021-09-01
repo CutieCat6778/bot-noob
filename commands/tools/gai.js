@@ -1,6 +1,6 @@
 const Flickr = require('flickr-sdk');
 const flickr = new Flickr(process.env.FLICKR_API_KEY);
-const MessageEmbed = require('../../classes/newEmbed');
+const MessageEmbed = require("../../classes/newEmbed")
 
 module.exports = {
     config: {

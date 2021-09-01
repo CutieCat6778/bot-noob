@@ -1,5 +1,5 @@
 const { WebhookClient } = require("discord.js");
-const MessageEmbed = require('../../classes/newEmbed');
+const MessageEmbed = require("../../classes/newEmbed")
 const StringTools = require("string-toolkit");
 const stringTools = new StringTools;
 module.exports = async (error, message, text) => {

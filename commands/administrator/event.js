@@ -1,4 +1,4 @@
-const MessageEmbed = require('../../classes/newEmbed');
+const MessageEmbed = require("../../classes/newEmbed")
 
 module.exports = {
 	config: {

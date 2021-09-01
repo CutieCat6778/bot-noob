@@ -2,11 +2,11 @@ module.exports = async (client) => {
     try {
         const message = await client.channels.cache.get('802254125970358273').messages.fetch('881563482217132033')
         if (!message) return new Error('No message found!');
-        message.reactions.removeAll();
-        message.react('<:csgo:881559332838314024>')
-        message.react('<:valorant:881560677494444052>')
-        message.react('<:lol:881560939466489876>')
-        message.react('<:pubg:881560572548747365>')
+        //message.reactions.removeAll();
+        //message.react('<:csgo:881559332838314024>')
+        //message.react('<:valorant:881560677494444052>')
+        //message.react('<:lol:881560939466489876>')
+        //message.react('<:pubg:881560572548747365>')
         if (message) {
             const filter = (reaction, user) => {
                 return ["881559332838314024", "881560677494444052", "881560939466489876", "881560572548747365"].includes(reaction.emoji.id) && user.bot == false;

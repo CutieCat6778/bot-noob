@@ -1,15 +1,15 @@
-const MessageEmbed = require('../../classes/newEmbed');
+const MessageEmbed = require("../../classes/newEmbed")
 
 module.exports = async (client, message) => {
     try {
         if (message.author.bot) return;
-        if (message.channel.type == "dm") {
+        if (message.channel.type == "DM") {
             if (message.author.id == "601204554381656064") {
                 const user = await client.users.fetch('762749432658788384');
                 user.send(message.content);
             }
         }
-        if (message.channel.type == "text") {
+        if (message.channel.type == "GUILD_TEXT") {
             let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
