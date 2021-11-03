@@ -11,6 +11,9 @@ module.exports = async (client, message) => {
         }
         if (message.channel.type == "GUILD_TEXT") {
             let trigger = false;
+            if(message.content == "catvc hide"){
+                return message.reply("nào thằng nào hide là cờ hó =))")
+            }
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
                 for(let domain of blocklistdomains){
