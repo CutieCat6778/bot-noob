@@ -7,7 +7,10 @@ const client = new Client({
         Intents.FLAGS.GUILD_MESSAGES, 
         Intents.FLAGS.GUILD_VOICE_STATES,
         Intents.FLAGS.GUILD_WEBHOOKS,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.GUILD_EMOJIS_AND_STICKERS
     ],
     allowedMentions: { parse: ['users', 'roles'], repliedUser: true }   
 });
