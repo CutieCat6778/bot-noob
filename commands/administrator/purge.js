@@ -17,7 +17,7 @@ module.exports = {
 			if (!args[1]) reason = "No reason provided";
 			message.channel.bulkDelete(args[0], true)
 				.then((m) => {
-					message.reply(`Deleted ${m.size} messages`).then(m => {
+					message.send(`Deleted ${m.size} messages`).then(m => {
 						m.delete({
 							timeout: 5000,
 							reason: reason

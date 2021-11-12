@@ -11,9 +11,6 @@ module.exports = async (client, message) => {
         }
         if (message.channel.type == "GUILD_TEXT") {
             let trigger = false;
-            if(message.content == "catvc hide"){
-                return message.reply("nào thằng nào hide là cờ hó =))")
-            }
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
                 for(let domain of blocklistdomains){
@@ -125,6 +122,7 @@ module.exports = async (client, message) => {
                 }
                 if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return message.reply('làm ơn hãy sử dụng command này ở trong <#801567245351780433>');
                 if (commandfile.config.category == "voice" && message.channel.id != "801283906074705970") return message.reply('làm ơn hãy sử dụng command này ở trong <#801283906074705970>');
+                if(commandfile.config.category == "voice" && !message.member.voice.channel) return message.reply('bạn chỉ có thể sử dụng lệnh này trong một phòng voice (cuộc gọi)')
                 if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
                     return;
                 } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
