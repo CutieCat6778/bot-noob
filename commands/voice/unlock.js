@@ -11,11 +11,11 @@ module.exports = {
         try {
             const voice = client.voices.get(message.member.voice.channel.id);
             if (voice && voice.owner == message.member.id) {
-                await message.member.voice.channel.updateOverwrite("721203266452586507", {
-                    CONNECT: true,
-                    SPEAK: true
-                });
-                voice.status = "open";
+                await message.member.voice.channel.permissionOverwrites.set([{
+                    id: "721203266452586507",
+                    allow: [Permissions.FLAGS.CONNECT, Permissions.FLAGS.SPEAK]
+                }]);
+                voice.lock = false;
                 return message.react('<:hmmmmm:770520614444335104>');
             } else if (!voice) return message.react('❌')
         } catch (e) {

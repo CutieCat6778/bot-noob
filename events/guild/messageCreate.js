@@ -13,8 +13,8 @@ module.exports = async (client, message) => {
             let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
-                for(let domain of blocklistdomains){
-                    if(!message.content.includes(domain)) return trigger = true;
+                for (let domain of blocklistdomains) {
+                    if (!message.content.includes(domain)) return trigger = true;
                 }
             }
             if (trigger) {
@@ -77,7 +77,7 @@ module.exports = async (client, message) => {
                             let embed = new MessageEmbed()
                                 .setDescription(`<@${users}> AFK - **${userCache.status}**`)
                                 .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
-                            message.channel.send({embeds: [embed]});
+                            message.channel.send({ embeds: [embed] });
                         }
                     } else if (users.length > 1) {
                         users.forEach(user => {
@@ -86,7 +86,7 @@ module.exports = async (client, message) => {
                                 let embed = new MessageEmbed()
                                     .setDescription(`<@${user}> AFK - **${userCache.status}**`)
                                     .setFooter(`${require("ms")(((new Date()).getTime() - userCache.from), { long: true })} trước`)
-                                message.channel.send({embeds: [embed]});
+                                message.channel.send({ embeds: [embed] });
                             }
                         })
                     }
@@ -110,19 +110,33 @@ module.exports = async (client, message) => {
                 const cmd = args.shift().toLowerCase();
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if (!commandfile) return;
-                if(commandfile.config.name == "gai" && message.channel.id != "763147371106271232") return message.reply('xin mời thí chủ vào <#763147371106271232> để test lệnh <:zuataolam:785778089120497724>')
+                if (commandfile.config.name == "gai" && message.channel.id != "763147371106271232") return message.reply('xin mời thí chủ vào <#763147371106271232> để test lệnh <:zuataolam:785778089120497724>')
                 if (commandfile.config.name == "thathinh" || commandfile.config.name == "gai") {
                     const minus = (date - client.thinh)
                     if (minus < 10000) {
                         message.delete();
-                        return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`).then(m => m.delete({timeout: 5000}));
+                        return message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`).then(m => m.delete({ timeout: 5000 }));
                     } else if (minus > 10000) {
                         client.thinh = date;
                     }
                 }
                 if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return message.reply('làm ơn hãy sử dụng command này ở trong <#801567245351780433>');
                 if (commandfile.config.category == "voice" && message.channel.id != "801283906074705970") return message.reply('làm ơn hãy sử dụng command này ở trong <#801283906074705970>');
-                if(commandfile.config.category == "voice" && !message.member.voice.channel) return message.reply('bạn chỉ có thể sử dụng lệnh này trong một phòng voice (cuộc gọi)')
+                if (commandfile.config.category == "voice" && !message.member.voice.channel) return message.reply('bạn chỉ có thể sử dụng lệnh này trong một phòng voice (cuộc gọi)')
+                if (commandfile.config.category == "voice" && message.member.voice.channel.parent.id == "800139706250559518") {
+                    let voiceCache = client.voices.get(message.member.voice.channel.id);
+                    if (!voiceCache) {
+                        client.voices.set(channel.id, {
+                            id: channel.id,
+                            owner: n.member.id,
+                            allow: [],
+                            deny: [],
+                            lock: false,
+                            sleep: false,
+                            defend: [],
+                        })
+                    }
+                }
                 if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
                     return;
                 } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
