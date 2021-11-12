@@ -5,7 +5,7 @@ module.exports = async (client, old, n) => {
         if (n.member.bot) return;
         if (!old.channel && n.channel) {
             if (n.channel.id == "816625926401163284") {
-                const channel = await n.guild.channels.create("Phòng #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'GUILD_VOICE', parent: n.channel.parent.id, permissionsOverwrites: [{ id: "721203266452586507", allow: [Permissions.FLAGS.VIEW_CHANNEL] }] });
+                const channel = await n.guild.channels.create("chuồng lợn #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'GUILD_VOICE', parent: n.channel.parent.id, permissionsOverwrites: [{ id: "721203266452586507", allow: [Permissions.FLAGS.VIEW_CHANNEL] }] });
                 n.setChannel(channel, "Người dùng đã vào channel tạo voice!");
                 let voiceCache = client.voices.get(channel.id);
                 if (!voiceCache) {
@@ -36,15 +36,15 @@ module.exports = async (client, old, n) => {
                     let i = 1;
                     for(let [key, name] of client.voices) {
                         const channel = old.guild.channels.cache.get(key);
-                        if(channel.name.startsWith('Phòng #')){
-                            channel ? channel.setName("Phòng #" + require('../../tools/string/numberConverter_2')(i)) : null;
+                        if(channel.name.startsWith('chuồng lợn #')){
+                            channel ? channel.setName("chuồng lợn #" + require('../../tools/string/numberConverter_2')(i)) : null;
                             i++;
                         }
                     }
                 }
             }
             if (n.channel && n.channel.id == "816625926401163284") {
-                const channel = await n.guild.channels.create("Phòng #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'GUILD_VOICE', parent: n.channel.parent.id, permissionsOverwrites: [{ id: "721203266452586507", allow: [Permissions.FLAGS.VIEW_CHANNEL] }] });
+                const channel = await n.guild.channels.create("chuồng lợn #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'GUILD_VOICE', parent: n.channel.parent.id, permissionsOverwrites: [{ id: "721203266452586507", allow: [Permissions.FLAGS.VIEW_CHANNEL] }] });
                 n.setChannel(channel, "Người dùng đã vào channel tạo voice!");
                 let voiceCache1 = client.voices.get(channel.id);
                 if (!voiceCache1) {
