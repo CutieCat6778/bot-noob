@@ -15,10 +15,15 @@ module.exports = {
             if (voice && voice.owner == message.member.id) {
                 const user = require('mention-converter')(args[0]);
                 if(user){
-                    await message.member.voice.channel.permissionOverwrites.set([{
-                        id: user,
-                        deny: [Permissions.FLAGS.CONNECT, Permissions.FLAGS.SPEAK]
-                    }]);
+                    message.react('👀');
+                    const permissionOverwrites = message.member.voice.channel.permissionOverwrites;
+                    await permissionOverwrites.edit(user, {
+                        CONNECT: false,
+                    })
+                    if(message.member.voice.channel.members.get(user)){
+                        const userVoice = message.member.voice.channel.members.get(user)
+                        userVoice.voice.disconnect();
+                    }
                     voice.deny.push(user);
                     voice.allow.includes(user) ? voice.allow.splice(voice.allow.indexOf(user), 1) : null;
                     return message.react('<:hmmmmm:770520614444335104>');

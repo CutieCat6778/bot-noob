@@ -13,15 +13,17 @@ module.exports = {
         try {
             const voice = client.voices.get(message.member.voice.channel.id);
             if (voice && voice.owner == message.member.id) {
-                await message.member.voice.channel.permissionOverwrites.set([{
-                    id: "798520252446408744",
-                    deny: [ Permissions.FLAGS.SPEAK, Permissions.FLAGS.USE_VAD]
-                }]);
-                await message.member.voice.channel.permissionOverwrites.set([{
-                    id: "798520252446408744",
-                    allow: [Permissions.FLAGS.CONNECT, Permissions.FLAGS.SPEAK, Permissions.FLAGS.USE_VAD]
-                }]);
-                voice.sleep = true;
+                message.react('👀');
+                const permissionOverwrites = message.member.voice.channel.permissionOverwrites;
+                await permissionOverwrites.edit("798520252446408744", {
+                    SPEAK: true,
+                    USE_VAD: true
+                })
+                await permissionOverwrites.edit("721203266452586507", {
+                    SPEAK: false,
+                    USE_VAD: false
+                })
+                client.sleep = true;
                 return message.react('<:hmmmmm:770520614444335104>');
             } else if (!voice) return message.react('❌')
         } catch (e) {

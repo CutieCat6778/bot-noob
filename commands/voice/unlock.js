@@ -1,3 +1,5 @@
+const { Permissions } = require("discord.js");
+
 module.exports = {
     config: {
         name: "vcunlock",
@@ -11,10 +13,10 @@ module.exports = {
         try {
             const voice = client.voices.get(message.member.voice.channel.id);
             if (voice && voice.owner == message.member.id) {
-                await message.member.voice.channel.permissionOverwrites.set([{
-                    id: "721203266452586507",
-                    allow: [Permissions.FLAGS.CONNECT, Permissions.FLAGS.SPEAK]
-                }]);
+                const permissionOverwrites = message.member.voice.channel.permissionOverwrites;
+                await permissionOverwrites.edit("721203266452586507", {
+                    CONNECT: true
+                })
                 voice.lock = false;
                 return message.react('<:hmmmmm:770520614444335104>');
             } else if (!voice) return message.react('❌')

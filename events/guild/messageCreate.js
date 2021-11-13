@@ -1,3 +1,4 @@
+const { Permissions } = require("discord.js");
 const MessageEmbed = require("../../classes/newEmbed")
 
 module.exports = async (client, message) => {
@@ -10,18 +11,16 @@ module.exports = async (client, message) => {
             }
         }
         if (message.channel.type == "GUILD_TEXT") {
-            let trigger = false;
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
                 for (let domain of blocklistdomains) {
-                    if (!message.content.includes(domain)) return trigger = true;
+                    if (!message.content.includes(domain)) {
+                        message.delete();
+                        message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
+                        const channel = message.guild.channels.cache.get('813765397353725962');
+                        channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
+                    }
                 }
-            }
-            if (trigger) {
-                message.delete();
-                message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
-                const channel = message.guild.channels.cache.get('813765397353725962');
-                channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
             }
             if (message.channel.id == "760946870473457668") {
                 if (message.attachments.size > 0) {
@@ -123,27 +122,27 @@ module.exports = async (client, message) => {
                 if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return message.reply('làm ơn hãy sử dụng command này ở trong <#801567245351780433>');
                 if (commandfile.config.category == "voice" && message.channel.id != "801283906074705970") return message.reply('làm ơn hãy sử dụng command này ở trong <#801283906074705970>');
                 if (commandfile.config.category == "voice" && !message.member.voice.channel) return message.reply('bạn chỉ có thể sử dụng lệnh này trong một phòng voice (cuộc gọi)')
-                if (commandfile.config.category == "voice" && message.member.voice.channel.parent.id == "800139706250559518") {
+                if (commandfile.config.category == "voice" && message.member.voice.channel && message.member.voice.channel.parent.id == "800139706250559518") {
                     let voiceCache = client.voices.get(message.member.voice.channel.id);
                     if (!voiceCache) {
-                        client.voices.set(channel.id, {
-                            id: channel.id,
-                            owner: n.member.id,
+                        client.voices.set(message.member.voice.channel.id, {
+                            owner: null,
                             allow: [],
                             deny: [],
                             lock: false,
                             sleep: false,
                             defend: [],
+                            mute: []
                         })
                     }
                 }
                 if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
                     return;
                 } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
-                    if (message.channel.permissionsFor(message.member).has(commandfile.config.perms) == false) {
+                    if (message.channel.permissionsFor(message.member).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
                         return;
                     }
-                    if (message.channel.permissionsFor(message.guild.me).has(commandfile.config.bot) == false) {
+                    if (message.channel.permissionsFor(message.guild.me).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
                         return message.channel.send("Missing permissions.");
                     }
                 }

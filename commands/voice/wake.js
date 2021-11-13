@@ -1,11 +1,11 @@
-const { Permissions } = require("discord.js");
+const { Permissions } = require('discord.js');
 
 module.exports = {
     config: {
-        name: "vclock",
+        name: "vcwake",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['voicelock', 'vckhoa', 'vcdong'],
+        aliases: ['vswakeup', 'vcday', 'vcthuc'],
         category: "voice",
         usage: []
     },
@@ -13,15 +13,13 @@ module.exports = {
         try {
             const voice = client.voices.get(message.member.voice.channel.id);
             if (voice && voice.owner == message.member.id) {
+                message.react('👀');
                 const permissionOverwrites = message.member.voice.channel.permissionOverwrites;
                 await permissionOverwrites.edit("721203266452586507", {
-                    CONNECT: false
+                    "SPEAK": true,
+                    "USE_VAD": true
                 })
-                await permissionOverwrites.edit("798520252446408744", {
-                    CONNECT: true,
-                    SPEAK: true,
-                })
-                voice.lock = true;
+                voice.sleep = false;
                 return message.react('<:hmmmmm:770520614444335104>');
             } else if (!voice) return message.react('❌')
         } catch (e) {

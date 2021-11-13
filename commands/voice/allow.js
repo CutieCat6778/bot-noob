@@ -1,3 +1,5 @@
+const { Permissions } = require("discord.js");
+
 module.exports = {
     config: {
         name: "vcallow",
@@ -13,10 +15,11 @@ module.exports = {
             if (voice && voice.owner == message.member.id) {
                 const user = require('mention-converter')(args[0]);
                 if(user){
-                    await message.member.voice.channel.permissionOverwrites.set([{
-                        id: user,
-                        allow: [Permissions.FLAGS.CONNECT, Permissions.FLAGS.SPEAK]
-                    }]);
+                    message.react('👀');
+                    const permissionOverwrites = message.member.voice.channel.permissionOverwrites;
+                    await permissionOverwrites.edit(user, {
+                        CONNECT: true,
+                    })
                     voice.allow.push(user);
                     voice.deny.includes(user) ? voice.deny.splice(voice.deny.indexOf(user), 1) : null;
                     return message.react('<:hmmmmm:770520614444335104>');

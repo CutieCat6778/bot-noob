@@ -1,3 +1,4 @@
+const { Permissions } = require("discord.js");
 const MessageEmbed = require("../../classes/newEmbed");
 
 module.exports = {
@@ -57,8 +58,8 @@ module.exports = {
                             collector.stop();
                             return m.edit(embed);
                         }
-                        if (!user.permissions.has("ADMINISTRATOR")) return;
-                        else if (user.permissions.has("ADMINISTRATOR")) {
+                        if (!user.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) return;
+                        else if (user.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) {
                             collector.stop();
                             m.delete();
                         }
@@ -71,9 +72,9 @@ module.exports = {
                         .setTimestamp()
                         .setThumbnail(target.user.displayAvatarURL())
                     if (posiv > nega) {
-                        if (target.roles.highest.position >= message.guild.me.roles.highest.position && target.permissions.has("ADMINISTRATOR")) {
+                        if (target.roles.highest.position >= message.guild.me.roles.highest.position && target.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) {
                             return m.edit(embed.setDescription(`<@!${target.id}> is guilty, with ${posiv} votes. Please mentions a Moderator or Admin to kick the user, I don't have permission to kick him/her.`))
-                        } else if (target.roles.highest.position < message.guild.me.roles.highest.position && !target.permissions.has("ADMINISTRATOR")) {
+                        } else if (target.roles.highest.position < message.guild.me.roles.highest.position && !target.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) {
                             await target.kick({ reason: reason });
                             m.edit(embed.setDescription(`Đã kick ${target.displayName} với ${posiv} vote đồng ý.`))
                         }

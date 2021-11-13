@@ -49,7 +49,6 @@ module.exports = async (client, old, n) => {
                 let voiceCache1 = client.voices.get(channel.id);
                 if (!voiceCache1) {
                     client.voices.set(channel.id, {
-                        id: channel.id,
                         owner: n.member.id,
                         allow: [],
                         deny: [],
