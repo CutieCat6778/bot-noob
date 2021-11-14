@@ -13,13 +13,20 @@ module.exports = async (client, message) => {
         if (message.channel.type == "GUILD_TEXT") {
             const blocklistdomains = require('../../asset/blocklist/domains.json');
             if (message.content.includes('.') && message.content.includes('http')) {
+                let block = false;
                 for (let domain of blocklistdomains) {
-                    if (!message.content.includes(domain)) {
-                        message.delete();
-                        message.channel.send('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
-                        const channel = message.guild.channels.cache.get('813765397353725962');
-                        channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
+                    if (message.content.includes(domain)) {
+                        block = true;
                     }
+                }
+                if(block == false) {
+                    await message.delete();
+                    let m = await message.channel.send('**đường link này đã bị chặn!!!**')//.then(m => setTimeout(() => {m.delete()}), 7000)
+                    setTimeout(() => {
+                        m.delete()
+                    }, 7000)
+                    const channel = message.guild.channels.cache.get('813765397353725962');
+                    channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
                 }
             }
             if (message.channel.id == "760946870473457668") {
