@@ -25,7 +25,7 @@ module.exports = async (error, message, text) => {
                 message.channel.send(embed1);
                 let array = stringTools.toChunks(e, 5);
                 const narary = array.slice(0, Math.floor((1000 / 5))).join('');
-                console.log(error);
+                console.error(error);
                 let embed = new MessageEmbed()
                     .setColor("#40598F")
                     .addField(name ? name : "none", `
@@ -43,7 +43,7 @@ module.exports = async (error, message, text) => {
                 message.channel.send(embed1);
                 let array = stringTools.toChunks(e, 5);
                 const narary = array.slice(0, Math.floor((1000 / 5))).join('');
-                console.log(error);
+                console.error(error);
                 let embed = new MessageEmbed()
                     .setColor("#40598F")
                     .addField(name ? name : "none", `
@@ -53,7 +53,7 @@ module.exports = async (error, message, text) => {
                     .setTimestamp()
                 return hook.send({embeds: [embed]});
             } else if (!message) {
-                console.log(error);
+                console.error(error);
                 let array = stringTools.toChunks(e, 5);
                 const narary = array.slice(0, Math.floor((1000 / 5))).join('');
                 let embed = new MessageEmbed()
@@ -69,10 +69,10 @@ module.exports = async (error, message, text) => {
             return hook.send("No error logs channel found");
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
         let array = stringTools.toChunks(error.stack, 5);
         const narary = array.slice(0, Math.floor((1000 / 5))).join('');
-        console.log(error);
+        console.error(error);
         let embed = new MessageEmbed()
             .setColor("#40598F")
             .addField("Client error", `

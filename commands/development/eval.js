@@ -36,7 +36,7 @@ module.exports = {
             }
         } catch (error) {
             const output = require('../../tools/string/textsplit')(error.stack);
-            console.log(error);
+            console.error(error);
             let embed = new MessageEmbed()
                 .setColor("#40598F")
                 .addField("Eval", `
