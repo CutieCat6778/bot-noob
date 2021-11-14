@@ -2,7 +2,7 @@ const { Permissions } = require('discord.js');
 
 module.exports = async (client, old, n) => {
     try {
-        if (n.member.bot) return;
+        if (old.member.bot || n.member.bot) return;
         if (!old.channel && n.channel) {
             if (n.channel.id == "816625926401163284") {
                 const channel = await n.guild.channels.create("chuồng lợn #" + require('../../tools/string/numberConverter_2')(parseInt(client.voices.size) + 1), { type: 'GUILD_VOICE', parent: n.channel.parent.id, permissionsOverwrites: [{ id: "721203266452586507", allow: [Permissions.FLAGS.VIEW_CHANNEL] }] });
