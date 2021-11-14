@@ -13,10 +13,10 @@ module.exports = {
             if(voice && voice.owner == message.member.id){
                 if(args[0] || parseInt(args[0]) || !isNaN(args[0])){
                     const bitrate = parseInt(args[0]) * 1000;
-                    if(bitrate > 128 && bitrate < 16) return message.react('❌');
+                    if(bitrate >= 128 && bitrate <= 16) return message.react('❌');
                     await message.member.voice.channel.setBitrate(bitrate);
                     return message.react('<:hmmmmm:770520614444335104>');
-                }else return message.react('❌');
+                }else return message.reply('Bạn không phải là chủ phòng!');
             }else if(!voice) return message.react('❌');
         }catch(e) {
             return require('../../tools/functions/error')(e, message);

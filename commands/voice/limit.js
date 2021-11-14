@@ -10,7 +10,8 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try{
             const voice = client.voices.get(message.member.voice.channel.id);
-            if(voice && voice.owner == message.member.id){
+            if(voice){
+                if(voice.owner != message.member.id) return message.reply('Bạn không phải là chủ phòng!');
                 if(args[0] || parseInt(args[0]) || !isNaN(args[0])){
                     const max = parseInt(args[0]);
                     await message.member.voice.channel.setUserLimit(max);

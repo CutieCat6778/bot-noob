@@ -23,7 +23,7 @@ module.exports = {
                     voice.allow.push(user);
                     voice.deny.includes(user) ? voice.deny.splice(voice.deny.indexOf(user), 1) : null;
                     return message.react('<:hmmmmm:770520614444335104>');
-                }else return message.react('❌')
+                }else return message.reply('Bạn không phải là chủ phòng!');
             } else if (!voice) return message.react('❌')
         }catch(e) {
             return require('../../tools/functions/error')(e, message);

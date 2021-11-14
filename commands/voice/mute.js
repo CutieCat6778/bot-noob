@@ -10,7 +10,8 @@ module.exports = {
     async execute(client, message, args, guildCache) {
         try{
             const voice = client.voices.get(message.member.voice.channel.id);
-            if(voice && voice.owner == message.member.id){
+            if(voice){
+                if(voice.owner != message.member.id) return message.reply('Bạn không phải là chủ phòng!');
                 const user = require('mention-converter')(args[0]);
                 if(user){
                     const userVoice = message.member.voice.channel.members.get(user);
