@@ -1,9 +1,9 @@
 module.exports = {
     config: {
-        name: "bitrate",
+        name: "vcbitrate",
         perms: ['SEND_MESSAGES'],
         bot: ['SEND_MESSAGES'],
-        aliases: ['tanso'],
+        aliases: ['vctanso'],
         category: "voice",
         usage: ['[Bit_rate]']
     },
@@ -13,7 +13,7 @@ module.exports = {
             if(voice && voice.owner == message.member.id){
                 if(args[0] || parseInt(args[0]) || !isNaN(args[0])){
                     const bitrate = parseInt(args[0]) * 1000;
-                    if(bitrate > 128 || bitrate < 16) return message.react('❌');
+                    if(bitrate > 128 && bitrate < 16) return message.react('❌');
                     await message.member.voice.channel.setBitrate(bitrate);
                     return message.react('<:hmmmmm:770520614444335104>');
                 }else return message.react('❌');
