@@ -38,6 +38,9 @@ module.exports = async (client) => {
             client.user.setActivity(text[i]);
             i == text.length - 1 ? i = 0 : i++;
         }, 15000);
+        setInterval(() => {
+            require('../../tools/functions/deleteVoices')(client);
+        }, 5000)
     } catch (e) {
         return require("../../tools/functions/error")(e, undefined)
     }

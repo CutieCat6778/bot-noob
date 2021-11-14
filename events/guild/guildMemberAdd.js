@@ -5,7 +5,7 @@ module.exports = async (client, member) => {
     const newInvites = await member.guild.invites.fetch();
     if (member.guild.vanityURLCode) newInvites.set(member.guild.vanityURLCode, await member.guild.fetchVanityData());
     const usedInvite = newInvites.find(inv => (client.invites.get(inv.code).uses < inv.uses));
-    if (!usedInvite) return welcomeChannel.send(`${member.toString()} đã vào, nhưng tôi không thể truy vết!`).catch(err => console.log(err));
+    if (!usedInvite) return welcomeChannel.send(`${member.toString()} đã vào, chào mừng đến với Noobs`).catch(err => console.log(err));
     if (usedInvite.code === member.guild.vanityURLCode) {
         welcomeChannel.send(`${member.toString()} đã vào bằng đường link chính thức của server`);
         return;

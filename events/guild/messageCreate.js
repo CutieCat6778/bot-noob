@@ -15,8 +15,8 @@ module.exports = async (client, message) => {
             if (message.content.includes('.') && message.content.includes('http')) {
                 for (let domain of blocklistdomains) {
                     if (!message.content.includes(domain)) {
+                        await message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
                         message.delete();
-                        message.reply('**đường link này đã bị chặn!!!**').then(m => m.delete({ timeout: 7000 }))
                         const channel = message.guild.channels.cache.get('813765397353725962');
                         channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${message.author.id} | ${message.author.tag}\n\n${message.content.split('://').join('[://]').split('.').join('[.]')}` }] });
                     }
@@ -37,7 +37,7 @@ module.exports = async (client, message) => {
                     let data = client.pic.get(message.author.id);
                     if (!data || (new Date()).getTime() - data.time > 10000) {
                         client.pic.delete(message.author.id);
-                        message.reply('hãy đính kèm ảnh, nếu muốn post gì đó!').then(m => m.delete({ timeout: 5000 }))
+                        await message.channel.send('hãy đính kèm ảnh, nếu muốn post gì đó!').then(m => m.delete({ timeout: 5000 }))
                         message.delete();
                     } else if ((new Date()).getTime() - data.time <= 10000) {
                         client.pic.delete(message.author.id);
