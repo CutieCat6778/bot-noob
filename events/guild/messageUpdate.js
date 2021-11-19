@@ -3,21 +3,21 @@ module.exports = async (client, oldMessage, newMessage) => {
         const data = await require('../../tools/database/getLevel')(newMessage.author.id);
         if (data) {
             data.messages.updated.push(newMessage.createdAt);
-            if (message.content.startsWith('http')) {
+            if (newMessage.content.startsWith('http')) {
                 data.messages.link.push(newMessage.createdAt);
             }
-            if (message.content.startsWith('.')) {
+            if (newMessage.content.startsWith('.')) {
                 data.messages.bot.push(newMessage.createdAt);
             }
-            if (message.stickers.size > 0) {
+            if (newMessage.stickers.size > 0) {
                 data.messages.stickers.push(newMessage.createdAt);
             }
-            if(message.content.includes('<:') && message.content.includes(":>")){
+            if(newMessage.content.includes('<:') && message.content.includes(":>")){
                 data.messages.emojis.push(newMessage.createdAt);
             }
-            if (message.mentions?.member?.size > 0) {
+            if (newMessage.mentions?.member?.size > 0) {
                 const data = [];
-                message.mentions.members.forEach(async member => {
+                newMessage.mentions.members.forEach(async member => {
                     const userData = data.message.mentions.find(a => a._id === member.id);
                     if (userData) {
                         userData.times.push(newMessage.createdAt);
