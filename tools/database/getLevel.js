@@ -42,8 +42,8 @@ module.exports = async(id) => {
         data.voice = [];
         await data.save();
     }
-    if(!if((new Date(data.updates[-1])).getDate() != new Date().getDate()) data.updates){
-        if((new Date(data.updates[-1])).getDate() != new Date().getDate()) data.updates = [];
+    if(!data.updates){
+        data.updates = [];
         await data.save();
     }
     return data;
