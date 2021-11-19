@@ -9,10 +9,25 @@ module.exports = async(id) => {
             total: 0,
             exp: 0,
             level: 0,
-            balance: 0,
-            bank: 0,
-            boost: 1,
-            inventory: []
+            voice: [],
+            messages: {
+                message: [],
+                updated: [],
+                deleted: [],
+                links: [],
+                bot: [],
+                stickers: [],
+                emojis: [],
+                reactions: [],
+                mentions: [],
+                mentionsBy: []
+            },
+            server: {
+                join: [],
+                leave: [],
+                invites: [],
+            },
+            channels: []
         })
         await data.save();
         return data;
