@@ -1,4 +1,9 @@
 module.exports = async (client, member) => {
+    const data = await require('../../tools/database/getLevel')(member.id);
+    if(data){
+        data.server.join.push((new Date()).getTime());
+        await data.save();
+    }
     if (member.partial) member = await member.fetch();
     let welcomeChannel = await client.channels.fetch('721203266892988489').catch(err => console.error(err));
     if (member.user.bot) return welcomeChannel.send(`${member.toString()} đã vào bằng OAuth flow.`).catch(err => console.error(err));

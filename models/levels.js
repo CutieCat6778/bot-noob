@@ -5,10 +5,40 @@ const guildSchema = mongoose.Schema({
     total: Number,
     exp: Number,
     level: Number,
-    balance: Number,
-    bank: Number,
-    boost: Number,
-    inventory: [String]
+    voice: [
+        {
+            data: Date,
+            total: Number
+        }
+    ],
+    messages: {
+        message: [Date],
+        updated: [Date],
+        deleted: [Date],
+        links: [Date],
+        bot: [Date],
+        stickers: [Date],
+        emojis: [Date],
+        reactions: [Date],
+        mentions: [
+            {
+                _id: String,
+                times: [Date],
+            }
+        ],
+        mentionsBy: [Date]
+    },
+    server: {
+        leave: [Date],
+        join: [Date],
+        invites: [Date]
+    },
+    channels: [
+        {
+            _id: String,
+            times: [Date],
+        }
+    ]
 })
 
 module.exports = mongoose.model("Levels", guildSchema);

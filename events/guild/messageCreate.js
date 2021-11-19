@@ -62,6 +62,41 @@ module.exports = async (client, message) => {
             //Adding the exp
             const data = await require('../../tools/database/getLevel')(message.author.id);
             if (data) {
+                data.messages.message.push(message.createdAt);
+                if(message.content.startsWith('http')){
+                    data.messages.link.push(message.createdAt);
+                }
+                if(message.content.startsWith('.')){
+                    data.messages.bot.push(message.createdAt);
+                }
+                if(message.stickers.size > 0) {
+                    data.messages.stickers.push(message.createdAt);
+                }
+                if(message.mentions?.member?.size > 0){
+                    const data = [];
+                    message.mentions.members.forEach(async member => {
+                        const userData = data.message.mentions.find(a => a._id === member.id);
+                        if(userData){
+                            userData.times.push(message.createdAt);
+                        }else {
+                            userData.push({
+                                _id: member.id,
+                                times: [message.createdAt]
+                            })
+                        }
+                        const userDataCloud = await require('../../tools/database/getLevel')(member.id);
+                        if(userDataCloud) userDataCloud.messages.mentionsBy.push(message.createdAt);
+                    })
+                }
+                const channelData = data?.channels?.find(a => a._id == message.channel.id);
+                if(channelData){
+                    channelData.times.push(message.createdAt);
+                }else {
+                    data.channels.push({
+                        _id: message.channel.id,
+                        times: [message.createdAt]
+                    })
+                }
                 const addExp = Math.floor(Math.random() * 4) + 4;
                 data.exp += addExp;
                 data.total++;

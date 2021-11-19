@@ -11,5 +11,36 @@ module.exports = async(id) => {
         await data.save();
         return data;
     }
+    if(!data.channels){
+        data.channels = [];
+        await data.save();
+    }
+    if(!data.server){
+        data.server = {
+            join: [],
+            leave: [],
+            invites: []
+        }
+        await data.save();
+    }
+    if(!data.messages) {
+        data.messages = {
+            message: [],
+            updated: [],
+            deleted: [],
+            links: [],
+            bot: [],
+            stickers: [],
+            emojis: [],
+            reactions: [],
+            mentions: [],
+            mentionsBy: []
+        }
+        await data.save();
+    }
+    if(!data.voice){
+        data.voice = [];
+        await data.save();
+    }
     return data;
 }

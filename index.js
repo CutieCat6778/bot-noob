@@ -27,7 +27,7 @@ client.snipe = new Map();
 client.edits = new Map();
 client.pic = new Map();
 client.invites = new Map();
-client.voiceexp = new Map();
+client.voiceStats = new Map();
 
 //All variable that we need to store in Client
 client.startup = new Date().getTime();
