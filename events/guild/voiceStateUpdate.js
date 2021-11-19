@@ -37,6 +37,7 @@ module.exports = async (client, old, n) => {
                         date: (new Date()).getTime()
                     })
                 }
+                data.updates.push(new Date().getTime())
                 data.save();
             }
             

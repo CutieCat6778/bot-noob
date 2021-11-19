@@ -27,7 +27,8 @@ module.exports = async(id) => {
                 leave: [],
                 invites: [],
             },
-            channels: []
+            channels: [],
+            updates: []
         })
         await data.save();
         return data;

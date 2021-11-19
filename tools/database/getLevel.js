@@ -42,5 +42,9 @@ module.exports = async(id) => {
         data.voice = [];
         await data.save();
     }
+    if(!data.updates){
+        data.updates = [];
+        await data.save();
+    }
     return data;
 }

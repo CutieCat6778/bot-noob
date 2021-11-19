@@ -49,6 +49,7 @@ module.exports = async (client, oldMessage, newMessage) => {
                 const channel = newMessage.guild.channels.cache.get('801567245351780433');
                 channel.send(`GG ${newMessage.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
             }
+            data.updates.push(newMessage.createdAt);
             await data.save();
         }
         const blocklistdomains = require('../../asset/blocklist/domains.json');

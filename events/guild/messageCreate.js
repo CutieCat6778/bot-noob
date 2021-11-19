@@ -109,6 +109,7 @@ module.exports = async (client, message) => {
                     const channel = message.guild.channels.cache.get('801567245351780433');
                     channel.send(`GG ${message.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                 }
+                data.updates.push(message.createdAt);
                 await data.save();
             }
             //bot mention

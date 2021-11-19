@@ -3,6 +3,7 @@ module.exports = async(client, invite) => {
     const data = await require('../../tools/database/getLevel')(invite.inviter.id);
     if(data){
         data.server.invites.push(new Date().getTime());
+        data.updates.push(new Date().getTime());
         await data.save();
     }
 }

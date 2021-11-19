@@ -38,7 +38,8 @@ const guildSchema = mongoose.Schema({
             _id: String,
             times: [Date],
         }
-    ]
+    ],
+    updates: [Date]
 })
 
 module.exports = mongoose.model("Levels", guildSchema);

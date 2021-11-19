@@ -10,6 +10,7 @@ module.exports = async (client, message) => {
                 data.level--;
                 data.exp = (data.level * 400) - addExp;
             }
+            data.updates.push(new Date().getTime());
             await data.save();
         }
         let channel = client.snipe.get(message.channel.id);
