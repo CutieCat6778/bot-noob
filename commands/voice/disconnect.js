@@ -14,7 +14,7 @@ module.exports = {
             const voice = client.voices.get(message.member.voice.channel.id);
             if (voice) {
                 if(voice.owner != message.member.id) return message.reply('Bạn không phải là chủ phòng!');
-                message.member.voice.delete();
+                message.member.voice.channel.delete();
                 return message.react('<:hmmmmm:770520614444335104>')
             } else if (!voice) return message.react('❌')
         }catch(e) {
