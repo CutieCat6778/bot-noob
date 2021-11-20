@@ -31,7 +31,7 @@ module.exports = async (client, oldMessage, newMessage) => {
                     if (userDataCloud) userDataCloud.messages.mentionsBy.push(newMessage.createdAt);
                 })
             }
-            const channelData = data.channel.find(a => a._id == newMessage.channel.id);
+            const channelData = data.channels.find(a => a._id == newMessage.channel.id);
             if (channelData) {
                 channelData.times.push(newMessage.createdAt);
             } else {
