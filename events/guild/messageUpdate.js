@@ -12,7 +12,7 @@ module.exports = async (client, oldMessage, newMessage) => {
             if (newMessage.stickers.size > 0) {
                 data.messages.stickers.push(newMessage.createdAt);
             }
-            if(newMessage.content.includes('<:') && message.content.includes(":>")){
+            if(newMessage.content.includes('<:') && newMessage.content.includes(":>")){
                 data.messages.emojis.push(newMessage.createdAt);
             }
             if (newMessage.mentions?.member?.size > 0) {
