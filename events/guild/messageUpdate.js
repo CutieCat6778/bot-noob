@@ -4,7 +4,7 @@ module.exports = async (client, oldMessage, newMessage) => {
         if (data) {
             data.messages.updated.push(newMessage.createdAt);
             if (newMessage.content.startsWith('http')) {
-                data.messages.link.push(newMessage.createdAt);
+                data.messages.links.push(newMessage.createdAt);
             }
             if (newMessage.content.startsWith('.')) {
                 data.messages.bot.push(newMessage.createdAt);

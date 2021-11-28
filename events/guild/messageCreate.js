@@ -64,7 +64,7 @@ module.exports = async (client, message) => {
             if (data) {
                 data.messages.message.push(message.createdAt);
                 if(message.content.startsWith('http')){
-                    data.messages.link.push(message.createdAt);
+                    data.messages.links.push(message.createdAt);
                 }
                 if(message.content.startsWith('.')){
                     data.messages.bot.push(message.createdAt);
