@@ -1,11 +1,9 @@
-const MessageEmbed = require("../../classes/newEmbed")
-
 module.exports = {
 	config: {
 		name: "ban",
 		aliases: ['cấm', 'cút'],
-		perms: ['MANAGE_GUILD'],
-		bot: ['SEND_MESSAGES'],
+		perms: ['BAN_MEMBERS'],
+		bot: ['BAN_MEMBERS'],
 		category: 'administrator',
 		usage: ['text']
 	},
