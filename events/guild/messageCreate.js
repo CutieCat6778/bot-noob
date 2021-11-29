@@ -160,7 +160,7 @@ module.exports = async (client, message) => {
                     const minus = (date - client.thinh)
                     if (minus < 10000) {
                         message.delete();
-                        const m = await message.reply(`bình tĩnh, chờ thêm **${require('ms')(5000 - minus)}** nữa!`);
+                        const m = await message.reply(`bình tĩnh, chờ thêm **${require('ms')(10000 - minus)}** nữa!`);
                         setTimeout(() => {
                             m.delete();
                         }, 7000);
