@@ -1,9 +1,9 @@
 module.exports = {
   config: {
-      name: "vcname",
+      name: "region",
       perms: ['SEND_MESSAGES'],
       bot: ['SEND_MESSAGES'],
-      aliases: ['vcsetname', 'vcn', 'vcten', 'vcdoiten'],
+      aliases: ['server', 'doiserver', 'đổiserver'],
       category: "voice",
       usage: ['[name]']
   },
