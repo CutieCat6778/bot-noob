@@ -13,7 +13,7 @@ module.exports = {
             const regions = [null, 'us-west', 'us-east', 'us-central', 'us-south', 'singapore', 'southafrica', 'sydney', 'rotterdam', 'brazil', 'hongkong', 'russia', 'japan', 'india', 'south-korea'];
             const name = args[0];
             if(!regions.indexOf(name)) return message.reply(`những region chỉ có thể là \`${regions.join('\`, \`')}\``);
-            await message.member.voice.channel.setRTCRegion(name);
+            await message.member.voice.channel.setRTCRegion(name ? name : null);
             return message.react('<:hmmmmm:770520614444335104>')
         } catch (e) {
             return require('../../tools/functions/error')(e, message);
