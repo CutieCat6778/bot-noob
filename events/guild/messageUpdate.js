@@ -52,24 +52,6 @@ module.exports = async (client, oldMessage, newMessage) => {
             if((new Date(data.updates[-1])).getDate() != new Date().getDate()) data.updates.push(newMessage.createdAt);
             await data.save();
         }
-        const blocklistdomains = require('../../asset/blocklist/domains.json');
-        if (newMessage.content.includes('.') && newMessage.content.includes('http')) {
-            let block = false;
-            for (let domain of blocklistdomains) {
-                if (newMessage.content.includes(domain)) {
-                    block = true;
-                }
-            }
-            if (block == false) {
-                newMessage.delete();
-                let m = await newMessage.channel.send('**đường link này đã bị chặn!!!**')//.then(m => setTimeout(() => {m.delete()}), 7000)
-                setTimeout(() => {
-                    m.delete()
-                }, 7000)
-                const channel = newMessage.guild.channels.cache.get('813765397353725962');
-                channel.send({ embeds: [{ title: "Đã chặn được một tên miền!", description: `${newMessage.author.id} | ${newMessage.author.tag}\n\n${newMessage.content.split('://').join('[://]').split('.').join('[.]')}` }] });
-            }
-        }
         let channel = client.edits.get(newMessage.channel.id);
         if (!channel) {
             client.edits.set(newMessage.channel.id, []);
