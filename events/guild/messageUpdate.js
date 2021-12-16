@@ -49,7 +49,7 @@ module.exports = async (client, oldMessage, newMessage) => {
                 const channel = newMessage.guild.channels.cache.get('801567245351780433');
                 channel.send(`GG ${newMessage.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
             }
-            if((new Date(data.updates[(data.updates.length - 1)])))).getDate() != new Date().getDate()) data.updates.push(newMessage.createdAt);
+            if(new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(newMessage.createdAt);
             await data.save();
         }
         let channel = client.edits.get(newMessage.channel.id);
