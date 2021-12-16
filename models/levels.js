@@ -7,7 +7,7 @@ const guildSchema = mongoose.Schema({
     level: Number,
     voice: [
         {
-            data: Date,
+            date: Date,
             total: Number
         }
     ],
