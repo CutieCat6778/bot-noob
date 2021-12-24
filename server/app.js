@@ -4,7 +4,7 @@ const cors = require('cors');
 module.exports = (client) => {
   const app = express();
 
-  const whitelist = ['http://localhost:3001']
+  const whitelist = ['http://localhost:3001', 'https://my-profile-chi.vercel.app/']
 
   app.use(cors({
     origin: function(origin, callback){
