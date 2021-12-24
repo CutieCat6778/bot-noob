@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { WebhookClient } = require('discord.js');
-
+const { writeFileSync } = require('fs');
 const hook = new WebhookClient({url: process.env.url});
 
 module.exports = async (client) => {
@@ -17,6 +17,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadAfk')(client);
         await require('../../tools/cache/loadInvites')(client);
         await require('../../tools/collectors/roles')(client);
+        require('../../server/app')(client);
         //await require('../../tools/converter/txtToArray')();
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
         const text = [
