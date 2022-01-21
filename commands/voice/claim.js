@@ -13,7 +13,8 @@ module.exports = {
             if(voice && voice.owner == null){
                 voice.owner = message.member.id;
                 return message.react('<:hmmmmm:770520614444335104>');
-            }else if(!voice) return message.react('❌');
+            }else if(voice && voice.owner == message.member.id) return message.react('<:hmmmmm:770520614444335104>');
+            else return message.react('❌');
         }catch(e) {
             return require('../../tools/functions/error')(e, message);
         }
