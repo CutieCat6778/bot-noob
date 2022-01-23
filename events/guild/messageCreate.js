@@ -44,39 +44,45 @@ module.exports = async (client, message) => {
             //Adding the exp
             const data = await require('../../tools/database/getLevel')(message.author.id);
             if (data) {
+                data.messages.message.splice(0, 1);
                 data.messages.message.push(message.createdAt);
-                if(message.content.startsWith('http')){
-                    data.messages.links.push(message.createdAt);
+                if (newMessage.content.startsWith('http')) {
+                    data.messages.links.splice(0, 1);
+                    data.messages.links.push(newMessage.createdAt);
                 }
-                if(message.content.startsWith('.')){
-                    data.messages.bot.push(message.createdAt);
+                if (newMessage.content.startsWith('.')) {
+                    data.messages.bot.splice(0, 1);
+                    data.messages.bot.push(newMessage.createdAt);
                 }
-                if(message.stickers.size > 0) {
-                    data.messages.stickers.push(message.createdAt);
+                if (newMessage.stickers.size > 0) {
+                    data.messages.stickers.splice(0, 1);
+                    data.messages.stickers.push(newMessage.createdAt);
                 }
-                if(message.content.includes('<:') && message.content.includes(":>")){
-                    data.messages.emojis.push(message.createdAt);
+                if (newMessage.content.includes('<:') && newMessage.content.includes(":>")) {
+                    data.messages.emoji.splice(0, 1);
+                    data.messages.emojis.push(newMessage.createdAt);
                 }
-                if(message.mentions?.member?.size > 0){
+                if (message.mentions?.member?.size > 0) {
                     const data = [];
                     message.mentions.members.forEach(async member => {
                         const userData = data.message.mentions.find(a => a._id === member.id);
-                        if(userData){
+                        if (userData) {
                             userData.times.push(message.createdAt);
-                        }else {
+                        } else {
                             userData.push({
                                 _id: member.id,
                                 times: [message.createdAt]
                             })
                         }
                         const userDataCloud = await require('../../tools/database/getLevel')(member.id);
-                        if(userDataCloud) userDataCloud.messages.mentionsBy.push(message.createdAt);
+                        if (userDataCloud) userDataCloud.messages.mentionsBy.push(message.createdAt);
                     })
                 }
                 const channelData = data?.channels?.find(a => a._id == message.channel.id);
-                if(channelData){
+                if (channelData) {
                     channelData.times.push(message.createdAt);
-                }else {
+                } else {
+                    data.channels.splice(0, 1);
                     data.channels.push({
                         _id: message.channel.id,
                         times: [message.createdAt]
@@ -91,7 +97,9 @@ module.exports = async (client, message) => {
                     const channel = message.guild.channels.cache.get('801567245351780433');
                     channel.send(`GG ${message.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                 }
-                if(new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(message.createdAt);
+                if (data.exp < 0) data.exp = 0;
+                if (data.level < 0) data.exp = 0;
+                if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(message.createdAt);
                 await data.save();
             }
             //bot mention

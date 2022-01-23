@@ -1,7 +1,9 @@
 module.exports = async (client, message) => {
     try {
+        if (message.author.bot) return;
         const data = await require('../../tools/database/getLevel')(message.author.id);
-        if(data){
+        if (data) {
+            data.messages.deleted.splice(0, 1);
             data.messages.deleted.push(new Date().getTime());
             const addExp = Math.floor(Math.random() * 4) + 4;
             data.exp -= addExp;
@@ -10,7 +12,9 @@ module.exports = async (client, message) => {
                 data.level--;
                 data.exp = (data.level * 400) - addExp;
             }
-            if(new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
+            if (data.exp < 0) data.exp = 0;
+            if (data.level < 0) data.exp = 0;
+            if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
             await data.save();
         }
         let channel = client.snipe.get(message.channel.id);

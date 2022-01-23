@@ -1,18 +1,24 @@
 module.exports = async (client, oldMessage, newMessage) => {
     try {
+        if(oldMessage.author.bot) return;
         const data = await require('../../tools/database/getLevel')(newMessage.author.id);
         if (data) {
+            data.messages.updated.splice(0, 1);
             data.messages.updated.push(newMessage.createdAt);
             if (newMessage.content.startsWith('http')) {
+                data.messages.links.splice(0, 1);
                 data.messages.links.push(newMessage.createdAt);
             }
             if (newMessage.content.startsWith('.')) {
+                data.messages.bot.splice(0, 1);
                 data.messages.bot.push(newMessage.createdAt);
             }
             if (newMessage.stickers.size > 0) {
+                data.messages.stickers.splice(0, 1);
                 data.messages.stickers.push(newMessage.createdAt);
             }
             if(newMessage.content.includes('<:') && newMessage.content.includes(":>")){
+                data.messages.emoji.splice(0, 1);
                 data.messages.emojis.push(newMessage.createdAt);
             }
             if (newMessage.mentions?.member?.size > 0) {
@@ -35,20 +41,14 @@ module.exports = async (client, oldMessage, newMessage) => {
             if (channelData) {
                 channelData.times.push(newMessage.createdAt);
             } else {
+                data.channels.splice(0, 1);
                 data.channels.push({
                     _id: newMessage.channel.id,
                     times: [newMessage.createdAt]
                 })
             }
-            const addExp = Math.floor(Math.random() * 4) + 4;
-            data.exp += addExp;
-            data.total++;
-            if ((data.exp >= data.level * 400 && data.level > 0) || (data.exp > 400 && data.level == 0)) {
-                data.level++;
-                data.exp = 0;
-                const channel = newMessage.guild.channels.cache.get('801567245351780433');
-                channel.send(`GG ${newMessage.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
-            }
+            if (data.exp < 0) data.exp = 0;
+            if (data.level < 0) data.exp = 0;
             if(new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(newMessage.createdAt);
             await data.save();
         }

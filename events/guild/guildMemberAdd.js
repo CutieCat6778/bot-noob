@@ -1,4 +1,5 @@
 module.exports = async (client, member) => {
+    if (member.bot) return;
     const data = await require('../../tools/database/getLevel')(member.id);
     if(data){
         data.server.join.push((new Date()).getTime());
