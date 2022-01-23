@@ -46,21 +46,21 @@ module.exports = async (client, message) => {
             if (data) {
                 data.messages.message.splice(0, 1);
                 data.messages.message.push(message.createdAt);
-                if (newMessage.content.startsWith('http')) {
+                if (message.content.startsWith('http')) {
                     data.messages.links.splice(0, 1);
-                    data.messages.links.push(newMessage.createdAt);
+                    data.messages.links.push(message.createdAt);
                 }
-                if (newMessage.content.startsWith('.')) {
+                if (message.content.startsWith('.')) {
                     data.messages.bot.splice(0, 1);
-                    data.messages.bot.push(newMessage.createdAt);
+                    data.messages.bot.push(message.createdAt);
                 }
-                if (newMessage.stickers.size > 0) {
+                if (message.stickers.size > 0) {
                     data.messages.stickers.splice(0, 1);
-                    data.messages.stickers.push(newMessage.createdAt);
+                    data.messages.stickers.push(message.createdAt);
                 }
-                if (newMessage.content.includes('<:') && newMessage.content.includes(":>")) {
+                if (message.content.includes('<:') && message.content.includes(":>")) {
                     data.messages.emoji.splice(0, 1);
-                    data.messages.emojis.push(newMessage.createdAt);
+                    data.messages.emojis.push(message.createdAt);
                 }
                 if (message.mentions?.member?.size > 0) {
                     const data = [];
