@@ -6,7 +6,7 @@ module.exports = async (client, message) => {
         if (message.author.bot) return;
         if (message.channel.type == "DM") {
             if (message.author.id == "601204554381656064") {
-                const user = await client.users.fetch('762749432658788384');
+                const user = await client.users.fetch('924351368897106061');
                 user.send(message.content);
             }
         }
@@ -176,7 +176,7 @@ module.exports = async (client, message) => {
                         })
                     }
                 }
-                if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "762749432658788384") {
+                if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "924351368897106061") {
                     return;
                 } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
                     if (message.channel.permissionsFor(message.member).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {

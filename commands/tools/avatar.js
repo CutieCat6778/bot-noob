@@ -21,7 +21,7 @@ module.exports = {
             let embed = new MessageEmbed()
                 .setTitle(`${user.displayName}'s avatar`)
                 .setDescription(`[Click here for link](${user.user.displayAvatarURL({ size: 256, format: "png" })})`)
-                .setImage(user.user.displayAvatarURL({ size: 512 }))
+                .setImage(user.displayAvatarURL({ size: 512 }) ? user.displayAvatarURL({ size: 512 }) : user.user.displayAvatarURL({ size: 512 }))
                 .setTimestamp()
             message.channel.send({embeds: [embed]});
         }catch (e) {
