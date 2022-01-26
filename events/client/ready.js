@@ -41,7 +41,7 @@ module.exports = async (client) => {
         }, 15000);
         setInterval(() => {
             require('../../tools/functions/deleteVoices')(client);
-        }, 216000000)
+        }, 900000)
     } catch (e) {
         return require("../../tools/functions/error")(e, undefined)
     }
