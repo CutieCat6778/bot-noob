@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
 const guildSchema = mongoose.Schema({
-  _id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  _id: String,
   owner: {
     type: String,
     required: true,
