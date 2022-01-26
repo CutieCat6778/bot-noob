@@ -16,6 +16,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
         await require('../../tools/cache/loadInvites')(client);
+        await require('../../tools/cache/loadRoom')(client);
         await require('../../tools/collectors/roles')(client);
         //await require('../../tools/converter/txtToArray')();
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
