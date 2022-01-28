@@ -39,6 +39,7 @@ module.exports = async (client) => {
             client.user.setActivity(text[i]);
             i == text.length - 1 ? i = 0 : i++;
         }, 15000);
+        require('../../tools/functions/deleteVoices')(client);
         setInterval(() => {
             require('../../tools/functions/deleteVoices')(client);
         }, 900000)
