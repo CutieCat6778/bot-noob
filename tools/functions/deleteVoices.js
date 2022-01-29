@@ -5,7 +5,10 @@ module.exports = (client) => {
         channels.forEach(channel => {
             if(channel.members.size == 0 && !client.whitelistChannels.includes(channel.id)) {
                 try{
+                    if(channel.name == "「➕」Tạo Phòng") return;
+                    if(!channel.permissionsFor(client.user.id).has(["MANAGE_CHANNELS"])) return;
                     channel.delete('inactive channel');
+                    if(client.voices.get(channel.id)) client.voices.delete(channel.id);
                 }catch(e){
                     return require('./error')(e);
                 }

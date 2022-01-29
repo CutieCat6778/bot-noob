@@ -5,6 +5,7 @@ module.exports = async(client) => {
 	if(!rooms) return;
 	else if(rooms){
 		for(let room of rooms){
+			console.log(room);
 			client.channels.cache.get(room._id) ? client.voices.set(room._id, room) : null;
 		}
 		return true;

@@ -1,5 +1,6 @@
 const { Permissions } = require("discord.js");
-const MessageEmbed = require("../../classes/newEmbed")
+const MessageEmbed = require("../../classes/newEmbed");
+const newRoom = require("../../tools/database/newRoom");
 
 module.exports = async (client, message) => {
     try {
@@ -165,15 +166,17 @@ module.exports = async (client, message) => {
                 if (commandfile.config.category == "voice" && message.member.voice.channel && message.member.voice.channel.parent.id == "800139706250559518") {
                     let voiceCache = client.voices.get(message.member.voice.channel.id);
                     if (!voiceCache) {
-                        client.voices.set(message.member.voice.channel.id, {
-                            owner: null,
+                        const obj = {
+                            owner: message.author.id,
                             allow: [],
                             deny: [],
                             lock: false,
                             sleep: false,
                             defend: [],
-                            mute: []
-                        })
+                            mute: [],
+                        }
+                        client.voices.set(obj);
+                        newRoom({ _id: message.member.voice.channel.id, owner: message.member.id })
                     }
                 }
                 if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "924351368897106061") {
