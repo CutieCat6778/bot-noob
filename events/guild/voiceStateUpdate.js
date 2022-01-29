@@ -50,7 +50,7 @@ module.exports = async (client, old, n) => {
             if (voiceCache) {
                 if (old.member.id == voiceCache.owner) {
                     voiceCache.owner = null;
-                    updateRoom(voiceCache);
+                    updateRoom(old.channel.id, voiceCache);
                 }
                 if (old.channel.members.size == 0) {
                     client.voices.delete(old.channel.id);
