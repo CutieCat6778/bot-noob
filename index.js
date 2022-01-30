@@ -38,7 +38,7 @@ client.noImage = new Array();
 client.thinh = new Date().getTime();
 client.thinhUsed = new Array();
 client.thinhUsedEn = new Array();
-client.whitelistChannels = new Array("931007026300059698", "906603913678061579", "933054973401526375", "933056338701979698", "933033236848853053", "936922754047967233");
+client.whitelistChannels = new Array("937435861182722098", "931007026300059698", "906603913678061579", "933054973401526375", "933056338701979698", "933033236848853053", "936922754047967233");
 
 (async() => {
     await require('./handlers/commands.js')(client);
