@@ -4,10 +4,6 @@ const removeStarboard = require("../../tools/database/removeStarboard");
 
 module.exports = async (client, reaction, user) => {
     try {
-        if(reaction.emoji.name == "🗑️" && user.id != client.user.id) {
-            const message = await client.channels.cache.get(reaction.message.channelId).messages.fetch(reaction.message.id);
-            message && message.member.id === client.user.id && message.content && !message.embeds ? message.delete() : null;
-        }
         if (reaction.emoji.name == "⭐") {
             if (user.bot) return;
             let message = reaction.message;
