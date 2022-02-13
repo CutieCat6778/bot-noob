@@ -27,7 +27,7 @@ module.exports = async (client, reaction, user) => {
                 "timestamp": message.createdAt
             }
             message.attachments.first() ? embed.image = { url: message.attachments.first().url } : null;
-            if (reactions.users.cache.size + 1 == 1 && !data) {
+            if (reactions.users.cache.size + 1 == 2 && !data) {
                 const msg = await channel.send({ embeds: [embed] })
                 new newStarboard({
                     _id: message.id,
@@ -35,7 +35,7 @@ module.exports = async (client, reaction, user) => {
                 })
                 data.msgId = msg.id;
                 msg.react('⭐');
-            } else if (reactions.users.cache.size + 1 >= 1 && data) {
+            } else if (reactions.users.cache.size + 1 >= 2 && data) {
                 const msg = await channel.messages.fetch(data.embedId);
                 await msg.edit({ embed: embed });
             } else return;
