@@ -5,7 +5,7 @@ module.exports = {
         bot: ['SEND_MESSAGES'],
         aliases: ['vctanso'],
         category: "voice",
-        usage: ['[Bit_rate]']
+        usage: ['[bitrate(16-128)]']
     },
     async execute(client, message, args, guildCache) {
         try{

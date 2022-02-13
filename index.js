@@ -13,7 +13,7 @@ const client = new Client({
         Intents.FLAGS.GUILD_VOICE_STATES
     ],
     allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
-    partials: ["REACTION", "MESSAGE"]
+    partials: ["REACTION", "MESSAGE", "GUILD_MEMBER", "CHANNEL", "USER"]
 });
 
 //All Importain Cache stuffs

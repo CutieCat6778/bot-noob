@@ -94,12 +94,15 @@ module.exports = async (client, message) => {
                 data.total++;
                 if ((data.exp >= data.level * 400 && data.level > 0) || (data.exp > 400 && data.level == 0)) {
                     data.level++;
-                    data.exp = 0;
+                    data.exp -= data.level * 400;
                     const channel = message.guild.channels.cache.get('801567245351780433');
                     channel.send(`GG ${message.member}\nGà vậy mà vẫn lên level **${data.level}** 😏`);
                 }
                 if (data.exp < 0) data.exp = 0;
-                if (data.level < 0) data.exp = 0;
+                if (data.level < 0) data.level = 0;
+                if(data.exp === 0 && data.level <= 0 && data.total != 0) {
+                    data.exp = data.total * addExp;
+                } 
                 if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(message.createdAt);
                 await data.save();
             }

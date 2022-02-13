@@ -6,14 +6,8 @@ module.exports = async (client, message) => {
             data.messages.deleted.splice(0, 1);
             data.messages.deleted.push(new Date().getTime());
             const addExp = Math.floor(Math.random() * 4) + 4;
-            data.exp -= addExp;
+            data.exp != 0 ? data.exp -= addExp : (data.level -= 1, data.exp = data.level * 400 - addExp);
             data.total--;
-            if ((data.exp <= data.level * 400 && data.level <= 0) || (data.exp < 400 && data.level <= 0)) {
-                data.level--;
-                data.exp = (data.level * 400) - addExp;
-            }
-            if (data.exp < 0) data.exp = 0;
-            if (data.level < 0) data.exp = 0;
             if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
             await data.save();
         }

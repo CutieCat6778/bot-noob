@@ -1,5 +1,3 @@
-const { Permissions } = require("discord.js");
-
 module.exports = {
     config: {
         name: "vcallow",
