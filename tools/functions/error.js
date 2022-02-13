@@ -12,7 +12,7 @@ module.exports = async (error, message, text) => {
         if (!e) e = error.toString();
         if (message) {
             var name;
-            name = message.content.split(" ")[0];
+            name = message?.content?.split(" ")[0];
             name = name.slice(0, 1).toUpperCase() + name.slice(1);
         }
         if (e) {

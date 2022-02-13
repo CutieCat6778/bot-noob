@@ -11,30 +11,29 @@ module.exports = async (client, reaction, user) => {
             const guild = await client.guilds.fetch('721203266452586507')
             const channel = await guild.channels.fetch('787342196734296084');
             const currChannel = await guild.channels.fetch(message.channelId);
-            const reactions = message.reactions.cache.find(a => a.emoji.name === "⭐");
             if (!message.author) message = await currChannel.messages.fetch(message.id);
+            const reactions = message.reactions.cache.find(a => a.emoji.name === "⭐");
             const userData = message.guild.members.cache.get(user.id);
             const embed = {
-                "description": `<#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n${message.content.toString()}`,
+                "description": `**${reactions ? reactions.users.cache.size : 0}** ⭐ <#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n${message.content.toString()}`,
                 "color": "#fdd03b",
                 "author": {
-                    "name": userData.user.tag,
+                    "name": `${userData.user.tag}`,
                     "icon_url": userData.user.displayAvatarURL()
-                },
-                "footer": {
-                    "text": `⭐ ${reactions.size}`
                 },
                 "timestamp": message.createdAt
             }
             message.attachments.first() ? embed.image = { url: message.attachments.first().url } : null;
-            if (reactions.size >= 2) {
+            if (!reactions || reactions.users.cache.size == 0) {
                 const msg = await channel.messages.fetch(data.embedId);
-                await msg.edit({ embed: embed });
-                await msg.react('⭐');
-            } else if (reactions.size == 0) {
-                const msg = await channel.messages.fetch(data.embedId);
+                if(!msg) return await removeStarboard(message.id);;
                 await msg.delete();
                 await removeStarboard(message.id);
+            } else if (reactions.users.cache.size >= 2) {
+                const msg = await channel.messages.fetch(data.embedId);
+                if(!msg) return await removeStarboard(message.id);;
+                await msg.edit({ embed: embed });
+                await msg.react('⭐');
             }
         }
     } catch (e) {
