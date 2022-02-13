@@ -1,6 +1,5 @@
-const StringTools = require("string-toolkit");
-const stringTools = new StringTools;
-const MessageEmbed = require("../../classes/newEmbed")
+const util = require('util');
+
 module.exports = {
     config: {
         name: "eval",
