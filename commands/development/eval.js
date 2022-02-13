@@ -14,7 +14,7 @@ module.exports = {
             if (!args[0]) return;
             const evaluted = eval(args.slice(0).join(' '));
             if (!evaluted) return client.send(message, "Undefined");
-            const output = `\`\`\`json\n${require('../../utils/string/textSplit')(util.inspect(evaluted), true)}\n\`\`\``;
+            const output = `\`\`\`json\n${require('../../tools/string/textsplit')(util.inspect(evaluted), true)}\n\`\`\``;
             return client.send(message, output + `\n\`${typeof (evaluted)}\` -  **${require('ms')(new Date().getTime() - message.createdAt, { long: true })}**`);
         } catch (e) {
             return client.error(e);
