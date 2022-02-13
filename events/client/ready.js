@@ -20,6 +20,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadRoom')(client);
         await require('../../tools/collectors/roles')(client);
         client.error = error;
+        client.send = require('../../tools/functions/sendMessage');
         //await require('../../tools/converter/txtToArray')();
         console.log(`${client.user.username} is online - It took ${require("ms")((new Date() - client.startup), { long: true })}`);
         const text = [
