@@ -149,6 +149,7 @@ module.exports = async (client, message) => {
                 const cmd = args.shift().toLowerCase();
                 const commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
                 if (!commandfile) return;
+                if(commandfile.disable == true) return message.reply('Lệnh này đã được block vì lý do an toàn (lỗi), nếu bạn muốn dùng lại lệnh này thì hãy liên hệ <@924351368897106061> để được fix sớm nhất nhé :>')
                 if (commandfile.config.name == "thathinh" || commandfile.config.name == "gai") {
                     const minus = (date - client.thinh)
                     if (minus < 10000) {
