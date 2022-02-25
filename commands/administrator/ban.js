@@ -14,7 +14,7 @@ module.exports = {
         for(const arg of args) {
 		const id = require('mention-converter')(arg);
 		const user = message.guild.members.cache.get(id);
-		if(!user) return message.channel.send("Em lạy chị, hãy cho em đúng người mà bạn");
+		if(!user) return message.channel.send("Ban dọa ăn cuk à, giỏi tag thẳng tên đê. Lêu lêu");
           message.guild.members.ban(user.id, {reason: `Được ban bởi ${message.member.displayName}`});
         }
         return message.reply(`Đã ban: **\`${args.join('\`**, **\`')}\`**`);
