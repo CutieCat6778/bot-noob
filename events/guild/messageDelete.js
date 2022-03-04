@@ -9,7 +9,9 @@ module.exports = async (client, message) => {
             data.exp != 0 ? data.exp -= addExp : (data.level -= 1, data.exp = data.level * 400 - addExp);
             data.total--;
             if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
-            await data.save();
+            await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
         }
         let channel = client.snipe.get(message.channel.id);
         if (!channel) {

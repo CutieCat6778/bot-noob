@@ -1,0 +1,32 @@
+[
+	{
+		"id": 0,
+		"content": "Ai là chủ server này?",
+		"false": ["Gà", "Hèo", "Sop", "Huy", "Cat", "Potato", "Shin"],
+		"correct": "Thảo"
+	},
+	{
+		"id": 1,
+		"content": "Server này là như thế lào?",
+		"false": ["Tìm ny", "Chat 18+", "Éo biết"],
+		"correct": "Chợ"
+	},
+	{
+		"id": 2,
+		"content": "Member server này chủ yếu là từ nước nào?",
+		"false": ["Lào", "Campuchia", "Mẽo", "Tung Của", "Florida"],
+		"correct": "Việt Nam"
+	},
+	{
+		"id": 3,
+		"content": "Bạn có thể làm gì ở đây?",
+		"false": ["Bật cam đi ỉa", "Chơi game cùng nhau", "Zô tám chuyện"],
+		"correct": "Cái éo gì cũng được"
+	},
+	{
+		"id": 4,
+		"content": "Một thứ không nên làm ở server này là?",
+		"false": ["Mukbang vào nửa đêm", "Tụ hội bóc phốt", "Khẩu nghiệp"],
+		"correct": "Đem ny vào trong sv"
+	}
+]

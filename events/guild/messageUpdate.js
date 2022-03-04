@@ -50,7 +50,9 @@ module.exports = async (client, oldMessage, newMessage) => {
             if (data.exp < 0) data.exp = 0;
             if (data.level < 0) data.level = 0;
             if(new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(newMessage.createdAt);
-            await data.save();
+            await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
         }
         let channel = client.edits.get(newMessage.channel.id);
         if (!channel) {

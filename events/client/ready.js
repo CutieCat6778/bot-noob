@@ -18,7 +18,6 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadAfk')(client);
         await require('../../tools/cache/loadInvites')(client);
         await require('../../tools/cache/loadRoom')(client);
-        await require('../../tools/collectors/roles')(client);
         client.error = error;
         client.send = require('../../tools/functions/sendMessage');
         //await require('../../tools/converter/txtToArray')();

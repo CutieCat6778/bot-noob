@@ -104,7 +104,9 @@ module.exports = async (client, message) => {
                     data.exp = data.total * addExp;
                 } 
                 if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(message.createdAt);
-                await data.save();
+                await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
             }
             //bot mention
             if (message.mentions.members) {
@@ -182,14 +184,16 @@ module.exports = async (client, message) => {
                         newRoom({ _id: message.member.voice.channel.id, owner: message.member.id })
                     }
                 }
-                if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "924351368897106061") {
-                    return;
-                } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
-                    if (message.channel.permissionsFor(message.member).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
+                if(!commandfile.author && !message.author.id === "924351368897106061"){
+                    if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "924351368897106061") {
                         return;
-                    }
-                    if (message.channel.permissionsFor(message.guild.me).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
-                        return message.channel.send("Missing permissions.");
+                    } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
+                        if (message.channel.permissionsFor(message.member).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
+                            return;
+                        }
+                        if (message.channel.permissionsFor(message.guild.me).has(commandfile.config.perms.map(a => Permissions.FLAGS[a])) == false) {
+                            return message.channel.send("Missing permissions.");
+                        }
                     }
                 }
                 client.total += 1;

@@ -30,7 +30,9 @@ module.exports = async(id) => {
             channels: [],
             updates: []
         })
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
         return data;
     }
 }

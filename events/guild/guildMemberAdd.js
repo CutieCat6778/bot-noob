@@ -4,7 +4,9 @@ module.exports = async (client, member) => {
     if (data) {
         data.server.join.push((new Date()).getTime());
         if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     if (member.partial) member = await member.fetch();
     let welcomeChannel = await client.channels.fetch('721203266892988489').catch(err => console.error(err));

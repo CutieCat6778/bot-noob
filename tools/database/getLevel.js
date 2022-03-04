@@ -8,12 +8,16 @@ module.exports = async(id) => {
         data.bank = 0;
         data.boost = 1;
         data.inventory = [];
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
         return data;
     }
     if(!data.channels){
         data.channels = [];
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     if(!data.server){
         data.server = {
@@ -21,7 +25,9 @@ module.exports = async(id) => {
             leave: [],
             invites: []
         }
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     if(!data.messages) {
         data.messages = {
@@ -36,15 +42,21 @@ module.exports = async(id) => {
             mentions: [],
             mentionsBy: []
         }
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     if(!data.voice){
         data.voice = [];
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     if(!data.updates){
         data.updates = [];
-        await data.save();
+        await data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
     }
     return data;
 }

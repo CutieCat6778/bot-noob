@@ -56,7 +56,7 @@ module.exports = {
                                 .setTimestamp()
                                 .setThumbnail(target.user.displayAvatarURL())
                             collector.stop();
-                            return m.edit(embed);
+                            return m.edit({embeds: [embed]});
                         }
                         if (!user.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) return;
                         else if (user.permissions.has(Permissions.FLAGS["ADMINISTRATOR"])) {

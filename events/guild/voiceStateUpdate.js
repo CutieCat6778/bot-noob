@@ -44,7 +44,9 @@ module.exports = async (client, old, n) => {
                     })
                 }
                 if (new Date(data.updates[(data.updates.length) - 1]).getDate() != new Date().getDate()) data.updates.push(new Date().getTime());
-                data.save();
+                data.updateOne(data, (err, result) => {
+                    if(err) throw err;
+                })
             }
             let voiceCache = client.voices.get(old.channel.id);
             if (voiceCache) {
