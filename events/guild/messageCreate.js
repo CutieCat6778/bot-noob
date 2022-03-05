@@ -165,6 +165,7 @@ module.exports = async (client, message) => {
                         client.thinh = date;
                     }
                 }
+                if(commandfile.config.author && process.env.LOCAL != true) return;
                 if (commandfile.config.category == "leveling" && message.channel.id != "801567245351780433") return message.reply('làm ơn hãy sử dụng command này ở trong <#801567245351780433>');
                 if (commandfile.config.category == "voice" && message.channel.id != "801283906074705970") return message.reply('làm ơn hãy sử dụng command này ở trong <#801283906074705970>');
                 if (commandfile.config.category == "voice" && !message.member.voice.channel) return message.reply('bạn chỉ có thể sử dụng lệnh này trong một phòng voice (cuộc gọi)')
@@ -184,7 +185,7 @@ module.exports = async (client, message) => {
                         newRoom({ _id: message.member.voice.channel.id, owner: message.member.id })
                     }
                 }
-                if(!commandfile.author && !message.author.id === "924351368897106061"){
+                if(!commandfile.config.author && !message.author.id === "924351368897106061"){
                     if (commandfile.config.perms.includes("BOT_OWNER") && commandfile.config.category == "development" && message.author.id != "924351368897106061") {
                         return;
                     } else if (!commandfile.config.perms.includes("BOT_OWNER")) {
