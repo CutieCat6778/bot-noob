@@ -51,6 +51,7 @@ module.exports = async (client, reaction, user) => {
             const channel = await guild.channels.fetch('787342196734296084');
             const currChannel = await guild.channels.fetch(message.channelId);
             if (!message.author) message = await currChannel.messages.fetch(message.id);
+            if(!message) return;
             const reactions = message.reactions.cache.find(a => a.emoji.name === "⭐");
             if(!reactions) return;
             const userData = message.guild.members.cache.get(user.id);

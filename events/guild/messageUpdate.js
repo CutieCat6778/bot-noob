@@ -1,6 +1,6 @@
 module.exports = async (client, oldMessage, newMessage) => {
     try {
-        if(oldMessage.author.bot) return;
+        if(newMessage.author.bot) return;
         const data = await require('../../tools/database/getLevel')(newMessage.author.id);
         if (data) {
             data.messages.updated.splice(0, 1);

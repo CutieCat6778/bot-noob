@@ -1,11 +1,11 @@
-const { Collection, Permissions } = require('discord.js');
+const { Collection, Permissions, MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = class Event {
 	constructor(Client, Message) {
 		this.client = Client;
 		this.message = Message;
 		this.players = new Collection();
-		this.currentQuestionPos = 0;
+		this.currentQuestionPos = 1;
 		this.currentQuestion = {};
 		this.blockList = Client.eventBlocklist;
 		this.questions = require('./data.json');
@@ -84,7 +84,7 @@ module.exports = class Event {
 	async counter() {
 		const guide = {
 			"title": "Hướng dẫn chơi game!",
-			"description": `Mỗi câu hỏi sẽ có 4 đáp án, khi trả lời thì hãy viết vào chat đáp án của mình với những ký tự như là **\`1\`**, **\`2\`**, **\`3\`**, **\`4\`** hoặc là **\`a\`**, **\`b\`**, **\`c\`**, **\`d\`**. Điểm sẽ được tính bởi tốc độ và độ chính xác của câu hỏi, cho nên hãy bật mạng của mình cho lên đi. Mạng kém thì nghỉ mẹ đi :>`,
+			"description": `Mỗi câu hỏi sẽ có 4 đáp án, và sẽ có 4 nút được hiện ra dưới tin nhắn, tương ứng với 4 đáp án được đưa ra! Điểm sẽ được tính bởi tốc độ và độ chính xác của câu hỏi, cho nên hãy bật mạng của mình cho lên đi. Mạng kém thì nghỉ mẹ đi :>`,
 			"timestamp": new Date(),
 			"footer": {
 				"text": "Cán bộ Gà",
@@ -132,10 +132,9 @@ module.exports = class Event {
 		let answer = [...falseAns.slice(0, 3)];
 		answer.push(data.correct);
 		answer = this.shuffle(answer);
-		console.log(answer);
 		const embed = {
-			"title": data.content,
-			"description": "Đọc kỹ và trả lời đúng nhá các bạn :>\n\n",
+			"title": "10 giây để đọc đáp câu hỏi",
+			"description": `**${data.content}**`,
 			"fields": [
 				{
 					"name": "Đáp án A",
@@ -169,17 +168,120 @@ module.exports = class Event {
 				"icon_url": this.client.user.displayAvatarURL()
 			}
 		}
-		const question = this.message.channel.send({embeds: [embed]});
-		const alert = await this.message.channel.send("**10 giây để đọc câu hỏi bắt đầu!!!!! Trả lời sớm thì ngu vcl, để người khác biết đáp án**");
+
+		function returnButtonAns(id, correct) {
+			return new MessageButton()
+				.setCustomId(`answer_${id}`)
+				.setLabel(`Đáp án ${id.toUpperCase()}`)
+				.setStyle(correct ? "SUCCESS" : "DANGER")
+				.setDisabled(true);
+		}
+
+		function returnButtonDis(id) {
+			return new MessageButton()
+				.setCustomId(`answer_${id}`)
+				.setLabel(`Đáp án ${id.toUpperCase()}`)
+				.setStyle("PRIMARY")
+				.setDisabled(true);
+		}
+
+		function returnButton(id) {
+			return new MessageButton()
+				.setCustomId(`answer_${id}`)
+				.setLabel(`Đáp án ${id.toUpperCase()}`)
+				.setStyle("PRIMARY")
+				.setDisabled(false);
+		}
+		
+
+		const rowDis = new MessageActionRow()
+			.addComponents(
+				returnButtonDis('a')
+			)
+			.addComponents(
+				returnButtonDis('b')
+			)
+			.addComponents(
+				returnButtonDis('c')
+			)
+			.addComponents(
+				returnButtonDis('d')
+			);
+		const row = new MessageActionRow()
+			.addComponents(
+				returnButton('a')
+			)
+			.addComponents(
+				returnButton('b')
+			)
+			.addComponents(
+				returnButton('c')
+			)
+			.addComponents(
+				returnButton('d')
+			);
+
+		const rowAns = new MessageActionRow()
+			.addComponents(
+				returnButtonAns('a', answer[0] == data.correct)
+			)
+			.addComponents(
+				returnButtonAns('b', answer[1] == data.correct)
+			)
+			.addComponents(
+				returnButtonAns('c', answer[2] == data.correct)
+			)
+			.addComponents(
+				returnButtonAns('d', answer[3] == data.correct)
+			)
+
+		const question = await this.message.channel.send({embeds: [embed], components: [rowDis], ephemeral: true});
 		setTimeout(() => {
-			alert.delete();
-			const answerAlert = this.message.channel.send("**Trả lời** (10s sẽ đóng)\n------------------------");
+			const currentTime = new Date().getTime();
+			question.edit({embeds: [embed], components: [row], ephemeral: true});
+			const filter = i => i.customId.startsWith('answer_') && this.players.has(i.user.id);
+			const collector = question.channel.createMessageComponentCollector({ filter, time: 30000 })
+
+			let collected = 0;
+
+			collector.on('collect', (i) => {
+				collected++;
+				const time = new Date().getTime();
+				const player = this.players.get(i.user.id);
+				player.push({
+					time: time - currentTime,
+					questionPos: this.currentQuestionPos,
+					answer: i.customId
+				})
+				i.deferUpdate();
+				if(collected == this.players.size) return collector.stop();
+			})
+
+			collector.on('end', (i) => {
+				console.log(this.players);
+				question.edit({embeds: [
+					{
+						"title": "Đã kết thúc",
+						"description": `Đã nhận được tổng cộng ${i.size} đáp án, sau vài giây sẽ công bố bẳng xếp hạng.`,
+						"timestamp": new Date(),
+						"footer": {
+							"text": "Cán bộ Gà",
+							"icon_url": this.client.user.displayAvatarURL()
+						}
+					}
+				], components: [rowAns], ephemeral: true,})
+			})
 		}, 10000)
+	}
+
+	end() {
+		this.message.channel.send("CEK!!");
 	}
 
 	async main() {
 		const questions = this.shuffle(this.questions);
 		const question = questions.shift();
+		this.currentQuestionPos = question.id;
 		return this.ask(question);
 	}
 }
