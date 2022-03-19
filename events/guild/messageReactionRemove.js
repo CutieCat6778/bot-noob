@@ -4,6 +4,7 @@ const getStarboard = require("../../tools/database/getStarboard");
 module.exports = async (client, reaction, user) => {
     try {
         if(reaction.message.channelId === "802254125970358273") {
+            return;
             const guild = client.guilds.cache.get("721203266452586507");
             switch(reaction.emoji.id){
                 // buss
