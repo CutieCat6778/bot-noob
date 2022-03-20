@@ -45,22 +45,17 @@ module.exports = async (client, message) => {
             //Adding the exp
             const data = await require('../../tools/database/getLevel')(message.author.id);
             if (data) {
-                data.messages.message.splice(0, 1);
                 data.messages.message.push(message.createdAt);
                 if (message.content.startsWith('http')) {
-                    data.messages.links.splice(0, 1);
                     data.messages.links.push(message.createdAt);
                 }
                 if (message.content.startsWith('.')) {
-                    data.messages.bot.splice(0, 1);
                     data.messages.bot.push(message.createdAt);
                 }
                 if (message.stickers.size > 0) {
-                    data.messages.stickers.splice(0, 1);
                     data.messages.stickers.push(message.createdAt);
                 }
                 if (message.content.includes('<:') && message.content.includes(":>")) {
-                    data.messages.emoji.splice(0, 1);
                     data.messages.emojis.push(message.createdAt);
                 }
                 if (message.mentions?.member?.size > 0) {
@@ -83,7 +78,6 @@ module.exports = async (client, message) => {
                 if (channelData) {
                     channelData.times.push(message.createdAt);
                 } else {
-                    data.channels.splice(0, 1);
                     data.channels.push({
                         _id: message.channel.id,
                         times: [message.createdAt]
