@@ -1,5 +1,6 @@
 module.exports = async (client, message) => {
     try {
+        if(!message.author) return;
         if (message.author.bot) return;
         const data = await require('../../tools/database/getLevel')(message.author.id);
         if (data) {

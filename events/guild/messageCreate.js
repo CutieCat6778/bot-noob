@@ -110,6 +110,7 @@ module.exports = async (client, message) => {
             }
             //bot mention
             if (message.mentions.members) {
+                if(message.mentions.members.has(client.user.id)) return message.reply("Gọi bố gì đấy <:Huy:791140987070054420>")
                 if (!message.content.includes("@everyone")) {
                     const users = message.mentions.members.map(m => m.id);
                     if (users.length == 1) {

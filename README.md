@@ -8,7 +8,7 @@ It is a discord community with more then 200 peoples, located in Vietnam and the
 
 ### Bot
 
-Designed and developed by Cat (Thinh), one of the member of the Noob Community. And still being supported until today.
+Designed and developed by Cat (Thinh), one of the member of the Noob Community. And stil being supported until today.
 
 # Contact
 
