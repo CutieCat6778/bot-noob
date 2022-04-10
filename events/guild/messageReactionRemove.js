@@ -61,8 +61,8 @@ module.exports = async (client, reaction, user) => {
                 "description": `**${reactions ? reactions.users.cache.size : 0}** ⭐ <#${message.channel.id}> ➜ [Ấn vào đây](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}/)\n\n${message.content.toString()}`,
                 "color": "#fdd03b",
                 "author": {
-                    "name": `${userData.user.tag}`,
-                    "icon_url": userData.user.displayAvatarURL()
+                    "name": `${message.author.tag}`,
+                    "icon_url": message.author.displayAvatarURL()
                 },
                 "timestamp": message.createdAt
             }
