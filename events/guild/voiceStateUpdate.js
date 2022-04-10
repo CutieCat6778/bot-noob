@@ -5,6 +5,7 @@ const updateRoom = require('../../tools/database/updateRoom');
 
 module.exports = async (client, old, n) => {
     try {
+        return;
         if (old.member.bot || n.member.bot) return;
         if (!old.channel && n.channel) {
             client.voiceStats.set(n.member.id, (new Date()).getTime());
