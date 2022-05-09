@@ -17,7 +17,7 @@ module.exports = async (client) => {
         await require('../../tools/cache/loadTimeout')(client);
         await require('../../tools/cache/loadAfk')(client);
         await require('../../tools/cache/loadInvites')(client);
-        await require('../../tools/cache/loadRoom')(client);
+        //await require('../../tools/cache/loadRoom')(client);
         client.error = error;
         client.send = require('../../tools/functions/sendMessage');
         //await require('../../tools/converter/txtToArray')();
@@ -41,10 +41,10 @@ module.exports = async (client) => {
             client.user.setActivity(text[i]);
             i == text.length - 1 ? i = 0 : i++;
         }, 15000);
-        require('../../tools/functions/deleteVoices')(client);
-        setInterval(() => {
-            require('../../tools/functions/deleteVoices')(client);
-        }, 900000)
+        //require('../../tools/functions/deleteVoices')(client);
+        //setInterval(() => {
+        //    require('../../tools/functions/deleteVoices')(client);
+        //}, 900000)
     } catch (e) {
         return require("../../tools/functions/error")(e, undefined)
     }
